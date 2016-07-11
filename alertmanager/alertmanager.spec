@@ -1,13 +1,13 @@
 %define debug_package %{nil}
 
 Name:		 alertmanager
-Version: 0.2.1
+Version: 0.3.0
 Release: 1%{?dist}
 Summary: Prometheus Alertmanager.
 License: ASL 2.0
 URL:     https://github.com/prometheus/alertmanager
 
-Source0: https://github.com/prometheus/alertmanager/releases/download/%{version}/alertmanager-%{version}.linux-amd64.tar.gz
+Source0: https://github.com/prometheus/alertmanager/releases/download/v%{version}/alertmanager-%{version}.linux-amd64.tar.gz
 Source1: alertmanager.service
 Source2: alertmanager.default
 
