@@ -1,13 +1,13 @@
 %define debug_package %{nil}
 
 Name:		 prometheus
-Version: 0.20.0
+Version: 1.0.0
 Release: 1%{?dist}
 Summary: The Prometheus monitoring system and time series database.
 License: ASL 2.0
 URL:     https://prometheus.io
 
-Source0: https://github.com/prometheus/prometheus/releases/download/%{version}/prometheus-%{version}.linux-amd64.tar.gz
+Source0: https://github.com/prometheus/prometheus/releases/download/v%{version}/prometheus-%{version}.linux-amd64.tar.gz
 Source1: prometheus.service
 Source2: prometheus.default
 
