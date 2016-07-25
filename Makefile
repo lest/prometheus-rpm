@@ -15,6 +15,9 @@ $(PACKAGES):
 		lest/centos7-rpm-builder \
 		build-spec SOURCES/$@.spec
 
+publish:
+	package_cloud push --skip-errors prometheus-rpm/centos/el/7 _dist/*.rpm
+
 clean:
 	rm -rf _dist
 	rm **/*.tar.gz

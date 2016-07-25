@@ -1,0 +1,10 @@
+sudo: required
+services:
+  - docker
+before_install:
+  - gem install package_cloud
+before_script:
+  - sudo chown root:root */*
+script:
+  - make all
+  - if [[ "$TRAVIS_REPO_SLUG" == "lest/prometheus-rpm" && "$TRAVIS_BRANCH" == "master" ]]; then make publish; fi
