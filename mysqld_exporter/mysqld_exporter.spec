@@ -1,13 +1,13 @@
 %define debug_package %{nil}
 
 Name:    mysqld_exporter
-Version: 0.8.1
+Version: 0.9.0
 Release: 1%{?dist}
 Summary: Prometheus exporter for MySQL server metrics.
 License: ASL 2.0
 URL:     https://github.com/prometheus/mysqld_exporter
 
-Source0: https://github.com/prometheus/mysqld_exporter/releases/download/%{version}/mysqld_exporter-%{version}.linux-amd64.tar.gz
+Source0: https://github.com/prometheus/mysqld_exporter/releases/download/v%{version}/mysqld_exporter-%{version}.linux-amd64.tar.gz
 Source1: mysqld_exporter.service
 Source2: mysqld_exporter.default
 
