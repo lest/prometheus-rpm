@@ -1,4 +1,8 @@
-PACKAGES = prometheus alertmanager node_exporter mysqld_exporter
+PACKAGES = prometheus \
+alertmanager \
+node_exporter \
+mysqld_exporter \
+blackbox_exporter
 
 .PHONY: $(PACKAGES)
 
