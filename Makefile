@@ -16,7 +16,7 @@ $(PACKAGES):
 		build-spec SOURCES/$@.spec
 
 publish:
-	package_cloud push --skip-errors prometheus-rpm/centos/el/7 _dist/*.rpm
+	package_cloud push --skip-errors prometheus-rpm/release/el/7 _dist/*.rpm
 
 clean:
 	rm -rf _dist

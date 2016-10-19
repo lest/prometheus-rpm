@@ -11,10 +11,10 @@ by adding the following `/etc/yum.repos.d/prometheus.repo`:
 ``` conf
 [prometheus]
 name=prometheus
-baseurl=https://packagecloud.io/prometheus-rpm/centos/el/7/$basearch
+baseurl=https://packagecloud.io/prometheus-rpm/release/el/7/$basearch
 repo_gpgcheck=1
 enabled=1
-gpgkey=https://packagecloud.io/prometheus-rpm/centos/gpgkey
+gpgkey=https://packagecloud.io/prometheus-rpm/release/gpgkey
 sslverify=1
 sslcacert=/etc/pki/tls/certs/ca-bundle.crt
 metadata_expire=300
@@ -37,4 +37,4 @@ make node_exporter
 The resulting RPMs will be created in the `_dist` directory.
 
 [1]: https://prometheus.io
-[2]: https://packagecloud.io/prometheus-rpm/centos
+[2]: https://packagecloud.io/prometheus-rpm/release
