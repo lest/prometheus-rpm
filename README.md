@@ -1,20 +1,23 @@
 # Prometheus RPM Packages
 
+[![Build Status](https://travis-ci.org/lest/prometheus-rpm.svg?branch=master)](https://travis-ci.org/lest/prometheus-rpm)
+
 The repository contains the files needed to build [Prometheus][1] RPM packages
 for CentOS 7.
 
-The packages are available on [Open Build Service][2] and can be used by adding
-the following `/etc/yum.repos.d/prometheus.repo`:
-
+The packages are available in [the packagecloud repository][2] and can be used
+by adding the following `/etc/yum.repos.d/prometheus.repo`:
 
 ``` conf
 [prometheus]
-name=Prometheus Packages (CentOS_7)
-type=rpm-md
-baseurl=http://download.opensuse.org/repositories/home:/justlest:/prometheus/CentOS_7/
-gpgcheck=1
-gpgkey=http://download.opensuse.org/repositories/home:/justlest:/prometheus/CentOS_7//repodata/repomd.xml.key
+name=prometheus
+baseurl=https://packagecloud.io/prometheus-rpm/centos/el/7/$basearch
+repo_gpgcheck=1
 enabled=1
+gpgkey=https://packagecloud.io/prometheus-rpm/centos/gpgkey
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+metadata_expire=300
 ```
 
 ## Build RPMs manually
@@ -34,4 +37,4 @@ make node_exporter
 The resulting RPMs will be created in the `_dist` directory.
 
 [1]: https://prometheus.io
-[2]: https://build.opensuse.org/project/show/home:justlest:prometheus
+[2]: https://packagecloud.io/prometheus-rpm/centos
