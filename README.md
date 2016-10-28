@@ -15,6 +15,8 @@ baseurl=https://packagecloud.io/prometheus-rpm/release/el/7/$basearch
 repo_gpgcheck=1
 enabled=1
 gpgkey=https://packagecloud.io/prometheus-rpm/release/gpgkey
+       https://raw.githubusercontent.com/lest/prometheus-rpm/master/RPM-GPG-KEY-prometheus-rpm
+gpgcheck=1
 sslverify=1
 sslcacert=/etc/pki/tls/certs/ca-bundle.crt
 metadata_expire=300

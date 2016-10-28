@@ -2,7 +2,7 @@
 
 Name:    blackbox_exporter
 Version: 0.2.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Blackbox prober exporter
 License: ASL 2.0
 URL:     https://github.com/prometheus/blackbox_exporter

@@ -7,4 +7,6 @@ before_script:
   - sudo chown root:root */*
 script:
   - make all
+  - if [[ "$RPM_GPG_KEY_SECRET" != "" ]]; then openssl aes-256-cbc -k "$RPM_GPG_KEY_SECRET" -in secret.asc.enc -out secret.asc -d; fi
+  - if [[ "$RPM_GPG_KEY_PASSPHRASE" != "" ]]; then echo "$RPM_GPG_KEY_PASSPHRASE" > .passphrase; fi
   - if [[ "$TRAVIS_REPO_SLUG" == "lest/prometheus-rpm" && "$TRAVIS_BRANCH" == "master" ]]; then make publish; fi

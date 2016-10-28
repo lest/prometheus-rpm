@@ -2,7 +2,7 @@
 
 Name:    mysqld_exporter
 Version: 0.9.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Prometheus exporter for MySQL server metrics.
 License: ASL 2.0
 URL:     https://github.com/prometheus/mysqld_exporter
