@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:		 prometheus
-Version: 1.2.2
+Version: 1.3.0
 Release: 1%{?dist}
 Summary: The Prometheus monitoring system and time series database.
 License: ASL 2.0
