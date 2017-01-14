@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:    blackbox_exporter
-Version: 0.3.0
+Version: 0.4.0
 Release: 1%{?dist}
 Summary: Blackbox prober exporter
 License: ASL 2.0
