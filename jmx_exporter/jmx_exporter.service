@@ -1,0 +1,15 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Prometheus JMX exporter.
+Documentation=https://github.com/prometheus/jmx_exporter
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/jmx_exporter
+User=prometheus
+ExecStart=/bin/java -jar /usr/share/prometheus/jmx_exporter/jmx_exporter.jar $JMX_EXPORTER_OPTS
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

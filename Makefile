@@ -3,7 +3,8 @@ alertmanager \
 node_exporter \
 mysqld_exporter \
 blackbox_exporter \
-graphite_exporter
+graphite_exporter \
+jmx_exporter
 
 .PHONY: $(PACKAGES)
 
@@ -13,6 +14,7 @@ $(PACKAGES):
 	docker run --rm \
 		-v ${PWD}/$@:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist:/rpmbuild/RPMS/x86_64 \
+		-v ${PWD}/_dist:/rpmbuild/RPMS/noarch \
 		lest/centos7-rpm-builder \
 		build-spec SOURCES/$@.spec
 
@@ -32,3 +34,4 @@ publish: sign
 clean:
 	rm -rf _dist
 	rm **/*.tar.gz
+	rm **/*.jar
