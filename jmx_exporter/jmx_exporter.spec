@@ -12,8 +12,6 @@ Source0: http://search.maven.org/remotecontent?filepath=io/prometheus/jmx/jmx_pr
 Source1: jmx_exporter.service
 Source2: jmx_exporter.default
 
-#%{?systemd_requires}
-#Requires(pre): shadow-utils
 Requires: java
 
 %description
