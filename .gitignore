@@ -2,3 +2,4 @@ _dist
 *.tar.gz
 .passphrase
 secret.asc
+*.jar
