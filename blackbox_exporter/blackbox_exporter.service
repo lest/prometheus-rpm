@@ -9,7 +9,7 @@ After=network.target
 EnvironmentFile=-/etc/default/blackbox_exporter
 User=prometheus
 ExecStart=/usr/bin/blackbox_exporter \
-          -config.file=/etc/prometheus/blackbox.yml \
+          --config.file=/etc/prometheus/blackbox.yml \
           $BLACKBOX_EXPORTER_OPTS
 Restart=on-failure
 
