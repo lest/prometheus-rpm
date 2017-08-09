@@ -4,7 +4,8 @@ node_exporter \
 mysqld_exporter \
 blackbox_exporter \
 graphite_exporter \
-jmx_exporter
+jmx_exporter \
+pushgateway
 
 .PHONY: $(PACKAGES)
 
