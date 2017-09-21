@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:    blackbox_exporter
-Version: 0.8.1
-Release: 2%{?dist}
+Version: 0.9.0
+Release: 1%{?dist}
 Summary: Blackbox prober exporter
 License: ASL 2.0
 URL:     https://github.com/prometheus/blackbox_exporter
