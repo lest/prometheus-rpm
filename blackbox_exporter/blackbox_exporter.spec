@@ -31,7 +31,6 @@ mkdir -vp %{buildroot}/etc/prometheus
 mkdir -vp %{buildroot}/usr/lib/systemd/system
 mkdir -vp %{buildroot}/etc/default
 install -m 755 blackbox_exporter %{buildroot}/usr/bin/blackbox_exporter
-install -m 644 blackbox.yml %{buildroot}/etc/prometheus/blackbox.yml
 install -m 644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/blackbox_exporter.service
 install -m 644 %{SOURCE2} %{buildroot}/etc/default/blackbox_exporter
 
