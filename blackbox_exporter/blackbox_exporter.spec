@@ -54,7 +54,6 @@ exit 0
 %files
 %defattr(-,root,root,-)
 /usr/bin/blackbox_exporter
-%config(noreplace) /etc/prometheus/blackbox.yml
 /usr/lib/systemd/system/blackbox_exporter.service
 %config(noreplace) /etc/default/blackbox_exporter
 %attr(755, prometheus, prometheus)/var/lib/prometheus
