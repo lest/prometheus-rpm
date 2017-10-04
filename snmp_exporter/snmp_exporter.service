@@ -1,0 +1,15 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Prometheus SNMP exporter.
+Documentation=https://github.com/prometheus/snmp_exporter
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/snmp_exporter
+User=prometheus
+ExecStart=/usr/bin/snmp_exporter $SNMP_EXPORTER_OPTS
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
