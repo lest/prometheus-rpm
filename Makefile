@@ -4,6 +4,7 @@ node_exporter \
 mysqld_exporter \
 blackbox_exporter \
 haproxy_exporter \
+consul_exporter \
 graphite_exporter \
 jmx_exporter \
 snmp_exporter \
