@@ -2,7 +2,7 @@
 
 Name:    blackbox_exporter
 Version: 0.9.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Blackbox prober exporter
 License: ASL 2.0
 URL:     https://github.com/prometheus/blackbox_exporter
@@ -53,7 +53,7 @@ exit 0
 
 %files
 %defattr(-,root,root,-)
-/usr/bin/blackbox_exporter
+%caps(cap_net_raw=ep) /usr/bin/blackbox_exporter
 %config(noreplace) /etc/prometheus/blackbox.yml
 /usr/lib/systemd/system/blackbox_exporter.service
 %config(noreplace) /etc/default/blackbox_exporter
