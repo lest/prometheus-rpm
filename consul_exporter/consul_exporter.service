@@ -1,0 +1,15 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Prometheus Consul exporter.
+Documentation=https://github.com/prometheus/consul_exporter
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/consul_exporter
+User=prometheus
+ExecStart=/usr/bin/consul_exporter $CONSUL_EXPORTER_OPTS
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
