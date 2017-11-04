@@ -31,6 +31,7 @@ mkdir -vp %{buildroot}/etc/prometheus
 mkdir -vp %{buildroot}/usr/lib/systemd/system
 mkdir -vp %{buildroot}/etc/default
 install -m 755 alertmanager %{buildroot}/usr/bin/alertmanager
+install -m 755 amtool %{buildroot}/usr/bin/amtool
 install -m 644 simple.yml %{buildroot}/etc/prometheus/alertmanager.yml
 install -m 644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/alertmanager.service
 install -m 644 %{SOURCE2} %{buildroot}/etc/default/alertmanager
@@ -54,6 +55,7 @@ exit 0
 %files
 %defattr(-,root,root,-)
 /usr/bin/alertmanager
+/usr/bin/amtool
 %config(noreplace) /etc/prometheus/alertmanager.yml
 /usr/lib/systemd/system/alertmanager.service
 %config(noreplace) /etc/default/alertmanager
