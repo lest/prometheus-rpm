@@ -1,4 +1,5 @@
 PACKAGES = prometheus \
+prometheus2 \
 alertmanager \
 node_exporter \
 mysqld_exporter \
