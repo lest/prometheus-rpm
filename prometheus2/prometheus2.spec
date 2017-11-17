@@ -9,7 +9,7 @@ URL:     https://prometheus.io
 Conflicts: prometheus
 
 Source0: https://github.com/prometheus/prometheus/releases/download/v%{version}/prometheus-%{version}.linux-amd64.tar.gz
-Source1: prometheus2.service
+Source1: prometheus.service
 Source2: prometheus.default
 
 %description
