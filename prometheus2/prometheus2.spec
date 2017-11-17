@@ -2,7 +2,7 @@
 
 Name:		 prometheus2
 Version: 2.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: The Prometheus 2.0 monitoring system and time series database.
 License: ASL 2.0
 URL:     https://prometheus.io
