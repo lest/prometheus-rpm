@@ -10,6 +10,7 @@ consul_exporter \
 graphite_exporter \
 jmx_exporter \
 snmp_exporter \
+apache_exporter \
 pushgateway
 
 .PHONY: $(PACKAGES)
