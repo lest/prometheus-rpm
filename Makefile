@@ -11,6 +11,7 @@ graphite_exporter \
 jmx_exporter \
 snmp_exporter \
 apache_exporter \
+redis_exporter \
 pushgateway
 
 .PHONY: $(PACKAGES)
