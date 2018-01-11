@@ -7,6 +7,7 @@ URL:        https://github.com/messagebird/sachet
 Source0:    https://github.com/messagebird/sachet/releases/download/%{version}/sachet-%{version}.linux-amd64.tar.gz
 Source1:    sachet.service
 Source2:    sachet.default
+Source3:    sachet.yml
 
 BuildRequires:  golang  
 Requires:   make    
@@ -23,11 +24,13 @@ Sachet (or सचेत) is Hindi for conscious. Sachet is an SMS alerting tool 
 %install
 mkdir -p %{buildroot}%{_bindir}/
 mkdir -vp %{buildroot}/var/lib/prometheus
+mkdir -vp %{buildroot}/etc/prometheus
 mkdir -vp %{buildroot}/usr/lib/systemd/system
 mkdir -vp %{buildroot}/etc/default
 install -m 755 sachet %{buildroot}%{_bindir}/
 install -m 644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/sachet.service
 install -m 644 %{SOURCE2} %{buildroot}/etc/default/sachet
+install -m 640 %{SOURCE3} %{buildroot}/etc/prometheus/sachet.yml
 
 %pre
 getent group prometheus >/dev/null || groupadd -r prometheus
@@ -50,4 +53,5 @@ exit 0
 %doc
 /usr/lib/systemd/system/sachet.service
 %config(noreplace) /etc/default/sachet
+%config(noreplace) /etc/prometheus/sachet.yml
 %attr(755, prometheus, prometheus)/var/lib/prometheus

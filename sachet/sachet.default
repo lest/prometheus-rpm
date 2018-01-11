@@ -1,1 +1,1 @@
-SACHET_OPTS=-config /etc/sachet.yml
+SACHET_OPTS=-config /etc/prometheus/sachet.yml
