@@ -12,7 +12,8 @@ jmx_exporter \
 snmp_exporter \
 apache_exporter \
 redis_exporter \
-pushgateway
+pushgateway \
+sachet
 
 .PHONY: $(PACKAGES)
 
