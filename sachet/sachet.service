@@ -1,0 +1,16 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Sachet
+Documentation=https://github.com/messagebird/sachet
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/sachet
+User=prometheus
+ExecStart=/usr/bin/sachet \
+          $SACHET_OPTS
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

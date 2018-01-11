@@ -1,0 +1,28 @@
+providers:
+  messagebird:
+    access_key: 'live_qKwVZ02ULV70GqabBYxLU8d5r'
+  nexmo:
+    api_key: '18e0a6e9'
+    api_secret: 'ea44c2d9'
+  infobip:
+    token: "sasasa"
+    secret: "sasasa"
+  exotel:
+    account_sid: 'sachet'
+    auth_token: 'bbba3f4afc0b4ee76c93e43b7c1b2d4350d1a0e8'
+  twilio:
+    account_sid: 'aCb3bbaacc554b'
+    auth_token: '4736473aaabbcc66'
+  turbosms:
+    login: 'visla'
+    password: '44444'
+  cm:
+    producttoken: '00000000-0000-0000-0000-000000000000'
+
+receivers:
+  - name: 'team-sms'
+    provider: 'messagebird'
+    to:
+      - '+919742033616'
+    from: '08039591643'
+
