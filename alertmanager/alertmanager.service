@@ -13,7 +13,7 @@ ExecStart=/usr/bin/alertmanager \
           --storage.path=/var/lib/prometheus/alertmanager \
           $ALERTMANAGER_OPTS
 ExecReload=/bin/kill -HUP $MAINPID
-Restart=on-failure
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
