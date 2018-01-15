@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:		 alertmanager
-Version: 0.12.0
+Version: 0.13.0
 Release: 1%{?dist}
 Summary: Prometheus Alertmanager.
 License: ASL 2.0
