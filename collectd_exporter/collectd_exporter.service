@@ -1,0 +1,15 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Collectd stats exporter for Prometheus
+Documentation=https://github.com/prometheus/collectd_exporter
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/collectd_exporter
+User=prometheus
+ExecStart=/usr/bin/collectd_exporter $COLLECTD_EXPORTER_OPTS
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
