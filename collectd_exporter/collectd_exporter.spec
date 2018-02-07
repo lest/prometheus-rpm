@@ -24,7 +24,7 @@ HTTP POST as sent by collectd's write_http plugin, and transforms and exposes
 them for consumption by Prometheus.
 
 %prep
-%setup -q -c -n collectd_exporter-%{version}.linux-amd64
+%setup -q -n collectd_exporter-%{version}.linux-amd64
 
 %build
 /bin/true
