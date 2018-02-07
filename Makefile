@@ -3,6 +3,7 @@ prometheus2 \
 alertmanager \
 node_exporter \
 mysqld_exporter \
+postgres_exporter \
 elasticsearch_exporter \
 blackbox_exporter \
 haproxy_exporter \
