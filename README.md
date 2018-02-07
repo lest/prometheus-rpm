@@ -38,5 +38,13 @@ make node_exporter
 
 The resulting RPMs will be created in the `_dist` directory.
 
+## Ansible role
+
+An [Ansible][3] role which installs Prometheus packages from these RPMs is
+available in [Github][4] or in [Galaxy][5].
+
 [1]: https://prometheus.io
 [2]: https://packagecloud.io/prometheus-rpm/release
+[3]: https://www.ansible.com/
+[4]: https://github.com/cogini/ansible-role-prometheus-rpm
+[5]: https://galaxy.ansible.com/cogini/prometheus-rpm/
