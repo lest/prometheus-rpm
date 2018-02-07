@@ -13,6 +13,7 @@ jmx_exporter \
 snmp_exporter \
 apache_exporter \
 redis_exporter \
+collectd_exporter \
 pushgateway \
 sachet
 
