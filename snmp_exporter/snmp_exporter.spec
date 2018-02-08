@@ -2,7 +2,7 @@
 
 Name:    snmp_exporter
 Version: 0.8.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Prometheus SNMP exporter.
 License: ASL 2.0
 URL:     https://github.com/prometheus/snmp_exporter
@@ -27,9 +27,11 @@ This is an exporter that exposes information gathered from SNMP for use by the P
 %install
 mkdir -vp %{buildroot}/var/lib/prometheus
 mkdir -vp %{buildroot}/usr/bin
+mkdir -vp %{buildroot}/etc/prometheus
 mkdir -vp %{buildroot}/usr/lib/systemd/system
 mkdir -vp %{buildroot}/etc/default
 install -m 755 snmp_exporter %{buildroot}/usr/bin/snmp_exporter
+install -m 644 snmp.yml %{buildroot}/etc/prometheus/snmp.yml
 install -m 644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/snmp_exporter.service
 install -m 644 %{SOURCE2} %{buildroot}/etc/default/snmp_exporter
 
@@ -52,6 +54,7 @@ exit 0
 %files
 %defattr(-,root,root,-)
 /usr/bin/snmp_exporter
+%config(noreplace) /etc/prometheus/snmp.yml
 /usr/lib/systemd/system/snmp_exporter.service
 %config(noreplace) /etc/default/snmp_exporter
 %attr(755, prometheus, prometheus)/var/lib/prometheus
