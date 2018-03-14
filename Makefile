@@ -14,6 +14,7 @@ snmp_exporter \
 apache_exporter \
 redis_exporter \
 collectd_exporter \
+rabbitmq_exporter \
 pushgateway \
 sachet
 

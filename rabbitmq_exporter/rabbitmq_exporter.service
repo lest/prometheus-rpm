@@ -1,0 +1,15 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Prometheus exporter for RabbitMQ metrics
+Documentation=https://github.com/kbudde/rabbitmq_exporter
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/rabbitmq_exporter
+User=prometheus
+ExecStart=/usr/bin/rabbitmq_exporter $RABBITMQ_EXPORTER_OPTS
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
