@@ -1,9 +1,9 @@
 %define debug_package %{nil}
 
 Name:		 prometheus2
-Version: 2.2.0
+Version: 2.2.1
 Release: 1%{?dist}
-Summary: The Prometheus 2.2 monitoring system and time series database.
+Summary: The Prometheus 2.2.1 monitoring system and time series database.
 License: ASL 2.0
 URL:     https://prometheus.io
 Conflicts: prometheus
