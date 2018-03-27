@@ -16,7 +16,8 @@ redis_exporter \
 collectd_exporter \
 rabbitmq_exporter \
 pushgateway \
-sachet
+sachet \
+statsd_exporter
 
 .PHONY: $(PACKAGES)
 
