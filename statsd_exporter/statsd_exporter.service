@@ -1,0 +1,15 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Prometheus StatsD exporter.
+Documentation=https://github.com/prometheus/statsd_exporter
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/statsd_exporter
+User=prometheus
+ExecStart=/usr/bin/statsd_exporter $STATSD_EXPORTER_OPTS
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
