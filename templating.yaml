@@ -1,0 +1,75 @@
+# Configure some defaults that will probably be common
+# to each package
+defaults:
+  tarball: '{{UR:}}/releases/download/v{{version}}-rc.3/{{name}}-{{version}}-rc.3.linux-amd64.tar.gz'
+  build_steps:
+    - spec
+    - unit
+    - init
+  build: |
+    /bin/true
+  pre: |
+    getent group prometheus >/dev/null || groupadd -r prometheus
+    getent passwd prometheus >/dev/null || \
+      useradd -r -g prometheus -d /var/lib/prometheus -s /sbin/nologin \
+              -c "Prometheus services" prometheus
+    exit 0
+  post: |
+    %if 0%{?el6}
+    chkconfig {{name}} on
+    %else
+    %systemd_post {{name}}.service
+    %endif
+  preun: |
+    %if 0%{?el6}
+    # Nothing for centos 6
+    %else
+    %systemd_preun {{name}}.service
+    %endif
+  postun: |
+    %if 0%{?el6}
+    chkconfig {{name}} off
+    %else
+    %systemd_postun {{name}}.service
+    %endif
+  install: |
+    mkdir -vp %{buildroot}/var/lib/prometheus
+    mkdir -vp %{buildroot}/usr/bin
+    mkdir -vp %{buildroot}/etc/default
+    install -m 755 {{name}} %{buildroot}/usr/bin/{{name}}
+    install -m 644 %{SOURCE2} %{buildroot}/etc/default/{{name}}
+    %if 0%{?el6}
+    # Centos6 assume sysv
+    mkdir -vp %{buildroot}/etc/init.d/
+    install -m 644 %{SOURCE3} %{buildroot}/etc/init.d/{{name}}
+    %else
+    # Not CentOS 6, assume systemd
+    mkdir -vp %{buildroot}/usr/lib/systemd/system
+    install -m 644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/{{name}}.service
+    %endif
+  files: |
+    %defattr(-,root,root,-)
+    /usr/bin/{{name}}
+    %if 0%{?el7}
+    /usr/lib/systemd/system/{{name}}.service
+    %else
+    /etc/init.d/{{name}}
+    %endif
+    %config(noreplace) /etc/default/{{name}}
+    %attr(755, prometheus, prometheus)/var/lib/prometheus
+  sources:
+    - '{{tarball}}'
+    - '{{name}}.service'
+    - '{{name}}.default'
+    - '{{name}}.init'
+
+# Per-package configuration
+packages:
+  node_exporter:
+    version: 0.15.2
+    license: ASL 2.0
+    URL: https://github.com/prometheus/node_exporter
+    summary: Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors.
+    tarball: https://github.com/prometheus/node_exporter/releases/download/v0.16.0-rc.3/node_exporter-0.16.0-rc.3.darwin-386.tar.gz
+    description: Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors.
+      
