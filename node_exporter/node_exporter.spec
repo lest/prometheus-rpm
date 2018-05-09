@@ -5,11 +5,11 @@ Version: 0.15.2
 Release: 1%{?dist}
 Summary: Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
 License: ASL 2.0
-URL:     https://github.com/prometheus/node_exporter
+URL:     https://github.com/prometheus/%{name}
 
-Source0: https://github.com/prometheus/node_exporter/releases/download/v%{version}/node_exporter-%{version}.linux-amd64.tar.gz
-Source1: node_exporter.service
-Source2: node_exporter.default
+Source0: https://github.com/prometheus/%{name}/releases/download/v%{version}/%{name}-%{version}.linux-amd64.tar.gz
+Source1: %{name}.service
+Source2: %{name}.default
 
 %{?systemd_requires}
 Requires(pre): shadow-utils
@@ -19,39 +19,36 @@ Requires(pre): shadow-utils
 Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
 
 %prep
-%setup -q -n node_exporter-%{version}.linux-amd64
+%setup -q -n %{name}-%{version}.linux-amd64
 
 %build
 /bin/true
 
 %install
-mkdir -vp %{buildroot}/var/lib/prometheus
-mkdir -vp %{buildroot}/usr/bin
-mkdir -vp %{buildroot}/usr/lib/systemd/system
-mkdir -vp %{buildroot}/etc/default
-install -m 755 node_exporter %{buildroot}/usr/bin/node_exporter
-install -m 644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/node_exporter.service
-install -m 644 %{SOURCE2} %{buildroot}/etc/default/node_exporter
+mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
+install -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
+install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
+install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/%{name}
 
 %pre
 getent group prometheus >/dev/null || groupadd -r prometheus
 getent passwd prometheus >/dev/null || \
-  useradd -r -g prometheus -d /var/lib/prometheus -s /sbin/nologin \
+  useradd -r -g prometheus -d %{_sharedstatedir}/prometheus -s /sbin/nologin \
           -c "Prometheus services" prometheus
 exit 0
 
 %post
-%systemd_post node_exporter.service
+%systemd_post %{name}.service
 
 %preun
-%systemd_preun node_exporter.service
+%systemd_preun %{name}.service
 
 %postun
-%systemd_postun node_exporter.service
+%systemd_postun %{name}.service
 
 %files
 %defattr(-,root,root,-)
-/usr/bin/node_exporter
-/usr/lib/systemd/system/node_exporter.service
-%config(noreplace) /etc/default/node_exporter
-%attr(755, prometheus, prometheus)/var/lib/prometheus
+%{_bindir}/%{name}
+%{_unitdir}/%{name}.service
+%config(noreplace) %{_sysconfdir}/default/%{name}
+%dir %attr(755, prometheus, prometheus)%{_sharedstatedir}/prometheus

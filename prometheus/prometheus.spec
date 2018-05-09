@@ -7,9 +7,9 @@ Summary: The Prometheus monitoring system and time series database.
 License: ASL 2.0
 URL:     https://prometheus.io
 
-Source0: https://github.com/prometheus/prometheus/releases/download/v%{version}/prometheus-%{version}.linux-amd64.tar.gz
-Source1: prometheus.service
-Source2: prometheus.default
+Source0: https://github.com/prometheus/%{name}/releases/download/v%{version}/%{name}-%{version}.linux-amd64.tar.gz
+Source1: %{name}.service
+Source2: %{name}.default
 
 %description
 
@@ -18,52 +18,46 @@ configured targets at given intervals, evaluates rule expressions, displays the
 results, and can trigger alerts if some condition is observed to be true.
 
 %prep
-%setup -q -n prometheus-%{version}.linux-amd64
+%setup -q -n %{name}-%{version}.linux-amd64
 
 %build
 /bin/true
 
 %install
-mkdir -vp %{buildroot}/var/lib/prometheus
-mkdir -vp %{buildroot}/usr/bin
-mkdir -vp %{buildroot}/etc/prometheus
-mkdir -vp %{buildroot}/usr/share/prometheus/console_libraries
-mkdir -vp %{buildroot}/usr/share/prometheus/consoles
-mkdir -vp %{buildroot}/usr/lib/systemd/system
-mkdir -vp %{buildroot}/etc/default
-install -m 755 prometheus %{buildroot}/usr/bin/prometheus
-install -m 755 promtool %{buildroot}/usr/bin/promtool
+mkdir -vp %{buildroot}%{_sharedstatedir}/%{name}
+install -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
+install -D -m 755 promtool %{buildroot}%{_bindir}/promtool
 for dir in console_libraries consoles; do
   for file in ${dir}/*; do
-    install -m 644 ${file} %{buildroot}/usr/share/prometheus/${file}
+    install -D -m 644 ${file} %{buildroot}%{_datarootdir}/%{name}/${file}
   done
 done
-install -m 644 prometheus.yml %{buildroot}/etc/prometheus/prometheus.yml
-install -m 644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/prometheus.service
-install -m 644 %{SOURCE2} %{buildroot}/etc/default/prometheus
+install -D -m 644 %{name}.yml %{buildroot}%{_sysconfdir}/%{name}/%{name}.yml
+install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
+install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/%{name}
 
 %pre
-getent group prometheus >/dev/null || groupadd -r prometheus
-getent passwd prometheus >/dev/null || \
-  useradd -r -g prometheus -d /var/lib/prometheus -s /sbin/nologin \
-          -c "Prometheus services" prometheus
+getent group %{name} >/dev/null || groupadd -r %{name}
+getent passwd %{name} >/dev/null || \
+  useradd -r -g %{name} -d %{_sharedstatedir}/%{name} -s /sbin/nologin \
+          -c "Prometheus services" %{name}
 exit 0
 
 %post
-%systemd_post prometheus.service
+%systemd_post %{name}.service
 
 %preun
-%systemd_preun prometheus.service
+%systemd_preun %{name}.service
 
 %postun
-%systemd_postun prometheus.service
+%systemd_postun %{name}.service
 
 %files
 %defattr(-,root,root,-)
-/usr/bin/prometheus
-/usr/bin/promtool
-%config(noreplace) /etc/prometheus/prometheus.yml
-/usr/share/prometheus
-/usr/lib/systemd/system/prometheus.service
-%config(noreplace) /etc/default/prometheus
-%attr(755, prometheus, prometheus)/var/lib/prometheus
+%{_bindir}/%{name}
+%{_bindir}/promtool
+%config(noreplace) %{_sysconfdir}/%{name}/%{name}.yml
+%{_datarootdir}/%{name}
+%{_unitdir}/%{name}.service
+%config(noreplace) %{_sysconfdir}/default/%{name}
+%attr(755, %{name}, %{name})%{_sharedstatedir}/%{name}

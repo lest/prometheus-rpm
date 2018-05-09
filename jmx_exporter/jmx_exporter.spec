@@ -6,11 +6,11 @@ Release: 1%{?dist}
 BuildArch: noarch
 Summary: Prometheus exporter for mBeans scrape and expose.
 License: ASL 2.0
-URL:     https://github.com/prometheus/jmx_exporter
+URL:     https://github.com/prometheus/%{name}
 
 Source0: http://search.maven.org/remotecontent?filepath=io/prometheus/jmx/jmx_prometheus_httpserver/%{version}/jmx_prometheus_httpserver-%{version}-jar-with-dependencies.jar 
-Source1: jmx_exporter.service
-Source2: jmx_exporter.default
+Source1: %{name}.service
+Source2: %{name}.default
 
 Requires: java
 
@@ -24,33 +24,30 @@ A Collector that can configurably scrape and expose mBeans of a JMX target. It m
 /bin/true
 
 %install
-mkdir -vp %{buildroot}/var/lib/prometheus
-mkdir -vp %{buildroot}/usr/share/prometheus/jmx_exporter
-mkdir -vp %{buildroot}/usr/lib/systemd/system
-mkdir -vp %{buildroot}/etc/default
-install -m 644 %{SOURCE0} %{buildroot}/usr/share/prometheus/jmx_exporter/jmx_exporter.jar
-install -m 644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/jmx_exporter.service
-install -m 644 %{SOURCE2} %{buildroot}/etc/default/jmx_exporter
+mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
+install -D -m 644 %{SOURCE0} %{buildroot}%{_datarootdir}/prometheus/%{name}/%{name}.jar
+install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
+install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/%{name}
 
 %pre
 getent group prometheus >/dev/null || groupadd -r prometheus
 getent passwd prometheus >/dev/null || \
-  useradd -r -g prometheus -d /var/lib/prometheus -s /sbin/nologin \
+  useradd -r -g prometheus -d %{_sharedstatedir}/prometheus -s /sbin/nologin \
           -c "Prometheus services" prometheus
 exit 0
 
 %post
-%systemd_post jmx_exporter.service
+%systemd_post %{name}.service
 
 %preun
-%systemd_preun jmx_exporter.service
+%systemd_preun %{name}.service
 
 %postun
-%systemd_postun jmx_exporter.service
+%systemd_postun %{name}.service
 
 %files
 %defattr(-,root,root,-)
-/usr/share/prometheus/jmx_exporter/jmx_exporter.jar
-/usr/lib/systemd/system/jmx_exporter.service
-%config(noreplace) /etc/default/jmx_exporter
-%attr(755, prometheus, prometheus)/var/lib/prometheus
+%{_datarootdir}/prometheus/%{name}/%{name}.jar
+%{_unitdir}/%{name}.service
+%config(noreplace) %{_sysconfdir}/default/%{name}
+%dir %attr(755, prometheus, prometheus)%{_sharedstatedir}/prometheus
