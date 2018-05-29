@@ -12,6 +12,9 @@ Source0: https://github.com/prometheus/prometheus/releases/download/v%{version}/
 Source1: prometheus.service
 Source2: prometheus.default
 
+%{?systemd_requires}
+Requires(pre): shadow-utils
+
 %description
 
 Prometheus is a systems and service monitoring system. It collects metrics from
@@ -25,28 +28,22 @@ results, and can trigger alerts if some condition is observed to be true.
 /bin/true
 
 %install
-mkdir -vp %{buildroot}/var/lib/prometheus
-mkdir -vp %{buildroot}/usr/bin
-mkdir -vp %{buildroot}/etc/prometheus
-mkdir -vp %{buildroot}/usr/share/prometheus/console_libraries
-mkdir -vp %{buildroot}/usr/share/prometheus/consoles
-mkdir -vp %{buildroot}/usr/lib/systemd/system
-mkdir -vp %{buildroot}/etc/default
-install -m 755 prometheus %{buildroot}/usr/bin/prometheus
-install -m 755 promtool %{buildroot}/usr/bin/promtool
+mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
+install -D -m 755 prometheus %{buildroot}%{_bindir}/prometheus
+install -D -m 755 promtool %{buildroot}%{_bindir}/promtool
 for dir in console_libraries consoles; do
   for file in ${dir}/*; do
-    install -m 644 ${file} %{buildroot}/usr/share/prometheus/${file}
+    install -D -m 644 ${file} %{buildroot}%{_datarootdir}/prometheus/${file}
   done
 done
-install -m 644 prometheus.yml %{buildroot}/etc/prometheus/prometheus.yml
-install -m 644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/prometheus.service
-install -m 644 %{SOURCE2} %{buildroot}/etc/default/prometheus
+install -D -m 644 prometheus.yml %{buildroot}%{_sysconfdir}/prometheus/prometheus.yml
+install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/prometheus.service
+install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/prometheus
 
 %pre
 getent group prometheus >/dev/null || groupadd -r prometheus
 getent passwd prometheus >/dev/null || \
-  useradd -r -g prometheus -d /var/lib/prometheus -s /sbin/nologin \
+  useradd -r -g prometheus -d %{_sharedstatedir}/prometheus -s /sbin/nologin \
           -c "Prometheus services" prometheus
 exit 0
 
@@ -61,10 +58,10 @@ exit 0
 
 %files
 %defattr(-,root,root,-)
-/usr/bin/prometheus
-/usr/bin/promtool
-%config(noreplace) /etc/prometheus/prometheus.yml
-/usr/share/prometheus
-/usr/lib/systemd/system/prometheus.service
-%config(noreplace) /etc/default/prometheus
-%attr(755, prometheus, prometheus)/var/lib/prometheus
+%{_bindir}/prometheus
+%{_bindir}/promtool
+%config(noreplace) %{_sysconfdir}/prometheus/prometheus.yml
+%{_datarootdir}/prometheus
+%{_unitdir}/prometheus.service
+%config(noreplace) %{_sysconfdir}/default/prometheus
+%dir %attr(755, prometheus, prometheus)%{_sharedstatedir}/prometheus

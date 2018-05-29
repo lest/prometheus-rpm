@@ -1,0 +1,105 @@
+# Configure some defaults that will probably be common
+# to each package
+defaults:
+  user: prometheus
+  group: prometheus
+  tarball: '{{URL}}/releases/download/v%{version}/%{name}-%{version}.linux-amd64.tar.gz'
+  build_steps:
+    - spec
+    - unit
+    - init
+  prep: |
+    %setup -q -n %{name}-%{version.}linux-amd64
+  build: |
+    /bin/true
+  install: |
+    mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
+    install -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
+    install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/%{name}
+    %if 0%{?el5}
+    install -D -m 644 %{SOURCE3} %{buildroot}%{_initrddir}/%{name}
+    %else 
+        %if 0%{?el6} 
+        install -D -m 644 %{SOURCE3} %{buildroot}%{_initddir}/%{name}
+        %else
+        install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
+        %endif
+    %endif
+  pre: |
+    %if 0%{?el6} || 0%{?el5}
+    /sbin/chkconfig --add %{name}
+    %else
+    %systemd_post %{name}.service
+    %endif
+  post: |
+    %if 0%{?el6} || 0%{?el5}
+    /sbin/chkconfig --add %{name}
+    %else
+    %systemd_post %{name}.service
+    %endif
+  preun: |
+    %if 0%{?el6} || 0%{?el5}
+    if [ $1 -eq 0 ] ; then
+        /sbin/service %{name} stop > /dev/null 2>&1
+        /sbin/chkconfig --del %{name}
+    fi
+    %else
+    %systemd_preun %{name}.service
+    %endif
+  postun: |
+    %if 0%{?el6} || 0%{?el5} 
+    if [ "$1" -ge "1" ] ; then
+        /sbin/service <script> condrestart >/dev/null 2>&1 || :
+    fi
+    %else
+    %systemd_postun %{name}.service
+    %endif
+  files: |
+    %defattr(-,root,root,-)
+    %{_bindir}/%{name}
+    %config(noreplace) %{_sysconfdir}/default/%{name}
+    %dir %attr(755, %{user}, %{group}) %{_sharedstatedir}/prometheus
+    %if 0%{?el5}
+    %{_initrdddir}/%{name}
+    %else
+        %if 0%{?el6} 
+        %{_initddir}/%{name}
+        %else
+        %{_unitdir}/%{name}.service
+        %endif
+    %endif
+  sources:
+    - '{{tarball}}'
+    - 'autogen_%{name}.unit'
+    - '%{name}.default'
+    - 'autogen_%{name}.init'
+
+# Per-package configuration
+packages:
+  node_exporter:
+    version: 0.16.0
+    license: ASL 2.0
+    URL: https://github.com/prometheus/node_exporter
+    summary: Prometheus exporter for MySQL server metrics.
+    description: |
+        Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, 
+        written in Go with pluggable metric collectors.
+  mysqld_exporter:
+    version: 0.10.0
+    license: ASL 2.0
+    URL: https://github.com/prometheus/mysqld_exporter
+    summary: Prometheus exporter for MySQL server metrics.
+    description: |
+        Prometheus exporter for MySQL server metrics. Supported MySQL versions: 5.1 and up. 
+        NOTE: Not all collection methods are supported on MySQL < 5.6
+  postgres_exporter:
+    version: 0.4.6
+    license: ASL 2.0
+    URL: https://github.com/prometheus/postgres_exporter
+    tarball: '{{URL}}/releases/download/v%{version}/%{name}-v%{version}_linux-amd64.tar.gz'
+    summary: Prometheus exporter for PostgreSQL server metrics.
+    description: |
+        Prometheus exporter for PostgreSQL server metrics. 
+        Supported Postgres versions: 9.1 and up.
+      
+

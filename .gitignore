@@ -3,3 +3,4 @@ _dist
 .passphrase
 secret.asc
 *.jar
+autogen_*

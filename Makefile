@@ -1,9 +1,9 @@
-PACKAGES = prometheus \
+PACKAGES7 = prometheus \
 prometheus2 \
 alertmanager \
-node_exporter \
-mysqld_exporter \
-postgres_exporter \
+#node_exporter \
+#mysqld_exporter \
+#postgres_exporter \
 elasticsearch_exporter \
 blackbox_exporter \
 haproxy_exporter \
@@ -19,15 +19,42 @@ pushgateway \
 sachet \
 statsd_exporter
 
-.PHONY: $(PACKAGES)
+.PHONY: $(PACKAGES7)
 
-all: $(PACKAGES)
+AUTO_GENERATED = node_exporter
+AUTO_GENERATED = node_exporter \
+mysqld_exporter \
+postgres_exporter
 
-$(PACKAGES):
+.PHONY: $(PACKAGES7)
+.PHONY: $(AUTO_GENERATED)
+
+all: $(PACKAGES7) $(auto)
+
+7: $(PACKAGES7)
+auto: $(AUTO_GENERATED)
+
+
+$(AUTO_GENERATED): 
+	python3 ./generate.py --templates $@
 	docker run --rm \
 		-v ${PWD}/$@:/rpmbuild/SOURCES \
-		-v ${PWD}/_dist:/rpmbuild/RPMS/x86_64 \
-		-v ${PWD}/_dist:/rpmbuild/RPMS/noarch \
+		-v ${PWD}/_dist6:/rpmbuild/RPMS/x86_64 \
+		-v ${PWD}/_dist6:/rpmbuild/RPMS/noarch \
+		quay.io/zoonage/centos6-rpm-build \
+		build-spec SOURCES/autogen_$@.spec
+	docker run --rm \
+		-v ${PWD}/$@:/rpmbuild/SOURCES \
+		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
+		-v ${PWD}/_dist7:/rpmbuild/RPMS/noarch \
+		quay.io/zoonage/centos7-rpm-build \
+		build-spec SOURCES/autogen_$@.spec
+
+$(PACKAGES7):
+	docker run --rm \
+		-v ${PWD}/$@:/rpmbuild/SOURCES \
+		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
+		-v ${PWD}/_dist7:/rpmbuild/RPMS/noarch \
 		lest/centos7-rpm-builder \
 		build-spec SOURCES/$@.spec
 
@@ -45,6 +72,6 @@ publish: sign
 	package_cloud push --skip-errors prometheus-rpm/release/el/7 _dist/*.rpm
 
 clean:
-	rm -rf _dist
-	rm **/*.tar.gz
-	rm **/*.jar
+	rm -rf _dist*
+	rm -f **/*.tar.gz
+	rm -f **/*.jar
