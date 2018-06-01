@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:    rabbitmq_exporter
-Version: 0.26.0
+Version: 0.28.0
 Release: 1%{?dist}
 Summary: Prometheus exporter for RabbitMQ metrics
 License: MIT
