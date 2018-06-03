@@ -4,3 +4,4 @@ _dist*
 secret.asc
 *.jar
 autogen_*
+Makefile_*

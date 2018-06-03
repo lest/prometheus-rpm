@@ -21,11 +21,10 @@ Source{{loop.index - 1}}: {{source}}
 Requires(pre): shadow-utils
 
 %description
-
 {{description}}
 
 %prep
-%setup -q -n %{name}-%{version}.linux-amd64
+{{prep}}
 
 %build
 {{build}}

@@ -69,6 +69,7 @@ if __name__ == "__main__":
 			"summary": exporter_config["summary"],
 			"version": exporter_config["version"],
 			"URL": exporter_config["URL"],
+			"package": exporter_config.get("package", defaults["package"]),
 			"build_steps": exporter_config.get("build_steps", defaults["build_steps"]),
 			"user": exporter_config.get("user", defaults["user"]),
 			"group": exporter_config.get("group", defaults["group"]),
