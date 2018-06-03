@@ -59,7 +59,7 @@ $(AUTO_GENERATED):
 	docker run -it --rm \
 		-v ${PWD}/_dist7:/var/tmp/ \
 		quay.io/zoonage/centos6-rpm-build \
-		yum install -y /var/tmp/$@*.rpm
+		/bin/bash -c '/usr/bin/yum install -y /var/tmp/$@*.rpm'
 
 $(PACKAGES7):
 	docker run --rm \
