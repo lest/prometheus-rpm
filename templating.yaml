@@ -27,21 +27,21 @@ defaults:
     %endif
   pre: |
     %if 0%{?el6} || 0%{?el5}
-    /sbin/chkconfig --add %{name}
+    # Nothing to do yet
     %else
     %systemd_post %{name}.service
     %endif
   post: |
     %if 0%{?el6} || 0%{?el5}
-    /sbin/chkconfig --add %{name}
+    chkconfig --add %{name}
     %else
     %systemd_post %{name}.service
     %endif
   preun: |
     %if 0%{?el6} || 0%{?el5}
     if [ $1 -eq 0 ] ; then
-        /sbin/service %{name} stop > /dev/null 2>&1
-        /sbin/chkconfig --del %{name}
+        service %{name} stop > /dev/null 2>&1
+        chkconfig --del %{name}
     fi
     %else
     %systemd_preun %{name}.service
@@ -49,7 +49,7 @@ defaults:
   postun: |
     %if 0%{?el6} || 0%{?el5} 
     if [ "$1" -ge "1" ] ; then
-        /sbin/service <script> condrestart >/dev/null 2>&1 || :
+        service <script> condrestart >/dev/null 2>&1 || :
     fi
     %else
     %systemd_postun %{name}.service
