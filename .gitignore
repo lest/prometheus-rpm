@@ -1,4 +1,4 @@
-_dist
+_dist*
 *.tar.gz
 .passphrase
 secret.asc

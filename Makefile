@@ -21,7 +21,6 @@ statsd_exporter
 
 .PHONY: $(PACKAGES7)
 
-AUTO_GENERATED = node_exporter
 AUTO_GENERATED = node_exporter \
 mysqld_exporter \
 postgres_exporter
