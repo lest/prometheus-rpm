@@ -36,18 +36,30 @@ auto: $(AUTO_GENERATED)
 
 $(AUTO_GENERATED): 
 	python3 ./generate.py --templates $@
+	# Build for centos 6
 	docker run --rm \
 		-v ${PWD}/$@:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist6:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist6:/rpmbuild/RPMS/noarch \
 		quay.io/zoonage/centos6-rpm-build \
 		build-spec SOURCES/autogen_$@.spec
+	# Test the install
+	docker run --rm \
+		-v ${PWD}/_dist6:/var/tmp/ \
+		quay.io/zoonage/centos6-rpm-build \
+		yum install -y /var/tmp/$@*.rpm
+	# Build for centos 7
 	docker run --rm \
 		-v ${PWD}/$@:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/noarch \
 		quay.io/zoonage/centos7-rpm-build \
 		build-spec SOURCES/autogen_$@.spec
+	# Test the install
+	docker run --rm \
+		-v ${PWD}/_dist7:/var/tmp/ \
+		quay.io/zoonage/centos6-rpm-build \
+		yum install -y /var/tmp/$@*.rpm
 
 $(PACKAGES7):
 	docker run --rm \
