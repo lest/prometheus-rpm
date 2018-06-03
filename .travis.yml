@@ -1,8 +1,11 @@
+language: python
+
 sudo: required
 services:
   - docker
 before_install:
   - gem install package_cloud
+  - pip3 install jinja2
 before_script:
   - sudo chown root:root */*
 script:
