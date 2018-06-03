@@ -28,7 +28,7 @@ postgres_exporter
 .PHONY: $(PACKAGES7)
 .PHONY: $(AUTO_GENERATED)
 
-all: $(PACKAGES7) $(auto)
+all: $(PACKAGES7) auto
 
 7: $(PACKAGES7)
 auto: $(AUTO_GENERATED)
