@@ -37,26 +37,26 @@ auto: $(AUTO_GENERATED)
 $(AUTO_GENERATED): 
 	python3 ./generate.py --templates $@
 	# Build for centos 6
-	docker run --rm \
+	docker run -it --rm \
 		-v ${PWD}/$@:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist6:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist6:/rpmbuild/RPMS/noarch \
 		quay.io/zoonage/centos6-rpm-build \
 		build-spec SOURCES/autogen_$@.spec
 	# Test the install
-	docker run --rm \
+	docker run -it --rm \
 		-v ${PWD}/_dist6:/var/tmp/ \
 		quay.io/zoonage/centos6-rpm-build \
-		yum install -y /var/tmp/$@*.rpm
+		/bin/bash -c '/usr/bin/yum install -y /var/tmp/$@*.rpm'
 	# Build for centos 7
-	docker run --rm \
+	docker run -it --rm \
 		-v ${PWD}/$@:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/noarch \
 		quay.io/zoonage/centos7-rpm-build \
 		build-spec SOURCES/autogen_$@.spec
 	# Test the install
-	docker run --rm \
+	docker run -it --rm \
 		-v ${PWD}/_dist7:/var/tmp/ \
 		quay.io/zoonage/centos6-rpm-build \
 		yum install -y /var/tmp/$@*.rpm
@@ -71,16 +71,25 @@ $(PACKAGES7):
 
 sign:
 	docker run --rm \
-		-v ${PWD}/_dist:/rpmbuild/RPMS/x86_64 \
+		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/bin:/rpmbuild/bin \
 		-v ${PWD}/RPM-GPG-KEY-prometheus-rpm:/rpmbuild/RPM-GPG-KEY-prometheus-rpm \
 		-v ${PWD}/secret.asc:/rpmbuild/secret.asc \
 		-v ${PWD}/.passphrase:/rpmbuild/.passphrase \
 		lest/centos7-rpm-builder \
 		bin/sign
+	docker run --rm \
+		-v ${PWD}/_dist6:/rpmbuild/RPMS/x86_64 \
+		-v ${PWD}/bin:/rpmbuild/bin \
+		-v ${PWD}/RPM-GPG-KEY-prometheus-rpm:/rpmbuild/RPM-GPG-KEY-prometheus-rpm \
+		-v ${PWD}/secret.asc:/rpmbuild/secret.asc \
+		-v ${PWD}/.passphrase:/rpmbuild/.passphrase \
+		quay.io/zoonage/centos7-rpm-build \
+		bin/sign
 
 publish: sign
-	package_cloud push --skip-errors prometheus-rpm/release/el/7 _dist/*.rpm
+	package_cloud push --skip-errors prometheus-rpm/release/el/7 _dist7/*.rpm
+	package_cloud push --skip-errors prometheus-rpm/release/el/6 _dist6/*.rpm
 
 clean:
 	rm -rf _dist*
