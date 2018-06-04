@@ -27,11 +27,7 @@ defaults:
         %endif
     %endif
   pre: |
-    %if 0%{?el6} || 0%{?el5}
-    # Nothing to do yet
-    %else
-    %systemd_post %{name}.service
-    %endif
+    # Nothing to do
   post: |
     %if 0%{?el6} || 0%{?el5}
     chkconfig --add %{name}
@@ -50,7 +46,7 @@ defaults:
   postun: |
     %if 0%{?el6} || 0%{?el5} 
     if [ "$1" -ge "1" ] ; then
-        service <script> condrestart >/dev/null 2>&1 || :
+        service %{name} condrestart >/dev/null 2>&1 || :
     fi
     %else
     %systemd_postun %{name}.service

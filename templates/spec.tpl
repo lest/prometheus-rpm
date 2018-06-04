@@ -19,6 +19,12 @@ Source{{loop.index - 1}}: {{source}}
 
 %{?systemd_requires}
 Requires(pre): shadow-utils
+%if 0%{?el6} || 0%{?el5}
+Requires(post): chkconfig
+Requires(preun): chkconfig
+# This is for /sbin/service
+Requires(preun): initscripts
+%endif
 
 %description
 {{description}}

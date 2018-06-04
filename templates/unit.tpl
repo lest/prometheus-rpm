@@ -8,7 +8,7 @@ After=network.target
 [Service]
 EnvironmentFile=-/etc/default/{{name}}
 User=prometheus
-ExecStart=/usr/bin/{{name}} ${{name}}_EXPORTER_OPTS
+ExecStart=/usr/bin/{{name}} ${{name|upper}}_EXPORTER_OPTS
 Restart=on-failure
 
 [Install]
