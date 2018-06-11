@@ -1,14 +1,15 @@
 #!/bin/sh
 
+{% block variables %}
 NAME={{name}}
-
 SCRIPT="/usr/bin/${NAME}"
-
 PIDFILE="/var/run/${NAME}.pid"
 LOGFILE="/var/log/${NAME}.log"
 ENVFILE="/etc/default/${NAME}"
+{% endblock variables %}
 
 start() {
+{% block start %}
   if [ -f "${PIDFILE}" ] && kill -0 $(cat "${PIDFILE}") &> /dev/null; then
     echo "${NAME} already running with PID $(cat ${PIDFILE})" >&2
     return 1
@@ -27,9 +28,11 @@ start() {
     echo "${NAME} was not started OK"
     return 1
   fi
+{% endblock start %}
 }
 
 stop() {
+{% block stop %}
   if [ ! -f "$PIDFILE" ] || ! kill -0 $(cat "$PIDFILE") &> /dev/null; then
     echo "${NAME} not running" >&2
     return 1
@@ -38,17 +41,21 @@ stop() {
   kill -15 $(cat "$PIDFILE")
   rm -f "$PIDFILE"
   echo "${NAME} stopped" >&2
+{% endblock stop %}
 }
 
 status() {
+{% block status %}
   if [ ! -f "$PIDFILE" ] || ! kill -0 $(cat "$PIDFILE") &> /dev/null; then
     echo "${NAME} is not running" >&2
   else
     echo "${NAME} is running" >&2
   fi
+{% endblock status %}
 }
 
 uninstall() {
+{% block uninstall %}
   echo -n "Are you really sure you want to uninstall ${NAME}? That cannot be undone. [yes|No] "
   local SURE
   read SURE
@@ -59,6 +66,7 @@ uninstall() {
     update-rc.d -f <NAME> remove
     rm -fv "$0"
   fi
+{% endblock uninstall %}
 }
 
 case "$1" in

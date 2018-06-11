@@ -9,15 +9,16 @@ import yaml
 import os
 import logging
 import argparse
+import deepmerge
 
 def renderTemplateFromFile(templates_dir, template_file, context):
 	return jinja2.Environment(
 			loader=jinja2.FileSystemLoader(templates_dir or './')
 		).get_template(template_file).render(context)
 
-def renderTemplateFromString(template_string, context):
+def renderTemplateFromString(templates_dir, template_string, context):
 	return jinja2.Environment(
-		loader=jinja2.BaseLoader
+		loader=jinja2.FileSystemLoader(templates_dir or './')
 	).from_string(template_string).render(context)
 
 if __name__ == "__main__":
@@ -58,62 +59,65 @@ if __name__ == "__main__":
 		for t in templates:
 			work[t] = config["packages"][t]
 
+	# We need different actions for merging configs and contexts
+	ContextMerger = deepmerge.Merger(
+	    [
+	        (dict, ["merge"])
+	    ],
+		["override"],
+		["override"]
+	)
 	for exporter_name, exporter_config in work.items():
+		merged_context = ContextMerger.merge(defaults["context"], exporter_config.get("context", {}))
+
+		merged_config = { **defaults["config"], **exporter_config.get("config", {}) }
+
 		logging.info("Building exporter {}".format(exporter_name))
 
-		# Build the configuration as a merge of the defaults and the exporter config
-		context = {
-			"name": exporter_name,
-			"license": exporter_config["license"],
-			"description": exporter_config["description"],
-			"summary": exporter_config["summary"],
-			"version": exporter_config["version"],
-			"URL": exporter_config["URL"],
-			"package": exporter_config.get("package", defaults["package"]),
-			"build_steps": exporter_config.get("build_steps", defaults["build_steps"]),
-			"user": exporter_config.get("user", defaults["user"]),
-			"group": exporter_config.get("group", defaults["group"]),
+		# First we need to work out the context for this build
+		real_context = merged_context["static"]
+		
+		# Add in the exporter name as a context variable
+		real_context["name"] = exporter_name
 
-			# These are all run through a jinja2 template with the above context
-			"tarball_unformatted": exporter_config.get("tarball", defaults["tarball"]),
-			"sources_unformatted": exporter_config.get("sources", defaults["sources"]),
-			"sources": [],
-			"prep_unformatted": exporter_config.get("prep", defaults["prep"]),
-			"build_unformatted": exporter_config.get("build", defaults["build"]),
-			"install_unformatted": exporter_config.get("install", defaults["install"]),
-			"pre_unformatted": exporter_config.get("pre", defaults["pre"]),
-			"post_unformatted": exporter_config.get("post", defaults["post"]),
-			"preun_unformatted": exporter_config.get("preun", defaults["preun"]),
-			"postun_unformatted": exporter_config.get("postun", defaults["postun"]),
-			"files_unformatted": exporter_config.get("files", defaults["files"]),
-		}
+		# Use the compiled contexts to build the dynamic contexts.
+		# Dynamic contexts can use other dynamic contexts as long
+		# as they are compiled before.
+		to_process =  merged_context["dynamic"]
+		for context_name, to_template in to_process.items():
+			if type(to_template) is str:
+				real_context[context_name] = renderTemplateFromString(
+												templates_dir=templates_dir,
+												template_string=to_template, 
+												context=real_context
+											)
+			elif type(to_template) is list:
+				context_element = []
+				for item in to_template:
+					context_element.append(renderTemplateFromString(
+												templates_dir=templates_dir,
+												template_string=item, 
+												context=real_context)
+											)
+				real_context[context_name] = context_element
+			else:
+				raise TypeError("Invalid type {} for key {}".format(type(to_template), context_name))
 
-		# Run the templating over these sections with the above context
-		context["tarball"] = renderTemplateFromString(context["tarball_unformatted"], context)
-		context["prep"] = renderTemplateFromString(context["prep_unformatted"], context)
-		context["build"] = renderTemplateFromString(context["build_unformatted"], context)
-		context["install"] = renderTemplateFromString(context["install_unformatted"], context)
-		context["pre"] = renderTemplateFromString(context["pre_unformatted"], context)
-		context["post"] = renderTemplateFromString(context["post_unformatted"], context)
-		context["preun"] = renderTemplateFromString(context["preun_unformatted"], context)
-		context["postun"] = renderTemplateFromString(context["postun_unformatted"], context)
-		context["files"] = renderTemplateFromString(context["files_unformatted"], context)
+		#print(real_context)
+		#print(merged_config)
 
-		context['sources'] = []
-		for source_template in context['sources_unformatted']:
-			context['sources'].append(renderTemplateFromString(source_template, context))
-
-		logging.debug("Using context {}".format(context))
-
-		for build_step in context['build_steps']:
-			template_file = "{}.tpl".format(build_step)
+		for build_step, template in merged_config['build_steps'].items():
 			output = "{name}/autogen_{name}.{build_step}".format(**{
-				'name': context['name'],
+				'name': exporter_name,
 				'build_step': build_step,
 			})
-			logging.info("Rendering template {}/{}".format(templates_dir, template_file))
-			rendered = renderTemplateFromFile(templates_dir=templates_dir, template_file=template_file, context=context)
+
+			logging.info("Rendering step {} for {}".format(build_step, exporter_name))	
+			rendered = renderTemplateFromString(templates_dir=templates_dir, 
+												template_string=template, 
+												context=real_context)
 			logging.info("Writing {} step {} to {}".format(exporter_name, build_step, output))
+			#print(rendered)
 			with open(output, 'w') as output_file:
 				output_file.write(rendered)
 
