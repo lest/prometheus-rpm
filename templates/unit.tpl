@@ -2,7 +2,7 @@
 
 [Unit]
 {% block unit %}
-Description=P{{description}}
+Description={{summary}}
 Documentation={{URL}}
 After=network.target
 {% endblock unit %}
