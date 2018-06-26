@@ -6,6 +6,7 @@ defaults:
       user: prometheus
       group: prometheus
       package: '%{name}-%{version}.linux-amd64'
+      release: 1
     dynamic:
       tarball: '{{URL}}/releases/download/v%{version}/{{package}}.tar.gz'
       sources:
@@ -27,7 +28,7 @@ packages:
         version: 0.16.0
         license: ASL 2.0
         URL: https://github.com/prometheus/node_exporter
-        summary: Prometheus exporter for MySQL server metrics.
+        summary: Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
         description: |
             Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, 
             written in Go with pluggable metric collectors.
