@@ -6,6 +6,7 @@ defaults:
       user: prometheus
       group: prometheus
       package: '%{name}-%{version}.linux-amd64'
+      release: 1
     dynamic:
       tarball: '{{URL}}/releases/download/v%{version}/{{package}}.tar.gz'
       sources:

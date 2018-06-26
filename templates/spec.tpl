@@ -10,7 +10,7 @@
 {%- block amble %}
 Name:    {{name}}
 Version: {{version}}
-Release: 1%{?dist}
+Release: {{release}}%{?dist}
 Summary: {{summary}}
 License: {{license}}
 URL:     {{URL}}
