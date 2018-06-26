@@ -1,9 +1,6 @@
 PACKAGES7 = prometheus \
 prometheus2 \
 alertmanager \
-#node_exporter \
-#mysqld_exporter \
-#postgres_exporter \
 elasticsearch_exporter \
 blackbox_exporter \
 haproxy_exporter \
@@ -34,7 +31,7 @@ all: auto $(PACKAGES7)
 auto: $(AUTO_GENERATED)
 
 
-$(AUTO_GENERATED): 
+$(AUTO_GENERATED):
 	python3 ./generate.py --templates $@
 	# Build for centos 6
 	docker run -it --rm \
