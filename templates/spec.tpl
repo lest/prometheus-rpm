@@ -35,7 +35,7 @@ Requires(preun): initscripts
 
 %description
 {%- block description %}
-{{summary}}
+{{description}}
 {% endblock description %}
 
 %prep
