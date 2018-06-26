@@ -1,5 +1,7 @@
-_dist
+_dist*
 *.tar.gz
 .passphrase
 secret.asc
 *.jar
+autogen_*
+Makefile_*

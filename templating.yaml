@@ -1,0 +1,58 @@
+# Configure some defaults that will probably be common
+# to each package
+defaults:
+  context:
+    static:
+      user: prometheus
+      group: prometheus
+      package: '%{name}-%{version}.linux-amd64'
+    dynamic:
+      tarball: '{{URL}}/releases/download/v%{version}/{{package}}.tar.gz'
+      sources:
+        - '{{tarball}}'
+        - 'autogen_%{name}.unit'
+        - '%{name}.default'
+        - 'autogen_%{name}.init'
+  config:
+    build_steps:
+      spec: '{% extends "spec.tpl" %}'
+      unit: '{% extends "unit.tpl" %}'
+      init: '{% extends "init.tpl" %}'
+
+# Per-package configuration
+packages:
+  node_exporter:
+    context:
+      static:
+        version: 0.16.0
+        license: ASL 2.0
+        URL: https://github.com/prometheus/node_exporter
+        summary: Prometheus exporter for MySQL server metrics.
+        description: |
+            Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, 
+            written in Go with pluggable metric collectors.
+  mysqld_exporter:
+    context:
+      static:
+        version: 0.10.0
+        license: ASL 2.0
+        URL: https://github.com/prometheus/mysqld_exporter
+        summary: Prometheus exporter for MySQL server metrics.
+        description: |
+            Prometheus exporter for MySQL server metrics. Supported MySQL versions: 5.1 and up. 
+            NOTE: Not all collection methods are supported on MySQL < 5.6
+  postgres_exporter:
+    context:
+      static:
+        version: 0.4.6
+        license: ASL 2.0
+        summary: Prometheus exporter for PostgreSQL server metrics.
+        description: |
+            Prometheus exporter for PostgreSQL server metrics. 
+            Supported Postgres versions: 9.1 and up.
+        package: '%{name}_v%{version}_linux-amd64'
+        URL: https://github.com/wrouesnel/postgres_exporter
+      dynamic:
+        tarball: '{{URL}}/releases/download/v%{version}/%{name}_v%{version}_linux-amd64.tar.gz'
+      
+
