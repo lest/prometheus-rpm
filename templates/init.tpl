@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # chkconfig: 2345 60 20
-# description: ${NAME}
+# description: {{name}}
 
 {% block variables %}
 NAME={{name}}
