@@ -29,7 +29,7 @@ takes care of silencing and inhibition of alerts.
 
 %install
 mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
-install -D -m 644 simple.yml %{buildroot}%{_sysconfdir}/prometheus/%{name}.yml
+install -D -m 644 alertmanager.yml %{buildroot}%{_sysconfdir}/prometheus/%{name}.yml
 install -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
 install -D -m 755 amtool %{buildroot}%{_bindir}/amtool
 install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
