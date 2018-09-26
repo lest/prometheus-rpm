@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:    haproxy_exporter
-Version: 0.8.0
+Version: 0.9.0
 Release: 1%{?dist}
 Summary: Haproxy exporter
 License: ASL 2.0
