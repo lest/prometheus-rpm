@@ -3,13 +3,11 @@ prometheus2 \
 alertmanager \
 elasticsearch_exporter \
 blackbox_exporter \
-haproxy_exporter \
 consul_exporter \
 graphite_exporter \
 jmx_exporter \
 snmp_exporter \
 apache_exporter \
-redis_exporter \
 collectd_exporter \
 rabbitmq_exporter \
 pushgateway \
@@ -20,6 +18,8 @@ statsd_exporter
 
 AUTO_GENERATED = node_exporter \
 mysqld_exporter \
+redis_exporter \
+haproxy_exporter \
 postgres_exporter
 
 .PHONY: $(PACKAGES7)
@@ -55,7 +55,7 @@ $(AUTO_GENERATED):
 	# Test the install
 	docker run --privileged -it --rm \
 		-v ${PWD}/_dist7:/var/tmp/ \
-		centos/systemd \
+		quay.io/zoonage/centos7-rpm-build \
 		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/$@*.rpm'
 
 $(PACKAGES7):

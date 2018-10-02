@@ -1,32 +1,33 @@
-# Configure some defaults that will probably be common
-# to each package
-defaults:
-  context:
-    static:
+# Use YAML anchors so we can prevent repeating ourselves
+anchors:
+  default_build_steps: &default_build_steps
+      spec: '{% extends "spec.tpl" %}'
+      unit: '{% extends "unit.tpl" %}'
+      init: '{% extends "init.tpl" %}'
+  default_context: &default_context 
+    static: &default_static_context
       user: prometheus
       group: prometheus
       package: '%{name}-%{version}.linux-amd64'
       release: 1
-    dynamic:
+    dynamic: &default_dynamic_context
       tarball: '{{URL}}/releases/download/v%{version}/{{package}}.tar.gz'
       sources:
         - '{{tarball}}'
         - 'autogen_%{name}.unit'
         - '%{name}.default'
         - 'autogen_%{name}.init'
-  config:
-    build_steps:
-      spec: '{% extends "spec.tpl" %}'
-      unit: '{% extends "unit.tpl" %}'
-      init: '{% extends "init.tpl" %}'
 
 # Per-package configuration
 packages:
   node_exporter:
+    build_steps:
+      <<: *default_build_steps
     context:
-      static:
+      <<: *default_context
+      static: 
+        <<: *default_static_context
         version: 0.16.0
-        release: 3
         license: ASL 2.0
         URL: https://github.com/prometheus/node_exporter
         summary: Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
@@ -56,5 +57,34 @@ packages:
         URL: https://github.com/wrouesnel/postgres_exporter
       dynamic:
         tarball: '{{URL}}/releases/download/v%{version}/%{name}_v%{version}_linux-amd64.tar.gz'
+  redis_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      static:
+        <<: *default_static_context
+        version: 0.21.2
+        license: ASL 2.0
+        summary: Prometheus exporter for Redis server metrics.
+        description: Prometheus Exporter for Redis Metrics. Supports Redis 2.x, 3.x and 4.x 
+        package: '%{name}-v%{version}.linux-amd64'
+        URL: https://github.com/oliver006/redis_exporter
+      dynamic:
+        sources:
+          - 'redis_exporter/{{package}}.tar.gz'
+          - 'autogen_%{name}.unit'
+          - '%{name}.default'
+          - 'autogen_%{name}.init'
+  haproxy_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static: 
+        <<: *default_static_context
+        version: 0.9.0
+        license: ASL 2.0
+        URL: https://github.com/prometheus/haproxy_exporter
+        summary: This is a simple server that scrapes HAProxy stats and exports them via HTTP for Prometheus consumption.
+        description: This is a simple server that scrapes HAProxy stats and exports them via HTTP for Prometheus consumption.
       
-
