@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:    consul_exporter
-Version: 0.3.0
+Version: 0.4.0
 Release: 1%{?dist}
 Summary: Prometheus Consul exporter.
 License: ASL 2.0
