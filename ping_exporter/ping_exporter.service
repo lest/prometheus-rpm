@@ -1,0 +1,13 @@
+[Unit]
+Description=Ping exporter
+Documentation=https://github.com/czerwonk/ping_exporter
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/ping_exporter
+User=prometheus 
+ExecStart=/usr/bin/ping_exporter $PING_EXPORTER_OPTS
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
