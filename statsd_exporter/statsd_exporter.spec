@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:    statsd_exporter
-Version: 0.6.0
+Version: 0.8.0
 Release: 1%{?dist}
 Summary: Prometheus StatsD exporter.
 License: ASL 2.0
