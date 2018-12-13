@@ -1,5 +1,5 @@
 Name:       sachet
-Version:    0.0.8
+Version:    0.2.0
 Release:    1%{?dist}
 Summary:    SMS alerts for Prometheus Alertmanager
 License:    BSD
