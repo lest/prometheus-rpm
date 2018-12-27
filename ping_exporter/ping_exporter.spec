@@ -1,13 +1,12 @@
 %define debug_package %{nil}
 
-Name:    snmp_exporter
-Version: 0.14.0
+Name:    ping_exporter
+Version: 0.4.6
 Release: 1%{?dist}
-Summary: Prometheus SNMP exporter.
+Summary: Ping exporter
 License: ASL 2.0
-URL:     https://github.com/prometheus/%{name}
-
-Source0: https://github.com/prometheus/%{name}/releases/download/v%{version}/%{name}-%{version}.linux-amd64.tar.gz
+URL:        https://github.com/jaxxstorm/ping_exporter
+Source0:    https://github.com/jaxxstorm/ping_exporter/releases/download/%{version}/ping_exporter-%{version}.Linux-x86_64.tar.gz
 Source1: %{name}.service
 Source2: %{name}.default
 
@@ -16,17 +15,16 @@ Requires(pre): shadow-utils
 
 %description
 
-This is an exporter that exposes information gathered from SNMP for use by the Prometheus monitoring system.
+The ping exporter allows ping probing of endpoints via ICMP.
 
 %prep
-%setup -q -n %{name}-%{version}.linux-amd64
+%setup -q -n %{name}-%{version}.Linux-x86_64
 
 %build
 /bin/true
 
 %install
 mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
-install -D -m 644 snmp.yml %{buildroot}%{_sysconfdir}/prometheus/snmp.yml
 install -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
 install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/%{name}
@@ -49,8 +47,7 @@ exit 0
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}/%{name}
+%caps(cap_net_raw=ep) %{_bindir}/%{name}
 %{_unitdir}/%{name}.service
 %config(noreplace) %{_sysconfdir}/default/%{name}
-%config(noreplace) %{_sysconfdir}/prometheus/snmp.yml
 %dir %attr(755, prometheus, prometheus)%{_sharedstatedir}/prometheus
