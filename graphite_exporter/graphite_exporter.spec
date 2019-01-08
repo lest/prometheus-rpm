@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:    graphite_exporter
-Version: 0.2.0
+Version: 0.4.2
 Release: 1%{?dist}
 Summary: Prometheus Graphite exporter.
 License: ASL 2.0
