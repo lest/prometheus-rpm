@@ -40,7 +40,11 @@ Requires(preun): initscripts
 
 %prep
 {%- block prep %}
+{%- if tarball_has_subdirectory %}
 %setup -q -n {{package}}
+{%- else %}
+%setup -q -D -c {{package}}
+{%- endif %}
 {% endblock prep %}
 
 %build
@@ -54,10 +58,10 @@ mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
 install -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
 install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/%{name}
 %if 0%{?el5}
-install -D -m 644 %{SOURCE3} %{buildroot}%{_initrddir}/%{name}
-%else 
-    %if 0%{?el6} 
-    install -D -m 644 %{SOURCE3} %{buildroot}%{_initddir}/%{name}
+install -D -m 755 %{SOURCE3} %{buildroot}%{_initrddir}/%{name}
+%else
+    %if 0%{?el6}
+    install -D -m 755 %{SOURCE3} %{buildroot}%{_initddir}/%{name}
     %else
     install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
     %endif
@@ -96,7 +100,7 @@ fi
 
 %postun
 {%- block postun %}
-%if 0%{?el6} || 0%{?el5} 
+%if 0%{?el6} || 0%{?el5}
 if [ "$1" -ge "1" ] ; then
     service %{name} condrestart >/dev/null 2>&1 || :
 fi
@@ -114,7 +118,7 @@ fi
 %if 0%{?el5}
 %{_initrdddir}/%{name}
 %else
-    %if 0%{?el6} 
+    %if 0%{?el6}
     %{_initddir}/%{name}
     %else
     %{_unitdir}/%{name}.service
