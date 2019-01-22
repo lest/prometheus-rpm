@@ -3,6 +3,10 @@
 # chkconfig: 2345 60 20
 # description: {{name}}
 
+# Source function library.
+. /etc/init.d/functions
+
+
 {% block variables %}
 NAME={{name}}
 SCRIPT="/usr/bin/${NAME}"
@@ -17,12 +21,18 @@ start() {
     echo "${NAME} already running with PID $(cat ${PIDFILE})" >&2
     return 1
   fi
+
   echo "Starting ${NAME}" >&2
   . "${ENVFILE}"
-  CMD="${SCRIPT} ${EXPORTER_ARGS}"
-  local tmp_pid="/tmp/${NAME}.pid"
-  su - "${USER}" -c "${CMD} &> ${LOGFILE} & echo \$! > ${tmp_pid}" 
-  mv "${tmp_pid}" "${PIDFILE}"
+
+  if [ -z $USER ]; then
+    USER=root
+  fi
+
+  daemon --user $USER --pidfile="$PIDFILE" "${SCRIPT} &"  2&> $LOGFILE
+
+  echo `pidof $NAME` > ${PIDFILE}
+
   echo "${NAME} started with PID $(cat ${PIDFILE})" >&2
   sleep 1
   if [ -f "${PIDFILE}" ] && kill -0 $(cat "${PIDFILE}") &> /dev/null; then
