@@ -29,7 +29,7 @@ start() {
     USER=root
   fi
 
-  daemon --user $USER --pidfile="$PIDFILE" "${SCRIPT} &"  2&> $LOGFILE
+  daemon --user $USER --pidfile="$PIDFILE" "${SCRIPT} ${EXPORTER_ARGS} &"  2&> $LOGFILE
 
   echo `pidof $NAME` > ${PIDFILE}
 
