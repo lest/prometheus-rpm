@@ -9,6 +9,7 @@
 
 {% block variables %}
 NAME={{name}}
+DFLTRUNAS=prometheus
 SCRIPT="/usr/bin/${NAME}"
 PIDFILE="/var/run/${NAME}.pid"
 LOGFILE="/var/log/${NAME}.log"
@@ -25,11 +26,11 @@ start() {
   echo "Starting ${NAME}" >&2
   . "${ENVFILE}"
 
-  if [ -z $USER ]; then
-    USER=root
+  if [ -z $RUNAS ]; then
+    RUNAS=${DFLTRUNAS}
   fi
 
-  daemon --user $USER --pidfile="$PIDFILE" "${SCRIPT} ${EXPORTER_ARGS} &"  2&> $LOGFILE
+  daemon --user $RUNAS --pidfile="$PIDFILE" "${SCRIPT} ${EXPORTER_ARGS} &"  2&> $LOGFILE
 
   echo `pidof $NAME` > ${PIDFILE}
 
@@ -100,5 +101,5 @@ case "$1" in
   status
   ;;
   *)
-    echo "Usage: $0 {start|stop|restart|uninstall}"
+    echo "Usage: $0 {start|stop|restart|status|uninstall}"
 esac
