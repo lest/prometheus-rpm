@@ -3,8 +3,13 @@
 # chkconfig: 2345 60 20
 # description: {{name}}
 
+# Source function library.
+. /etc/init.d/functions
+
+
 {% block variables %}
 NAME={{name}}
+DFLTRUNAS=prometheus
 SCRIPT="/usr/bin/${NAME}"
 PIDFILE="/var/run/${NAME}.pid"
 LOGFILE="/var/log/${NAME}.log"
@@ -17,12 +22,18 @@ start() {
     echo "${NAME} already running with PID $(cat ${PIDFILE})" >&2
     return 1
   fi
+
   echo "Starting ${NAME}" >&2
   . "${ENVFILE}"
-  CMD="${SCRIPT} ${EXPORTER_ARGS}"
-  local tmp_pid="/tmp/${NAME}.pid"
-  su - "${USER}" -c "${CMD} &> ${LOGFILE} & echo \$! > ${tmp_pid}" 
-  mv "${tmp_pid}" "${PIDFILE}"
+
+  if [ -z $RUNAS ]; then
+    RUNAS=${DFLTRUNAS}
+  fi
+
+  daemon --user $RUNAS --pidfile="$PIDFILE" "${SCRIPT} ${EXPORTER_ARGS} &"  2&> $LOGFILE
+
+  echo `pidof $NAME` > ${PIDFILE}
+
   echo "${NAME} started with PID $(cat ${PIDFILE})" >&2
   sleep 1
   if [ -f "${PIDFILE}" ] && kill -0 $(cat "${PIDFILE}") &> /dev/null; then
@@ -90,5 +101,5 @@ case "$1" in
   status
   ;;
   *)
-    echo "Usage: $0 {start|stop|restart|uninstall}"
+    echo "Usage: $0 {start|stop|restart|status|uninstall}"
 esac
