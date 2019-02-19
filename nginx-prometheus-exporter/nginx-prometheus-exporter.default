@@ -1,0 +1,1 @@
+NGINX_PROMETHEUS_EXPORTER_OPTS="-nginx.plus -nginx.scrape-uri http://127.0.0.1:8080/api"
