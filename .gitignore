@@ -7,3 +7,4 @@ secret.asc
 *.jar
 autogen_*
 Makefile_*
+/.idea/
