@@ -93,6 +93,20 @@ packages:
         URL: https://github.com/prometheus/haproxy_exporter
         summary: This is a simple server that scrapes HAProxy stats and exports them via HTTP for Prometheus consumption.
         description: This is a simple server that scrapes HAProxy stats and exports them via HTTP for Prometheus consumption.
+  kafka_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 1.2.0
+        license: ASL 2.0
+        URL: https://github.com/danielqsj/kafka_exporter
+        summary: Kafka exporter for Prometheus.
+        description: Kafka exporter for Prometheus.
+        summary: NGINX Prometheus Exporter for NGINX and NGINX Plus.
+        description: NGINX Prometheus Exporter for NGINX and NGINX Plus.
   nginx-prometheus-exporter:
     build_steps:
       <<: *default_build_steps

@@ -22,6 +22,7 @@ mysqld_exporter \
 redis_exporter \
 haproxy_exporter \
 postgres_exporter \
+kafka_exporter \
 nginx-prometheus-exporter
 
 .PHONY: $(PACKAGES7)
