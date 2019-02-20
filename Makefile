@@ -21,7 +21,8 @@ AUTO_GENERATED = node_exporter \
 mysqld_exporter \
 redis_exporter \
 haproxy_exporter \
-postgres_exporter
+postgres_exporter \
+kafka_exporter
 
 .PHONY: $(PACKAGES7)
 .PHONY: $(AUTO_GENERATED)
