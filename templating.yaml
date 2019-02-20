@@ -105,8 +105,6 @@ packages:
         URL: https://github.com/danielqsj/kafka_exporter
         summary: Kafka exporter for Prometheus.
         description: Kafka exporter for Prometheus.
-        summary: NGINX Prometheus Exporter for NGINX and NGINX Plus.
-        description: NGINX Prometheus Exporter for NGINX and NGINX Plus.
   nginx-prometheus-exporter:
     build_steps:
       <<: *default_build_steps
