@@ -45,6 +45,9 @@ Requires(preun): initscripts
 {%- else %}
 %setup -q -D -c {{package}}
 {%- endif %}
+{%- if fix_name is defined %}
+mv -v %{fix_name} %{name}
+{%- endif %}
 {% endblock prep %}
 
 %build
