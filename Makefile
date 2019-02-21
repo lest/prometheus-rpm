@@ -28,7 +28,7 @@ nginx_exporter
 .PHONY: $(PACKAGES7)
 .PHONY: $(AUTO_GENERATED)
 
-all: nginx_exporter
+all: auto $(PACKAGES7)
 
 7: $(PACKAGES7)
 auto: $(AUTO_GENERATED)
