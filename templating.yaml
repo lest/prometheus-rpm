@@ -72,7 +72,7 @@ packages:
     context:
       static:
         <<: *default_static_context
-        version: 0.25.0
+        version: 0.29.0
         license: ASL 2.0
         summary: Prometheus exporter for Redis server metrics.
         description: Prometheus Exporter for Redis Metrics. Supports Redis 2.x, 3.x and 4.x
