@@ -12,8 +12,6 @@ Source0: http://search.maven.org/remotecontent?filepath=io/prometheus/jmx/jmx_pr
 Source1: %{name}.service
 Source2: %{name}.default
 
-Requires: java
-
 %description
 
 A Collector that can configurably scrape and expose mBeans of a JMX target. It meant to be run as a Java Agent, exposing an HTTP server and scraping the local JVM.
