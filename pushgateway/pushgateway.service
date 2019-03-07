@@ -8,8 +8,7 @@ After=network.target
 [Service]
 EnvironmentFile=-/etc/default/pushgateway
 User=prometheus
-ExecStart=/usr/bin/pushgateway \
-          $PUSHGATEWAY_OPTS
+ExecStart=/usr/bin/pushgateway $PUSHGATEWAY_OPTS
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 

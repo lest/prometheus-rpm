@@ -1,2 +1,4 @@
+RABBITMQ_EXPORTER_OPTS=""
+
 # see <https://github.com/kbudde/rabbitmq_exporter/issues/53>
 PUBLISH_PORT=9419

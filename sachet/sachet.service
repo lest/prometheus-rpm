@@ -8,8 +8,7 @@ After=network.target
 [Service]
 EnvironmentFile=-/etc/default/sachet
 User=prometheus
-ExecStart=/usr/bin/sachet \
-          $SACHET_OPTS
+ExecStart=/usr/bin/sachet $SACHET_OPTS
 Restart=on-failure
 
 [Install]

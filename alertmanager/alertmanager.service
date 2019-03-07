@@ -8,10 +8,7 @@ After=network.target
 [Service]
 EnvironmentFile=-/etc/default/alertmanager
 User=prometheus
-ExecStart=/usr/bin/alertmanager \
-          --config.file=/etc/prometheus/alertmanager.yml \
-          --storage.path=/var/lib/prometheus/alertmanager \
-          $ALERTMANAGER_OPTS
+ExecStart=/usr/bin/alertmanager $ALERTMANAGER_OPTS
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=always
 
