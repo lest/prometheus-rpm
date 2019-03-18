@@ -6,9 +6,11 @@ Documentation=https://github.com/prometheus/alertmanager
 After=network.target
 
 [Service]
+Environment=ALERTMANAGER_CONFIG="--config.file=/etc/prometheus/alertmanager.yml"
+Environment=ALERTMANAGER_STORAGE="--storage.path=/var/lib/prometheus/alertmanager"
 EnvironmentFile=-/etc/default/alertmanager
 User=prometheus
-ExecStart=/usr/bin/alertmanager $ALERTMANAGER_OPTS
+ExecStart=/usr/bin/alertmanager $ALERTMANAGER_CONFIG $ALERTMANAGER_STORAGE $ALERTMANAGER_OPTS
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=always
 

@@ -1,1 +1,3 @@
-PROMETHEUS_OPTS="-config.file=/etc/prometheus/prometheus.yml -storage.local.path=/var/lib/prometheus/data"
+PROMETHEUS_CONFIG="-config.file=/etc/prometheus/prometheus.yml"
+PROMETHEUS_STORAGE="-storage.local.path=/var/lib/prometheus/data"
+PROMETHEUS_OPTS=""

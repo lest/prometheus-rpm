@@ -1,1 +1,3 @@
-ALERTMANAGER_OPTS="--config.file=/etc/prometheus/alertmanager.yml --storage.path=/var/lib/prometheus/alertmanager"
+ALERTMANAGER_CONFIG="--config.file=/etc/prometheus/alertmanager.yml"
+ALERTMANAGER_STORAGE="--storage.path=/var/lib/prometheus/alertmanager"
+ALERTMANAGER_OPTS=""
