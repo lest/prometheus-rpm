@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/lest/prometheus-rpm.svg?branch=master)](https://travis-ci.org/lest/prometheus-rpm)
 
 The repository contains the files needed to build [Prometheus][1] RPM packages
-for CentOS 7.
+for CentOS 6 & 7.
 
 ## Installing
 The packages are available in [the packagecloud repository][2] and can be used
@@ -13,28 +13,12 @@ by adding the following `/etc/yum.repos.d/prometheus.repo`:
 ``` conf
 [prometheus]
 name=prometheus
-baseurl=https://packagecloud.io/prometheus-rpm/release/el/7/$basearch
+baseurl=https://packagecloud.io/prometheus-rpm/release/el/$releasever/$basearch
 repo_gpgcheck=1
 enabled=1
 gpgkey=https://packagecloud.io/prometheus-rpm/release/gpgkey
        https://raw.githubusercontent.com/lest/prometheus-rpm/master/RPM-GPG-KEY-prometheus-rpm
 gpgcheck=1
-sslverify=1
-sslcacert=/etc/pki/tls/certs/ca-bundle.crt
-metadata_expire=300
-```
-### CentOS 6
-``` conf
-[prometheus]
-name=prometheus
-baseurl=https://packagecloud.io/prometheus-rpm/release/el/6/$basearch
-repo_gpgcheck=1
-enabled=1
-gpgkey=https://packagecloud.io/prometheus-rpm/release/gpgkey
-       https://raw.githubusercontent.com/lest/prometheus-rpm/master/RPM-GPG-KEY-prometheus-rpm
-gpgcheck=1
-sslverify=1
-sslcacert=/etc/pki/tls/certs/ca-bundle.crt
 metadata_expire=300
 ```
 
