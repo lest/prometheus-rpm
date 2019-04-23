@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:    jmx_exporter
-Version: 0.9
+Version: 0.11
 Release: 1%{?dist}
 BuildArch: noarch
 Summary: Prometheus exporter for mBeans scrape and expose.
