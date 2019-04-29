@@ -1,6 +1,7 @@
 PACKAGES7 = prometheus \
 prometheus2 \
 alertmanager \
+thanos \
 elasticsearch_exporter \
 blackbox_exporter \
 consul_exporter \
@@ -13,7 +14,7 @@ rabbitmq_exporter \
 pushgateway \
 sachet \
 statsd_exporter \
-ping_exporter 
+ping_exporter
 
 .PHONY: $(PACKAGES7)
 

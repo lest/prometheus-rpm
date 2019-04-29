@@ -1,0 +1,19 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Thanos Sidecar service.
+Documentation=https://github.com/improbable-eng/thanos/
+After=network.target
+After=prometheus2.service
+
+[Service]
+EnvironmentFile=-/etc/default/thanos-sidecar
+User=prometheus
+ExecStart=/usr/bin/thanos sidecar \
+          --tsdb.path=/var/lib/prometheus/data \
+          $THANOS_SIDECAR_OPTS
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

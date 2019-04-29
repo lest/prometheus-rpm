@@ -1,0 +1,1 @@
+THANOS_QUERY_OPTS='--cluster.disable --http-address 0.0.0.0:19192 --grpc-address 0.0.0.0:19092 --store 127.0.0.1:10901'
