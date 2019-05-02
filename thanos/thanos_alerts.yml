@@ -1,0 +1,13 @@
+#groups:
+#  - name: "abort_strategy"
+#    # enable after update to 0.4.0:
+#    #partial_response_strategy: "abort"
+#    rules:
+#    - alert: bgpPrefix15m
+#      expr: bgp_neighbor_prefixnum < avg_over_time(bgp_neighbor_prefixnum[15m])
+#      for: 15m
+#      labels:
+#        severity: warning
+#      annotations:
+#        summary: 'Instance {{ $labels.instance }} - BGP prefix missing'
+#        description: 'BGP prefix on {{ $labels.instance }} (measured by {{ $labels.job }}) has been missing for more than 15 minutes.'
