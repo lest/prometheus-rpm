@@ -1,0 +1,18 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Thanos Rule service.
+Documentation=https://github.com/improbable-eng/thanos/
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/thanos-rule
+User=prometheus
+ExecStart=/usr/bin/thanos query \
+          --data-dir=/var/lib/thanos/rule \
+          $THANOS_RULE_OPTS
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
