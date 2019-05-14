@@ -29,7 +29,7 @@ packages:
       static:
         <<: *default_static_context
         # Remove release line below to Revert release to 1 when version changes 
-        version: 0.17.0
+        version: 0.18.0
         release: 2
         license: ASL 2.0
         URL: https://github.com/prometheus/node_exporter
