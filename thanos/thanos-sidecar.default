@@ -1,1 +1,1 @@
-THANOS_SIDECAR_OPTS='--cluster.disable --prometheus.url http://localhost:9090'
+THANOS_SIDECAR_OPTS='--prometheus.url http://localhost:9090'
