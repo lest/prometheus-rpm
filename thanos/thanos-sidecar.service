@@ -10,7 +10,6 @@ After=prometheus2.service
 EnvironmentFile=-/etc/default/thanos-sidecar
 User=prometheus
 ExecStart=/usr/bin/thanos sidecar \
-          --tsdb.path=/var/lib/prometheus/data \
           $THANOS_SIDECAR_OPTS
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=always
