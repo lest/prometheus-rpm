@@ -10,7 +10,6 @@ After=thanos-sidecar.service
 EnvironmentFile=-/etc/default/thanos-store
 User=prometheus
 ExecStart=/usr/bin/thanos store \
-          --data-dir=/var/lib/thanos/store \
           $THANOS_STORE_OPTS
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=always

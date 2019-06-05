@@ -9,7 +9,6 @@ After=network.target
 EnvironmentFile=-/etc/default/thanos-rule
 User=prometheus
 ExecStart=/usr/bin/thanos rule \
-          --data-dir=/var/lib/thanos/rule \
           $THANOS_RULE_OPTS
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=always

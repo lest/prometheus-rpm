@@ -1,1 +1,1 @@
-THANOS_SIDECAR_OPTS='--tsdb.path=/var/lib/prometheus/data --prometheus.url http://localhost:9090'
+THANOS_SIDECAR_OPTS='--tsdb.path=/var/lib/prometheus/data --prometheus.url=http://localhost:9090'

@@ -1,1 +1,1 @@
-THANOS_QUERY_OPTS='--http-address 0.0.0.0:19192 --grpc-address 0.0.0.0:19092 --store localhost:10901'
+THANOS_QUERY_OPTS='--http-address=0.0.0.0:19192 --grpc-address=0.0.0.0:19092 --store=localhost:10901'
