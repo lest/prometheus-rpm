@@ -9,7 +9,6 @@ After=network.target
 EnvironmentFile=-/etc/default/thanos-compact
 User=prometheus
 ExecStart=/usr/bin/thanos compact \
-          --tsdb.path=/var/lib/thanos/compact \
           $THANOS_COMPACT_OPTS
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=always
