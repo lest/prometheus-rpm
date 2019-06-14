@@ -2,7 +2,7 @@
 
 [Unit]
 Description=Process exporter for Prometheus
-Documentation=https://github.com/ncabatoff/elasticsearch_exporter
+Documentation=https://github.com/ncabatoff/process-exporter
 After=network.target
 
 [Service]
