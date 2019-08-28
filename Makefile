@@ -15,7 +15,8 @@ pushgateway \
 sachet \
 statsd_exporter \
 ping_exporter \
-process_exporter
+process_exporter \
+memcached_exporter
 
 .PHONY: $(PACKAGES7)
 
