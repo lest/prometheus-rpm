@@ -70,8 +70,8 @@ if __name__ == "__main__":
         # Use the compiled contexts to build the dynamic contexts.
         # Dynamic contexts can use other dynamic contexts as long
         # as they are compiled before.
-        to_process = exporter_config["context"]["dynamic"]
-        for context_name, to_template in to_process.items():
+        for context_name in ["tarball", "sources"]:
+            to_template = exporter_config["context"]["dynamic"][context_name]
             print(context_name)
             if type(to_template) is str:
                 context[context_name] = renderTemplateFromString(
