@@ -98,3 +98,4 @@ clean:
 	rm -rf _dist*
 	rm -f **/*.tar.gz
 	rm -f **/*.jar
+	rm -f **/autogen_*{init,unit,spec}
