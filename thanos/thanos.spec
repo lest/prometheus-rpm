@@ -1,14 +1,14 @@
 %define debug_package %{nil}
 
 Name:	 thanos
-Version: 0.6.1
+Version: 0.7.0
 Release: 1%{?dist}
 Summary: Highly available Prometheus setup with long term storage capabilities.
 License: ASL 2.0
 URL:     https://github.com/improbable-eng/thanos
 Conflicts: prometheus
 
-Source0: https://github.com/improbable-eng/%{name}/releases/download/v%{version}/%{name}-%{version}.linux-amd64.tar.gz
+Source0: https://github.com/thanos-io/%{name}/releases/download/v%{version}/%{name}-%{version}.linux-amd64.tar.gz
 Source1: thanos-sidecar.service
 Source2: thanos-sidecar.default
 Source3: thanos-store.service
