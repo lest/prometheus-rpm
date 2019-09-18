@@ -10,6 +10,7 @@ EnvironmentFile=-/etc/default/blackbox_exporter
 User=prometheus
 ExecStart=/usr/bin/blackbox_exporter $BLACKBOX_EXPORTER_OPTS
 Restart=on-failure
+LimitNOFILE=65536
 
 [Install]
 WantedBy=multi-user.target
