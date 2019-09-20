@@ -16,7 +16,8 @@ sachet \
 statsd_exporter \
 ping_exporter \
 process_exporter \
-memcached_exporter
+memcached_exporter \
+smokeping_prober
 
 .PHONY: $(PACKAGES7)
 
