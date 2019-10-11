@@ -2,7 +2,7 @@
 
 Name:    snmp_exporter
 Version: 0.15.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Prometheus SNMP exporter.
 License: ASL 2.0
 URL:     https://github.com/prometheus/%{name}
