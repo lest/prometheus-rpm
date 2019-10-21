@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:    elasticsearch_exporter
-Version: 1.0.2
+Version: 1.1.0
 Release: 1%{?dist}
 Summary: Elasticsearch stats exporter for Prometheus
 License: ASL 2.0
