@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:    postgres_exporter
-Version: 0.5.1
+Version: 0.7.0
 Release: 1%{?dist}
 Summary: Prometheus exporter for PostgreSQL server metrics
 License: ASL 2.0
