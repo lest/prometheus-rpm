@@ -1,0 +1,1 @@
+PROMTAIL_OPTS='--config.file=/etc/promtail/promtail.yml'

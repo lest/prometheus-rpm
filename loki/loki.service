@@ -1,0 +1,17 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Loki log aggregation system.
+Documentation=https://github.com/grafana/loki/tree/master/docs
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/loki
+User=loki
+ExecStart=/usr/bin/loki $LOKI_OPTS
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

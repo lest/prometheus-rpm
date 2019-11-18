@@ -17,7 +17,9 @@ statsd_exporter \
 ping_exporter \
 process_exporter \
 memcached_exporter \
-smokeping_prober
+smokeping_prober \
+loki \
+promtail
 
 .PHONY: $(PACKAGES7)
 

@@ -1,0 +1,1 @@
+LOKI_OPTS='--config.file=/etc/loki/loki.yml'

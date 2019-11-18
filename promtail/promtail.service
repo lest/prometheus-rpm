@@ -1,0 +1,19 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Promtail Loki Agent.
+Documentation=https://github.com/grafana/loki/tree/master/docs/clients/promtail
+After=network.target loki.service
+
+[Service]
+EnvironmentFile=-/etc/default/promtail
+User=promtail
+ExecStart=/usr/bin/promtail $PROMTAIL_OPTS
+ExecReload=/bin/kill -HUP $MAINPID
+WorkingDirectory=/var/lib/promtail/
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+
