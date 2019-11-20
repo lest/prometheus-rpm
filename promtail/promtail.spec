@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:	 promtail
-Version: 0.4.0
+Version: 1.0.0
 Release: 1%{?dist}
 Summary: Loki promtail agent.
 License: ASL 2.0

@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:	 loki
-Version: 0.4.0
+Version: 1.0.0
 Release: 1%{?dist}
 Summary: Horizontally-scalable, highly-available, multi-tenant log aggregation system.
 License: ASL 2.0
