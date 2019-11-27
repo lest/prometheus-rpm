@@ -1,9 +1,9 @@
 %define debug_package %{nil}
 
 Name:		 prometheus2
-Version: 2.7.1
-Release: 1%{?dist}
-Summary: The Prometheus 2.7.1 monitoring system and time series database.
+Version: 2.14.0
+Release: 2%{?dist}
+Summary: The Prometheus 2.x monitoring system and time series database.
 License: ASL 2.0
 URL:     https://prometheus.io
 Conflicts: prometheus
@@ -31,6 +31,7 @@ results, and can trigger alerts if some condition is observed to be true.
 mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
 install -D -m 755 prometheus %{buildroot}%{_bindir}/prometheus
 install -D -m 755 promtool %{buildroot}%{_bindir}/promtool
+install -D -m 755 tsdb %{buildroot}%{_bindir}/tsdb
 for dir in console_libraries consoles; do
   for file in ${dir}/*; do
     install -D -m 644 ${file} %{buildroot}%{_datarootdir}/prometheus/${file}
@@ -60,6 +61,7 @@ exit 0
 %defattr(-,root,root,-)
 %{_bindir}/prometheus
 %{_bindir}/promtool
+%{_bindir}/tsdb
 %config(noreplace) %{_sysconfdir}/prometheus/prometheus.yml
 %{_datarootdir}/prometheus
 %{_unitdir}/prometheus.service

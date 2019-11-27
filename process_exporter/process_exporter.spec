@@ -1,35 +1,36 @@
 %define debug_package %{nil}
 
-Name:    blackbox_exporter
-Version: 0.16.0
+Name:	 process_exporter
+Version: 0.5.0
 Release: 1%{?dist}
-Summary: Blackbox prober exporter
-License: ASL 2.0
-URL:     https://github.com/prometheus/%{name}
+Summary: Process exporter for Prometheus.
+License: MIT
+URL:     https://github.com/ncabatoff/%{name}
+Conflicts: prometheus
 
-Source0: https://github.com/prometheus/%{name}/releases/download/v%{version}/%{name}-%{version}.linux-amd64.tar.gz
+Source0: https://github.com/ncabatoff/process-exporter/releases/download/v%{version}/process-exporter-%{version}.linux-amd64.tar.gz
 Source1: %{name}.service
 Source2: %{name}.default
+Source3: %{name}.yml
 
 %{?systemd_requires}
 Requires(pre): shadow-utils
 
 %description
-
-The blackbox exporter allows blackbox probing of endpoints over HTTP, HTTPS, DNS, TCP and ICMP.
+Prometheus exporter that mines /proc to report on selected processes.
 
 %prep
-%setup -q -n %{name}-%{version}.linux-amd64
+%setup -q -n process-exporter-%{version}.linux-amd64
 
 %build
 /bin/true
 
 %install
-mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
-install -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
-install -D -m 644 blackbox.yml %{buildroot}%{_sysconfdir}/prometheus/blackbox.yml
+mkdir -vp %{buildroot}%{_sysconfdir}/prometheus
+install -D -m 755 process-exporter %{buildroot}%{_bindir}/%{name}
 install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/%{name}
+install -D -m 644 %{SOURCE3} %{buildroot}%{_sysconfdir}/prometheus/%{name}.yml
 
 %pre
 getent group prometheus >/dev/null || groupadd -r prometheus
@@ -49,8 +50,7 @@ exit 0
 
 %files
 %defattr(-,root,root,-)
-%caps(cap_net_raw=ep) %{_bindir}/%{name}
-%config(noreplace) %{_sysconfdir}/prometheus/blackbox.yml
+%{_bindir}/%{name}
 %{_unitdir}/%{name}.service
 %config(noreplace) %{_sysconfdir}/default/%{name}
-%dir %attr(755, prometheus, prometheus)%{_sharedstatedir}/prometheus
+%config(noreplace) %{_sysconfdir}/prometheus/%{name}.yml

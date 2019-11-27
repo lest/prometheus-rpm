@@ -1,6 +1,7 @@
 PACKAGES7 = prometheus \
 prometheus2 \
 alertmanager \
+thanos \
 elasticsearch_exporter \
 blackbox_exporter \
 consul_exporter \
@@ -13,7 +14,10 @@ rabbitmq_exporter \
 pushgateway \
 sachet \
 statsd_exporter \
-ping_exporter 
+ping_exporter \
+process_exporter \
+memcached_exporter \
+smokeping_prober
 
 .PHONY: $(PACKAGES7)
 
@@ -23,7 +27,7 @@ redis_exporter \
 haproxy_exporter \
 postgres_exporter \
 kafka_exporter \
-nginx-prometheus-exporter
+nginx_exporter
 
 .PHONY: $(PACKAGES7)
 .PHONY: $(AUTO_GENERATED)
@@ -95,3 +99,4 @@ clean:
 	rm -rf _dist*
 	rm -f **/*.tar.gz
 	rm -f **/*.jar
+	rm -f **/autogen_*{init,unit,spec}

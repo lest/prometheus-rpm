@@ -1,0 +1,15 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Process exporter for Prometheus
+Documentation=https://github.com/ncabatoff/process-exporter
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/process_exporter
+User=prometheus
+ExecStart=/usr/bin/process_exporter $PROCESS_EXPORTER_OPTS
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

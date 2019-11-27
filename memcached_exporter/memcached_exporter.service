@@ -1,0 +1,15 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Prometheus memcached exporter
+Documentation=https://github.com/prometheus/memcached_exporter
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/memcached_exporter
+User=prometheus
+ExecStart=/usr/bin/memcached_exporter $MEMCACHED_EXPORTER_OPTS
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

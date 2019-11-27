@@ -1,13 +1,13 @@
 %define debug_package %{nil}
 
-Name:    blackbox_exporter
-Version: 0.16.0
+Name:    smokeping_prober
+Version: 0.3.0
 Release: 1%{?dist}
-Summary: Blackbox prober exporter
+Summary: Smokeping-style prober for Prometheus
 License: ASL 2.0
-URL:     https://github.com/prometheus/%{name}
+URL:     https://github.com/SuperQ/smokeping_prober
 
-Source0: https://github.com/prometheus/%{name}/releases/download/v%{version}/%{name}-%{version}.linux-amd64.tar.gz
+Source0: https://github.com/SuperQ/smokeping_prober/releases/download/v%{version}/%{name}-%{version}.linux-amd64.tar.gz
 Source1: %{name}.service
 Source2: %{name}.default
 
@@ -16,7 +16,7 @@ Requires(pre): shadow-utils
 
 %description
 
-The blackbox exporter allows blackbox probing of endpoints over HTTP, HTTPS, DNS, TCP and ICMP.
+The smokeping-style prober sends a series of ICMP (or UDP) pings to a target and records the responses in Prometheus histogram metrics.
 
 %prep
 %setup -q -n %{name}-%{version}.linux-amd64
@@ -27,7 +27,6 @@ The blackbox exporter allows blackbox probing of endpoints over HTTP, HTTPS, DNS
 %install
 mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
 install -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
-install -D -m 644 blackbox.yml %{buildroot}%{_sysconfdir}/prometheus/blackbox.yml
 install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/%{name}
 
@@ -50,7 +49,6 @@ exit 0
 %files
 %defattr(-,root,root,-)
 %caps(cap_net_raw=ep) %{_bindir}/%{name}
-%config(noreplace) %{_sysconfdir}/prometheus/blackbox.yml
 %{_unitdir}/%{name}.service
 %config(noreplace) %{_sysconfdir}/default/%{name}
 %dir %attr(755, prometheus, prometheus)%{_sharedstatedir}/prometheus
