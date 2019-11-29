@@ -17,7 +17,8 @@ statsd_exporter \
 ping_exporter \
 process_exporter \
 memcached_exporter \
-smokeping_prober
+smokeping_prober \
+couchbase_exporter
 
 .PHONY: $(PACKAGES7)
 
@@ -70,7 +71,7 @@ $(PACKAGES7):
 		-v ${PWD}/$@:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/noarch \
-		lest/centos7-rpm-builder \
+		quay.io/zoonage/centos7-rpm-build \
 		build-spec SOURCES/$@.spec
 
 sign:
