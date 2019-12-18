@@ -8,11 +8,9 @@ After=local-fs.target network-online.target network.target
 Wants=local-fs.target network-online.target network.target
 
 [Service]
-Type=notify
 EnvironmentFile=-/etc/default/couchbase_exporter
 User=prometheus
 ExecStart=/opt/couchbase_exporter/couchbase_exporter $COUCHBASE_EXPORTER_OPTS
-WatchdogSec=30s
 Restart=on-failure
 
 
