@@ -1,0 +1,2 @@
+DATA_SOURCE_NAME="user=postgres host=/var/run/postgresql/ sslmode=disable"
+POSTGRES_EXPORTER_OPTS=""
