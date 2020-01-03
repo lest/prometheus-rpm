@@ -62,8 +62,10 @@ status() {
 {% block status %}
   if [ ! -f "$PIDFILE" ] || ! kill -0 $(cat "$PIDFILE") &> /dev/null; then
     echo "${NAME} is not running" >&2
+    return 3
   else
     echo "${NAME} is running" >&2
+    return 0
   fi
 {% endblock status %}
 }
