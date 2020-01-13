@@ -1,4 +1,4 @@
-EXPORTER_EXPORTER_OPTS='-config.file /etc/prometheus/expexp.yaml -config.dirs /etc/prometheus/expexp.d'
+EXPORTER_EXPORTER_OPTS='-config.file=/etc/prometheus/exporter_exporter.yml -config.dirs=/etc/prometheus/exporter_exporter.d'
 
 # You can use exporter_exporter with TLS to encrypt the traffic, and at the same
 # time enforce strong mutual authentication between the nodes and the prometheus
