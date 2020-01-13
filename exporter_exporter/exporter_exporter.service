@@ -1,0 +1,20 @@
+# -*- mode: conf -*-
+
+[Unit]
+
+Description=A simple reverse proxy for prometheus exporters
+Documentation=https://github.com/QubitProducts/exporter_exporter
+After=network.target
+
+
+[Service]
+
+EnvironmentFile=-/etc/default/exporter_exporter
+User=prometheus
+ExecStart=/usr/bin/exporter_exporter $EXPORTER_EXPORTER_OPTS
+Restart=on-failure
+
+
+[Install]
+
+WantedBy=multi-user.target
