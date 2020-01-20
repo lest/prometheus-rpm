@@ -3,7 +3,7 @@
 %define group prometheus
 
 Name:    couchbase_exporter
-Version: 0.9.5
+Version: 0.9.6
 Release: 1%{?dist}
 Summary: Prometheus exporter for Couchbase server metrics.
 License: ASL 2.0
