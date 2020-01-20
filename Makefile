@@ -18,11 +18,8 @@ ping_exporter \
 process_exporter \
 memcached_exporter \
 smokeping_prober \
-<<<<<<< HEAD
-exporter_exporter
-=======
+exporter_exporter \
 couchbase_exporter
->>>>>>> e3aa3096a495dff8672002ae6a6f192a217e8041
 
 .PHONY: $(PACKAGES7)
 
