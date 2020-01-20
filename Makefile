@@ -18,7 +18,11 @@ ping_exporter \
 process_exporter \
 memcached_exporter \
 smokeping_prober \
+<<<<<<< HEAD
 exporter_exporter
+=======
+couchbase_exporter
+>>>>>>> e3aa3096a495dff8672002ae6a6f192a217e8041
 
 .PHONY: $(PACKAGES7)
 
@@ -71,7 +75,7 @@ $(PACKAGES7):
 		-v ${PWD}/$@:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/noarch \
-		lest/centos7-rpm-builder \
+		quay.io/zoonage/centos7-rpm-build \
 		build-spec SOURCES/$@.spec
 
 sign:
