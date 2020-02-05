@@ -28,7 +28,8 @@ redis_exporter \
 haproxy_exporter \
 postgres_exporter \
 kafka_exporter \
-nginx_exporter
+nginx_exporter \
+ssl_exporter
 
 .PHONY: $(PACKAGES7)
 .PHONY: $(AUTO_GENERATED)
