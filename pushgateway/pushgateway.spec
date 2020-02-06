@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:		 pushgateway
-Version: 1.0.1
+Version: 1.1.0
 Release: 1%{?dist}
 Summary: Prometheus Pushgateway.
 License: ASL 2.0
