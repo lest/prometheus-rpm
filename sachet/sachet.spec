@@ -1,3 +1,6 @@
+%define debug_package %{nil}
+%undefine _missing_build_ids_terminate_build
+
 Name:       sachet
 Version:    0.2.0
 Release:    1%{?dist}

@@ -67,16 +67,45 @@ $(AUTO_GENERATED):
 		-v ${PWD}/_dist7:/var/tmp/ \
 		quay.io/zoonage/centos7-rpm-build \
 		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/$@*.rpm'
+	# Build for centos 8
+	docker run -it --rm \
+		-v ${PWD}/$@:/rpmbuild/SOURCES \
+		-v ${PWD}/_dist8:/rpmbuild/RPMS/x86_64 \
+		-v ${PWD}/_dist8:/rpmbuild/RPMS/noarch \
+		quay.io/zoonage/centos8-rpm-build \
+		build-spec SOURCES/autogen_$@.spec
+	# Test the install
+	docker run --privileged -it --rm \
+		-v ${PWD}/_dist8:/var/tmp/ \
+		lest/centos8-rpm-builder \
+		quay.io/zoonage/centos8-rpm-build \
+		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/$@*.rpm'
 
 $(PACKAGES7):
+	# Build for centos 7
 	docker run --rm \
 		-v ${PWD}/$@:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/noarch \
 		lest/centos7-rpm-builder \
 		build-spec SOURCES/$@.spec
+	# Build for centos 8
+	docker run --rm \
+		-v ${PWD}/$@:/rpmbuild/SOURCES \
+		-v ${PWD}/_dist8:/rpmbuild/RPMS/x86_64 \
+		-v ${PWD}/_dist8:/rpmbuild/RPMS/noarch \
+		lest/centos8-rpm-builder \
+		build-spec SOURCES/$@.spec
 
 sign:
+	docker run --rm \
+		-v ${PWD}/_dist8:/rpmbuild/RPMS/x86_64 \
+		-v ${PWD}/bin:/rpmbuild/bin \
+		-v ${PWD}/RPM-GPG-KEY-prometheus-rpm:/rpmbuild/RPM-GPG-KEY-prometheus-rpm \
+		-v ${PWD}/secret.asc:/rpmbuild/secret.asc \
+		-v ${PWD}/.passphrase:/rpmbuild/.passphrase \
+		lest/centos8-rpm-builder \
+		bin/sign
 	docker run --rm \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/bin:/rpmbuild/bin \
@@ -95,6 +124,7 @@ sign:
 		bin/sign
 
 publish: sign
+	package_cloud push --skip-errors prometheus-rpm/release/el/8 _dist8/*.rpm
 	package_cloud push --skip-errors prometheus-rpm/release/el/7 _dist7/*.rpm
 	package_cloud push --skip-errors prometheus-rpm/release/el/6 _dist6/*.rpm
 
