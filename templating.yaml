@@ -49,23 +49,6 @@ packages:
         description: |
             Prometheus exporter for MySQL server metrics. Supported MySQL versions: 5.5 and up.
             NOTE: Not all collection methods are supported on MySQL < 5.6
-  postgres_exporter:
-    build_steps:
-      <<: *default_build_steps
-    context:
-      static:
-        <<: *default_static_context
-        version: 0.4.7
-        license: ASL 2.0
-        summary: Prometheus exporter for PostgreSQL server metrics.
-        description: |
-            Prometheus exporter for PostgreSQL server metrics.
-            Supported Postgres versions: 9.1 and up.
-        package: '%{name}_v%{version}_linux-amd64'
-        URL: https://github.com/wrouesnel/postgres_exporter
-      dynamic:
-        <<: *default_dynamic_context
-        tarball: '{{URL}}/releases/download/v%{version}/%{name}_v%{version}_linux-amd64.tar.gz'
   redis_exporter:
     build_steps:
       <<: *default_build_steps
