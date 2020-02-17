@@ -15,6 +15,7 @@ pushgateway \
 sachet \
 statsd_exporter \
 ping_exporter \
+postgres_exporter \
 process_exporter \
 memcached_exporter \
 smokeping_prober \
@@ -26,7 +27,6 @@ AUTO_GENERATED = node_exporter \
 mysqld_exporter \
 redis_exporter \
 haproxy_exporter \
-postgres_exporter \
 kafka_exporter \
 nginx_exporter \
 ssl_exporter \
