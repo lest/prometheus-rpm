@@ -3,15 +3,20 @@
 set -e
 set -x
 
-gpg --import secret.asc
+gpg --batch --import secret.asc
 
 rpm --import RPM-GPG-KEY-prometheus-rpm
 
+GPG_SIGN_OPTS=""
+if [[ "$(rpm --eval %{centos_ver})" = "8" ]]; then
+  GPG_SIGN_OPTS="--pinentry-mode loopback"
+fi
+
 rpm \
-  --define '_gpg_name prometheus-rpm <just.lest+prometheus-rpm@gmail.com>'  \
-  --define '_signature gpg' \
-  --define '__gpg_check_password_cmd /bin/true' \
-  --define '__gpg_sign_cmd %{__gpg} gpg --batch --passphrase-file .passphrase -u "%{_gpg_name}" -sbo %{__signature_filename} %{__plaintext_filename}' \
+  --define "_gpg_name prometheus-rpm <just.lest+prometheus-rpm@gmail.com>"  \
+  --define "_signature gpg" \
+  --define "__gpg_check_password_cmd /bin/true" \
+  --define "__gpg_sign_cmd %{__gpg} gpg --batch ${GPG_SIGN_OPTS} --passphrase-file .passphrase -u '%{_gpg_name}' -sbo %{__signature_filename} %{__plaintext_filename}" \
   --addsign RPMS/**/*.rpm
 
 rpm -K RPMS/**/*.rpm
