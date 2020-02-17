@@ -1,2 +1,2 @@
 DATA_SOURCE_NAME="user=postgres host=/var/run/postgresql/ sslmode=disable"
-POSTGRES_EXPORTER_OPTS=""
+POSTGRES_EXPORTER_OPTS="--extend.query-path=/etc/prometheus/postgres_exporter_queries.yaml"
