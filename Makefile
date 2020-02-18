@@ -77,12 +77,12 @@ $(addprefix build7-,$(AUTO_GENERATED)):
 		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/noarch \
-		lest/centos7-rpm-builder \
+		lest/centos-rpm-builder:7 \
 		build-spec SOURCES/autogen_${PACKAGE}.spec
 	# Test the install
 	docker run --privileged -it --rm \
 		-v ${PWD}/_dist7:/var/tmp/ \
-		lest/centos7-rpm-builder \
+		lest/centos-rpm-builder:7 \
 		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 sign7:
@@ -92,7 +92,7 @@ sign7:
 		-v ${PWD}/RPM-GPG-KEY-prometheus-rpm:/rpmbuild/RPM-GPG-KEY-prometheus-rpm \
 		-v ${PWD}/secret.asc:/rpmbuild/secret.asc \
 		-v ${PWD}/.passphrase:/rpmbuild/.passphrase \
-		lest/centos7-rpm-builder \
+		lest/centos-rpm-builder:7 \
 		bin/sign
 
 $(addprefix build6-,$(AUTO_GENERATED)):
@@ -104,12 +104,12 @@ $(addprefix build6-,$(AUTO_GENERATED)):
 		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist6:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist6:/rpmbuild/RPMS/noarch \
-		quay.io/zoonage/centos6-rpm-build \
+		lest/centos-rpm-builder:6 \
 		build-spec SOURCES/autogen_${PACKAGE}.spec
 	# Test the install
 	docker run -it --rm \
 		-v ${PWD}/_dist6:/var/tmp/ \
-		quay.io/zoonage/centos6-rpm-build \
+		lest/centos-rpm-builder:6 \
 		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 sign6:
@@ -119,7 +119,7 @@ sign6:
 		-v ${PWD}/RPM-GPG-KEY-prometheus-rpm:/rpmbuild/RPM-GPG-KEY-prometheus-rpm \
 		-v ${PWD}/secret.asc:/rpmbuild/secret.asc \
 		-v ${PWD}/.passphrase:/rpmbuild/.passphrase \
-		quay.io/zoonage/centos6-rpm-build \
+		lest/centos-rpm-builder:6 \
 		bin/sign
 
 $(foreach \
@@ -136,7 +136,7 @@ $(PACKAGES7):
 		-v ${PWD}/$@:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/noarch \
-		lest/centos7-rpm-builder \
+		lest/centos-rpm-builder:7 \
 		build-spec SOURCES/$@.spec
 
 sign: sign8 sign7 sign6
