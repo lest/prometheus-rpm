@@ -19,7 +19,8 @@ postgres_exporter \
 process_exporter \
 memcached_exporter \
 smokeping_prober \
-exporter_exporter
+exporter_exporter \
+iperf3_exporter
 
 AUTO_GENERATED = node_exporter \
 mysqld_exporter \
