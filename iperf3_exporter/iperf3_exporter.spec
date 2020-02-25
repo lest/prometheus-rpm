@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:    iperf3_exporter
-Version: 0.1.2
+Version: 0.1.3
 Release: 1%{?dist}
 Summary: Prometheus exporter for iPerf3 probing.
 License: ASL 2.0
