@@ -9,7 +9,13 @@ before_install:
 before_script:
   - sudo chown root:root */*
 script:
-  - make all
+  - make $BUILD_TARGET
   - if [[ "$RPM_GPG_KEY_SECRET" != "" ]]; then openssl aes-256-cbc -k "$RPM_GPG_KEY_SECRET" -in secret.asc.enc -out secret.asc -d; fi
   - if [[ "$RPM_GPG_KEY_PASSPHRASE" != "" ]]; then echo "$RPM_GPG_KEY_PASSPHRASE" > .passphrase; fi
-  - if [[ "$TRAVIS_REPO_SLUG" == "lest/prometheus-rpm" && "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]]; then make publish; fi
+  - if [[ "$TRAVIS_REPO_SLUG" == "lest/prometheus-rpm" && "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]]; then make $PUBLISH_TARGET; fi
+jobs:
+  include:
+    - env: BUILD_TARGET=auto8 PUBLISH_TARGET=publish8
+    - env: BUILD_TARGET=auto7 PUBLISH_TARGET=publish7
+    - env: BUILD_TARGET=auto6 PUBLISH_TARGET=publish6
+    - env: BUILD_TARGET=7 PUBLISH_TARGET=publish7

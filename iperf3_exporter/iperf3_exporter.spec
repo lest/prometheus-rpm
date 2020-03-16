@@ -1,21 +1,24 @@
 %define debug_package %{nil}
 
-Name:		 pushgateway
-Version: 1.1.0
+Name:    iperf3_exporter
+Version: 0.1.3
 Release: 1%{?dist}
-Summary: Prometheus Pushgateway.
+Summary: Prometheus exporter for iPerf3 probing.
 License: ASL 2.0
-URL:     https://github.com/prometheus/%{name}
+URL:     https://github.com/edgard/iperf3_exporter
 
-Source0: https://github.com/prometheus/%{name}/releases/download/v%{version}/%{name}-%{version}.linux-amd64.tar.gz
+Source0: https://github.com/edgard/iperf3_exporter/releases/download/v%{version}/%{name}-%{version}.linux-amd64.tar.gz
 Source1: %{name}.service
 Source2: %{name}.default
 
+%{?systemd_requires}
+Requires(pre): shadow-utils
+
+Requires: iperf3
+
 %description
 
-The Prometheus Pushgateway exists to allow ephemeral and batch jobs to expose their metrics to Prometheus.
-Since these kinds of jobs may not exist long enough to be scraped, they can instead push their metrics to
-a Pushgateway. The Pushgateway then exposes these metrics to Prometheus.
+The iPerf3 exporter allows iPerf3 probing of endpoints.
 
 %prep
 %setup -q -n %{name}-%{version}.linux-amd64

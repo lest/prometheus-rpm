@@ -2,7 +2,7 @@
 
 Name:    postgres_exporter
 Version: 0.8.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Prometheus exporter for PostgreSQL server metrics
 License: ASL 2.0
 URL:     https://github.com/wrouesnel/%{name}
@@ -10,6 +10,7 @@ URL:     https://github.com/wrouesnel/%{name}
 Source0: https://github.com/wrouesnel/%{name}/releases/download/v%{version}/%{name}_v%{version}_linux-amd64.tar.gz
 Source1: %{name}.service
 Source2: %{name}.default
+Source3: %{name}_queries.yaml
 
 %{?systemd_requires}
 Requires(pre): shadow-utils
@@ -29,6 +30,7 @@ mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
 install -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
 install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/%{name}
+install -D -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/prometheus/%{name}_queries.yaml
 
 %pre
 getent group prometheus >/dev/null || groupadd -r prometheus
@@ -51,4 +53,5 @@ exit 0
 %{_bindir}/%{name}
 %{_unitdir}/%{name}.service
 %config(noreplace) %{_sysconfdir}/default/%{name}
+%config(noreplace) %{_sysconfdir}/prometheus/%{name}_queries.yaml
 %dir %attr(755, prometheus, prometheus)%{_sharedstatedir}/prometheus

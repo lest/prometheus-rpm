@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:    snmp_exporter
-Version: 0.16.1
+Version: 0.17.0
 Release: 2%{?dist}
 Summary: Prometheus SNMP exporter.
 License: ASL 2.0
