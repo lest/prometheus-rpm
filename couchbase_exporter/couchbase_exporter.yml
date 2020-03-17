@@ -1,0 +1,28 @@
+---
+
+web:
+  listenAddress: :9191
+  telemetryPath: /metrics
+  timeout: 10s
+
+db:
+  user: admin
+  password: password
+  uri: http://localhost:8091
+  timeout: 10s
+  tls:
+    enabled: false
+    caCert: ca.pem
+    clientCert: client.pem
+    clientKey: client.key
+    skipInsecure: true
+
+log:
+  level: info
+  format: text
+
+scrape:
+  cluster: true
+  node: true
+  bucket: true
+  xdcr: true
