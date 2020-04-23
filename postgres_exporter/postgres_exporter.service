@@ -7,7 +7,7 @@ After=network.target
 
 [Service]
 EnvironmentFile=-/etc/default/postgres_exporter
-User=prometheus
+#User=If run on server with postgresql then use user postgres. Else use user prometheus.
 ExecStart=/usr/bin/postgres_exporter $POSTGRES_EXPORTER_OPTS
 Restart=on-failure
 
