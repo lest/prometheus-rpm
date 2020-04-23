@@ -30,7 +30,7 @@ mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
 install -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
 install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/%{name}
-install -D -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/prometheus/%{name}_queries.yaml
+install -D -m 644 %{SOURCE3} %{buildroot}%{_sysconfdir}/prometheus/%{name}_queries.yaml
 
 %pre
 getent group prometheus >/dev/null || groupadd -r prometheus
