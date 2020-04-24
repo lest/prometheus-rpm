@@ -2,7 +2,7 @@
 
 Name:    postgres_exporter
 Version: 0.8.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: Prometheus exporter for PostgreSQL server metrics
 License: ASL 2.0
 URL:     https://github.com/wrouesnel/%{name}
@@ -30,13 +30,17 @@ mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
 install -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
 install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/%{name}
-install -D -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/prometheus/%{name}_queries.yaml
+install -D -m 644 %{SOURCE3} %{buildroot}%{_sysconfdir}/prometheus/%{name}_queries.yaml
 
 %pre
 getent group prometheus >/dev/null || groupadd -r prometheus
 getent passwd prometheus >/dev/null || \
   useradd -r -g prometheus -d %{_sharedstatedir}/prometheus -s /sbin/nologin \
           -c "Prometheus services" prometheus
+getent group postgres >/dev/null || groupadd -r postgres 
+getent passwd postgres >/dev/null || \
+  useradd -r -g postgres -d /var/lib/pgsql -s /bin/bash \
+          -c "PostgreSQL Server" postgres
 exit 0
 
 %post
