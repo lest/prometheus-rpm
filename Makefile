@@ -30,7 +30,8 @@ haproxy_exporter \
 kafka_exporter \
 nginx_exporter \
 ssl_exporter \
-bind_exporter
+bind_exporter \
+keepalived_exporter
 
 .PHONY: $(PACKAGES7) $(AUTO_GENERATED)
 
