@@ -57,7 +57,11 @@ mv -v {{fix_name}} %{name}
 
 %install
 {%- block install %}
+{%- if user == "prometheus" and group == "prometheus" %}
 mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
+{%- else %}
+mkdir -vp %{buildroot}%{_sharedstatedir}/%{name}
+{%- endif %}
 install -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
 install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/%{name}
 %if 0%{?el5}
@@ -73,10 +77,20 @@ install -D -m 755 %{SOURCE3} %{buildroot}%{_initrddir}/%{name}
 
 %pre
 {%- block pre %}
-getent group prometheus >/dev/null || groupadd -r prometheus
-getent passwd prometheus >/dev/null || \
-  useradd -r -g prometheus -d %{_sharedstatedir}/prometheus -s /sbin/nologin \
-          -c "Prometheus services" prometheus
+{%- if group != "root" %}
+getent group {{ group }} >/dev/null || groupadd -r {{ group }} 
+{%- endif %}
+{%- if user != "root" %}
+{%-   if user == "prometheus" %}
+getent passwd {{ user }} >/dev/null || \
+  useradd -r -g {{ group }} -d %{_sharedstatedir}/prometheus -s /sbin/nologin \
+          -c "Prometheus services" {{ user }} 
+{%-   else %}
+getent passwd {{ user }} >/dev/null || \
+  useradd -r -g {{ group }} -d %{_sharedstatedir}/%{name} -s /sbin/nologin \
+          -c "{{ name }} service" {{ user }} 
+{%-   endif %}
+{%- endif %}
 exit 0
 {% endblock pre %}
 
@@ -117,7 +131,11 @@ fi
 %defattr(-,root,root,-)
 %{_bindir}/%{name}
 %config(noreplace) %{_sysconfdir}/default/%{name}
+{%- if user == "prometheus" and group == "prometheus" %}
 %dir %attr(755, %{user}, %{group}) %{_sharedstatedir}/prometheus
+{%- else %}
+%dir %attr(755, %{user}, %{group}) %{_sharedstatedir}/%{name}
+{%- endif %}
 %if 0%{?el5}
 %{_initrdddir}/%{name}
 %else
