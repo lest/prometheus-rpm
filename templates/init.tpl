@@ -9,7 +9,7 @@
 
 {% block variables %}
 NAME={{name}}
-DFLTRUNAS=prometheus
+DFLTRUNAS={{user}}
 SCRIPT="/usr/bin/${NAME}"
 PIDFILE="/var/run/${NAME}.pid"
 LOGFILE="/var/log/${NAME}.log"

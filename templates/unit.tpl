@@ -10,7 +10,7 @@ After=network.target
 [Service]
 {% block service %}
 EnvironmentFile=-/etc/default/{{name}}
-User=prometheus
+User={{user}}
 ExecStart=/usr/bin/{{name}} ${{name|upper}}_OPTS
 Restart=on-failure
 {% endblock service %}
