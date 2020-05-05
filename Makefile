@@ -1,5 +1,4 @@
-PACKAGES7 = prometheus \
-prometheus2 \
+PACKAGES7 = prometheus2 \
 alertmanager \
 thanos \
 elasticsearch_exporter \
