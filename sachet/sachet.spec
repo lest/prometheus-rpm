@@ -1,5 +1,7 @@
+%define debug_package %{nil}
+
 Name:       sachet
-Version:    0.2.0
+Version:    0.2.3
 Release:    1%{?dist}
 Summary:    SMS alerts for Prometheus Alertmanager
 License:    BSD
@@ -8,8 +10,6 @@ Source0:    https://github.com/messagebird/%{name}/releases/download/%{version}/
 Source1:    %{name}.service
 Source2:    %{name}.default
 Source3:    %{name}.yml
-
-Requires:   make
 
 %description
 Sachet (or सचेत) is Hindi for conscious. Sachet is an SMS alerting tool for the Prometheus Alertmanager.
