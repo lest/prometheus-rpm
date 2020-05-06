@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 Name:       sachet
 Version:    0.2.3
 Release:    1%{?dist}
