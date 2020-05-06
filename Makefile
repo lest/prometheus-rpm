@@ -1,4 +1,4 @@
-PACKAGES7 = prometheus2 \
+MANUAL = prometheus2 \
 alertmanager \
 thanos \
 elasticsearch_exporter \
@@ -33,12 +33,44 @@ bind_exporter \
 keepalived_exporter \
 jolokia_exporter
 
-.PHONY: $(PACKAGES7) $(AUTO_GENERATED)
+.PHONY: $(MANUAL) $(AUTO_GENERATED)
 
-all: auto $(PACKAGES7)
+all: auto manual
 
-7: $(PACKAGES7)
+manual: $(MANUAL)
 auto: $(AUTO_GENERATED)
+
+manual8: $(addprefix build8-,$(MANUAL))
+manual7: $(addprefix build7-,$(MANUAL))
+
+$(addprefix build8-,$(MANUAL)):
+	$(eval PACKAGE=$(subst build8-,,$@))
+	docker run -it --rm \
+		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
+		-v ${PWD}/_dist8:/rpmbuild/RPMS/x86_64 \
+		-v ${PWD}/_dist8:/rpmbuild/RPMS/noarch \
+		lest/centos-rpm-builder:8 \
+		build-spec SOURCES/${PACKAGE}.spec
+	# Test the install
+	docker run --privileged -it --rm \
+		-v ${PWD}/_dist8:/var/tmp/ \
+		lest/centos-rpm-builder:8 \
+		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
+
+$(addprefix build7-,$(MANUAL)):
+	$(eval PACKAGE=$(subst build7-,,$@))
+	docker run -it --rm \
+		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
+		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
+		-v ${PWD}/_dist7:/rpmbuild/RPMS/noarch \
+		lest/centos-rpm-builder:7 \
+		build-spec SOURCES/${PACKAGE}.spec
+	# Test the install
+	docker run --privileged -it --rm \
+		-v ${PWD}/_dist7:/var/tmp/ \
+		lest/centos-rpm-builder:7 \
+		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
+
 
 auto8: $(addprefix build8-,$(AUTO_GENERATED))
 auto7: $(addprefix build7-,$(AUTO_GENERATED))
@@ -126,6 +158,14 @@ sign6:
 		bin/sign
 
 $(foreach \
+	PACKAGE,$(MANUAL),$(eval \
+		${PACKAGE}: \
+			$(addprefix build8-,${PACKAGE}) \
+			$(addprefix build7-,${PACKAGE}) \
+	) \
+)
+
+$(foreach \
 	PACKAGE,$(AUTO_GENERATED),$(eval \
 		${PACKAGE}: \
 			$(addprefix build8-,${PACKAGE}) \
@@ -133,14 +173,6 @@ $(foreach \
 			$(addprefix build6-,${PACKAGE}) \
 	) \
 )
-
-$(PACKAGES7):
-	docker run --rm \
-		-v ${PWD}/$@:/rpmbuild/SOURCES \
-		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
-		-v ${PWD}/_dist7:/rpmbuild/RPMS/noarch \
-		lest/centos-rpm-builder:7 \
-		build-spec SOURCES/$@.spec
 
 sign: sign8 sign7 sign6
 

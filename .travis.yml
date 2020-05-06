@@ -18,4 +18,5 @@ jobs:
     - env: BUILD_TARGET=auto8 PUBLISH_TARGET=publish8
     - env: BUILD_TARGET=auto7 PUBLISH_TARGET=publish7
     - env: BUILD_TARGET=auto6 PUBLISH_TARGET=publish6
-    - env: BUILD_TARGET=7 PUBLISH_TARGET=publish7
+    - env: BUILD_TARGET=manual8 PUBLISH_TARGET=publish8
+    - env: BUILD_TARGET=manual7 PUBLISH_TARGET=publish7
