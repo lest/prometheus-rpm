@@ -112,6 +112,7 @@ packages:
         version: 1.0.0
         license: ASL 2.0
         URL: https://github.com/ribbybibby/ssl_exporter
+        package: '%{name}_%{version}_linux_amd64'
         summary: Prometheus exporter for SSL certificates.
         description: Prometheus exporter for SSL certificates.
   bind_exporter:
