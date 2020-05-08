@@ -10,7 +10,6 @@ snmp_exporter \
 apache_exporter \
 collectd_exporter \
 rabbitmq_exporter \
-pushgateway \
 sachet \
 statsd_exporter \
 ping_exporter \
@@ -23,6 +22,7 @@ iperf3_exporter \
 couchbase_exporter
 
 AUTO_GENERATED = node_exporter \
+pushgateway \
 mysqld_exporter \
 redis_exporter \
 haproxy_exporter \
