@@ -49,7 +49,7 @@ or build a single package only, e.g.:
 make node_exporter
 ```
 
-The resulting RPMs will be created in the `_dist6` or `_dist7` directory depending on the version of CentOS that they were built for. builds in `_dist6` may also work for el5.
+The resulting RPMs will be created in the `_dist6`, `_dist7` or `_dist8` directory depending on the version of CentOS that they were built for. builds in `_dist6` may also work for el5.
 
 ## Ansible role
 
