@@ -2,10 +2,10 @@
 
 Name:	 process_exporter
 Version: 0.6.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Process exporter for Prometheus.
 License: MIT
-URL:     https://github.com/ncabatoff/%{name}
+URL:     https://github.com/ncabatoff/process-exporter
 Conflicts: prometheus
 
 Source0: https://github.com/ncabatoff/process-exporter/releases/download/v%{version}/process-exporter-%{version}.linux-amd64.tar.gz
