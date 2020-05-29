@@ -19,7 +19,8 @@ memcached_exporter \
 smokeping_prober \
 exporter_exporter \
 iperf3_exporter \
-couchbase_exporter
+couchbase_exporter \
+junos_exporter
 
 AUTO_GENERATED = node_exporter \
 pushgateway \
