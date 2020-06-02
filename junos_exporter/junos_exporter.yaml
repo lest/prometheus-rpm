@@ -1,27 +1,7 @@
 # targets:
 #  - router1
 #  - router2
-
-#devices:
-#  - host: router1
-#    key_file: /path/to/key
-#  - host: router2
-#    username: exporter
-#    password: secret
 #
-#features:
-#  bgp: true
-#  ospf: false
-#  isis: false
-#  nat: false
-#  ldp: false
-#  l2circuit: false
-#  environment: true
-#  routes: true
-#  routing_engine: true
-#  interface_diagnostic: true
-#  fpc: true
-
 #devices:
 #  - host: router1
 #    username: keyfile_user
@@ -48,3 +28,16 @@
 #      accounting: true
 #      ipsec: true
 #      rpki: true
+#
+#features:
+#  bgp: true
+#  ospf: false
+#  isis: false
+#  nat: false
+#  ldp: false
+#  l2circuit: false
+#  environment: true
+#  routes: true
+#  routing_engine: true
+#  interface_diagnostic: true
+#  fpc: true
