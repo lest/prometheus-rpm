@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:    junos_exporter
-Version: 0.9.6
-Release: 2%{?dist}
+Version: 0.9.7
+Release: 1%{?dist}
 Summary: Prometheus exporter for Junos device metrics
 License: MIT
 URL:     https://github.com/czerwonk/%{name}
