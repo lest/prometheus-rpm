@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:    apache_exporter
-Version: 0.7.0
+Version: 0.8.0
 Release: 1%{?dist}
 Summary: Prometheus exporter for apache mod_status statistics
 License: MIT
