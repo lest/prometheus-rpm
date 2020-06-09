@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:       exporter_exporter
-Version:    0.3.0
-Release:    2%{?dist}
+Version:    0.4.0
+Release:    0%{?dist}
 Summary:    Simple reverse proxy for prometheus exporters
 License:    ASL 2.0
 URL:        https://github.com/QubitProducts/%{name}
