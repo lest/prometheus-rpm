@@ -20,7 +20,8 @@ smokeping_prober \
 exporter_exporter \
 iperf3_exporter \
 couchbase_exporter \
-junos_exporter
+junos_exporter \
+ssl_exporter
 
 AUTO_GENERATED = node_exporter \
 pushgateway \
@@ -29,7 +30,6 @@ redis_exporter \
 haproxy_exporter \
 kafka_exporter \
 nginx_exporter \
-ssl_exporter \
 bind_exporter \
 keepalived_exporter \
 jolokia_exporter
