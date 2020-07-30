@@ -1,0 +1,20 @@
+# -*- mode: conf -*-
+
+[Unit]
+
+Description=Prometheus exporter for SSL certificates.
+Documentation=https://github.com/ribbybibby/ssl_exporter
+After=network.target
+
+
+[Service]
+
+EnvironmentFile=-/etc/default/ssl_exporter
+User=prometheus
+ExecStart=/usr/bin/ssl_exporter $SSL_EXPORTER_OPTS
+Restart=on-failure
+
+
+[Install]
+
+WantedBy=multi-user.target

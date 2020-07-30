@@ -1,1 +1,1 @@
-SSL_EXPORTER_OPTS=""
+SSL_EXPORTER_OPTS=--config.file=/etc/prometheus/ssl_exporter.yml
