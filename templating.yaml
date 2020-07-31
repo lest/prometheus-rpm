@@ -182,6 +182,3 @@ packages:
         package: '%{name}_%{version}_linux_x86_64'
         summary: Prometheus exporter for FRR metrics
         description: Export FRR service metrics to Prometheus.
-      #dynamic:
-      #  <<: *default_dynamic_context
-      #  tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
