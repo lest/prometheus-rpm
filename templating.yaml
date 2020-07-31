@@ -166,3 +166,22 @@ packages:
             expose their metrics to Prometheus. Since these kinds of jobs may not
             exist long enough to be scraped, they can instead push their metrics to
             a Pushgateway. The Pushgateway then exposes these metrics to Prometheus.
+  frr_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 0.2.8
+        license: MIT
+        user: frr
+        group: frr
+        release: 1
+        URL: https://github.com/tynany/frr_exporter
+        package: '%{name}_%{version}_linux_x86_64'
+        summary: Prometheus exporter for FRR metrics
+        description: Export FRR service metrics to Prometheus.
+      #dynamic:
+      #  <<: *default_dynamic_context
+      #  tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
