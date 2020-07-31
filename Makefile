@@ -32,7 +32,8 @@ kafka_exporter \
 nginx_exporter \
 bind_exporter \
 keepalived_exporter \
-jolokia_exporter
+jolokia_exporter \
+frr_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
