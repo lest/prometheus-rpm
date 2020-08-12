@@ -13,6 +13,7 @@ EnvironmentFile=-/etc/default/{{name}}
 User={{user}}
 ExecStart=/usr/bin/{{name}} ${{name|upper}}_OPTS
 Restart=on-failure
+RestartSec=5s
 {% endblock service %}
 
 [Install]

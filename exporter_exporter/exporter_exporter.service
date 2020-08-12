@@ -13,6 +13,7 @@ EnvironmentFile=-/etc/default/exporter_exporter
 User=prometheus
 ExecStart=/usr/bin/exporter_exporter $EXPORTER_EXPORTER_OPTS
 Restart=on-failure
+RestartSec=5s
 
 
 [Install]

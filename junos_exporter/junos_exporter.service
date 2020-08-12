@@ -10,6 +10,7 @@ EnvironmentFile=-/etc/default/junos_exporter
 User=prometheus
 ExecStart=/usr/bin/junos_exporter $JUNOS_EXPORTER_OPTS
 Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target

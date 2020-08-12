@@ -2,7 +2,7 @@
 
 Name:    elasticsearch_exporter
 Version: 1.1.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Elasticsearch stats exporter for Prometheus
 License: ASL 2.0
 URL:     https://github.com/justwatchcom/%{name}

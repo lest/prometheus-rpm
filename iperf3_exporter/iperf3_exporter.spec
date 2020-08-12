@@ -2,7 +2,7 @@
 
 Name:    iperf3_exporter
 Version: 0.1.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Prometheus exporter for iPerf3 probing.
 License: ASL 2.0
 URL:     https://github.com/edgard/iperf3_exporter

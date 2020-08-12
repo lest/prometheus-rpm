@@ -2,7 +2,7 @@
 
 Name:    apache_exporter
 Version: 0.8.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Prometheus exporter for apache mod_status statistics
 License: MIT
 URL:     https://github.com/Lusitaniae/%{name}

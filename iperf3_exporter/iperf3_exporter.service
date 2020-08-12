@@ -10,6 +10,7 @@ EnvironmentFile=-/etc/default/iperf3_exporter
 User=prometheus
 ExecStart=/usr/bin/iperf3_exporter $IPERF3_EXPORTER_OPTS
 Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target

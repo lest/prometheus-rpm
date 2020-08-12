@@ -10,6 +10,7 @@ EnvironmentFile=-/etc/default/memcached_exporter
 User=prometheus
 ExecStart=/usr/bin/memcached_exporter $MEMCACHED_EXPORTER_OPTS
 Restart=always
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target

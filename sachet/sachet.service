@@ -11,6 +11,7 @@ User=prometheus
 ExecStart=/usr/bin/sachet \
           $SACHET_OPTS
 Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target

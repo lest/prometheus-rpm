@@ -10,6 +10,7 @@ EnvironmentFile=-/etc/default/process_exporter
 User=prometheus
 ExecStart=/usr/bin/process_exporter $PROCESS_EXPORTER_OPTS
 Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target
