@@ -2,7 +2,7 @@
 
 Name:    ping_exporter
 Version: 0.4.6
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Ping exporter
 License: ASL 2.0
 URL:        https://github.com/jaxxstorm/ping_exporter

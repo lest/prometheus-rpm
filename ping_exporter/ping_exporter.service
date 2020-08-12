@@ -8,6 +8,7 @@ EnvironmentFile=-/etc/default/ping_exporter
 User=prometheus 
 ExecStart=/usr/bin/ping_exporter $PING_EXPORTER_OPTS
 Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target

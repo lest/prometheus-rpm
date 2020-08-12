@@ -2,7 +2,7 @@
 
 Name:    alertmanager
 Version: 0.21.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Prometheus Alertmanager.
 License: ASL 2.0
 URL:     https://github.com/prometheus/%{name}

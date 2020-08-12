@@ -10,6 +10,7 @@ EnvironmentFile=-/etc/default/collectd_exporter
 User=prometheus
 ExecStart=/usr/bin/collectd_exporter $COLLECTD_EXPORTER_OPTS
 Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target

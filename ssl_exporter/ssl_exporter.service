@@ -13,6 +13,7 @@ EnvironmentFile=-/etc/default/ssl_exporter
 User=prometheus
 ExecStart=/usr/bin/ssl_exporter $SSL_EXPORTER_OPTS
 Restart=on-failure
+RestartSec=5s
 
 
 [Install]

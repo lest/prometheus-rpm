@@ -10,6 +10,7 @@ EnvironmentFile=-/etc/default/snmp_exporter
 User=prometheus
 ExecStart=/usr/bin/snmp_exporter $SNMP_EXPORTER_OPTS
 Restart=always
+RestartSec=5s
 LimitNOFILE=65536
 
 [Install]

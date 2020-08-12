@@ -12,6 +12,7 @@ EnvironmentFile=-/etc/default/couchbase_exporter
 User=prometheus
 ExecStart=/opt/couchbase_exporter/couchbase_exporter $COUCHBASE_EXPORTER_OPTS
 Restart=on-failure
+RestartSec=5s
 
 
 [Install]

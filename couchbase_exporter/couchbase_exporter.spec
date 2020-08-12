@@ -4,7 +4,7 @@
 
 Name:    couchbase_exporter
 Version: 0.9.6
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Prometheus exporter for Couchbase server metrics.
 License: ASL 2.0
 URL:     https://github.com/blakelead/couchbase_exporter

@@ -2,7 +2,7 @@
 
 Name:    jmx_exporter
 Version: 0.12.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 BuildArch: noarch
 Summary: Prometheus exporter for mBeans scrape and expose.
 License: ASL 2.0

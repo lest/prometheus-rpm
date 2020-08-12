@@ -10,6 +10,7 @@ EnvironmentFile=-/etc/default/jmx_exporter
 User=prometheus
 ExecStart=/bin/java -jar /usr/share/prometheus/jmx_exporter/jmx_exporter.jar $JMX_EXPORTER_OPTS
 Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target

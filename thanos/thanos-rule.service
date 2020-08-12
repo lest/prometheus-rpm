@@ -12,6 +12,7 @@ ExecStart=/usr/bin/thanos rule \
           $THANOS_RULE_OPTS
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=always
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target

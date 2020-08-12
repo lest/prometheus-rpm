@@ -2,7 +2,7 @@
 
 Name:       exporter_exporter
 Version:    0.4.0
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Simple reverse proxy for prometheus exporters
 License:    ASL 2.0
 URL:        https://github.com/QubitProducts/%{name}

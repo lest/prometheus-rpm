@@ -2,7 +2,7 @@
 
 Name:    collectd_exporter
 Version: 0.4.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Collectd stats exporter for Prometheus
 License: ASL 2.0
 URL:     https://github.com/prometheus/%{name}
