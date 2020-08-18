@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:    jmx_exporter
-Version: 0.12.0
-Release: 2%{?dist}
+Version: 0.13.0
+Release: 1%{?dist}
 BuildArch: noarch
 Summary: Prometheus exporter for mBeans scrape and expose.
 License: ASL 2.0
