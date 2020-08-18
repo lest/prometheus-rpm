@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:	 process_exporter
-Version: 0.6.0
-Release: 4%{?dist}
+Version: 0.7.2
+Release: 1%{?dist}
 Summary: Process exporter for Prometheus.
 License: MIT
 URL:     https://github.com/ncabatoff/process-exporter
