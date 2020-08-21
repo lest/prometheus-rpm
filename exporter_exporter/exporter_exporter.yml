@@ -1,3 +1,4 @@
+---
 modules:
   # sample entries - can also have per-module configs in the expexp.d directory
   # node:
@@ -15,7 +16,7 @@ modules:
   #   method: http
   #   http:
   #      port: 4194
-  
+
   # netdata:
   #   method: http
   #   http:
