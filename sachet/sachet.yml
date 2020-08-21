@@ -1,3 +1,4 @@
+---
 providers:
   messagebird:
     access_key: 'live_qKwVZ02ULV70GqabBYxLU8d5r'
@@ -25,4 +26,3 @@ receivers:
     to:
       - '+919742033616'
     from: '08039591643'
-
