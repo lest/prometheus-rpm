@@ -2,6 +2,5 @@
 extends: default
 
 rules:
-  #comments: disable
   line-length: disable
   truthy: disable
