@@ -19,7 +19,7 @@ anchors:
         - 'autogen_%{name}.unit'
         - '%{name}.default'
         - 'autogen_%{name}.init'
-
+     
 # Per-package configuration
 packages:
   node_exporter:
