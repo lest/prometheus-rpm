@@ -1,5 +1,5 @@
 #---
 #process_names:
 #  - name: "{{.Comm}}"
-#    cmdline: 
+#    cmdline:
 #    - '.+'

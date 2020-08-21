@@ -2,7 +2,7 @@
 
 Name:    postgres_exporter
 Version: 0.8.0
-Release: 4%{?dist}
+Release: 5%{?dist}
 Summary: Prometheus exporter for PostgreSQL server metrics
 License: ASL 2.0
 URL:     https://github.com/wrouesnel/%{name}

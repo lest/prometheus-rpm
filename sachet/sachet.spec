@@ -2,7 +2,7 @@
 
 Name:       sachet
 Version:    0.2.3
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    SMS alerts for Prometheus Alertmanager
 License:    BSD
 URL:        https://github.com/messagebird/%{name}

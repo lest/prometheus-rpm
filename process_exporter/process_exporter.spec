@@ -2,7 +2,7 @@
 
 Name:	 process_exporter
 Version: 0.7.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Process exporter for Prometheus.
 License: MIT
 URL:     https://github.com/ncabatoff/process-exporter

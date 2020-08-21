@@ -1,9 +1,10 @@
+---
 # Use YAML anchors so we can prevent repeating ourselves
 anchors:
   default_build_steps: &default_build_steps
-      spec: '{% extends "spec.tpl" %}'
-      unit: '{% extends "unit.tpl" %}'
-      init: '{% extends "init.tpl" %}'
+    spec: '{% extends "spec.tpl" %}'
+    unit: '{% extends "unit.tpl" %}'
+    init: '{% extends "init.tpl" %}'
   default_context: &default_context
     static: &default_static_context
       user: prometheus
