@@ -2,7 +2,7 @@
 
 Name:	 thanos
 Version: 0.15.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Highly available Prometheus setup with long term storage capabilities.
 License: ASL 2.0
 URL:     https://thanos.io
