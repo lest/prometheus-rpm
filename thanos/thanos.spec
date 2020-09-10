@@ -2,11 +2,10 @@
 
 Name:	 thanos
 Version: 0.15.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Highly available Prometheus setup with long term storage capabilities.
 License: ASL 2.0
-URL:     https://github.com/improbable-eng/thanos
-Conflicts: prometheus
+URL:     https://thanos.io
 
 Source0: https://github.com/thanos-io/%{name}/releases/download/v%{version}/%{name}-%{version}.linux-amd64.tar.gz
 Source1: thanos-sidecar.service
@@ -20,6 +19,8 @@ Source8: thanos-compact.default
 Source9: thanos-rule.service
 Source10: thanos-rule.default
 Source11: thanos_alerts.yml
+Source12: thanos-query-frontend.service
+Source13: thanos-query-frontend.default
 
 %{?systemd_requires}
 Requires(pre): shadow-utils
@@ -57,6 +58,8 @@ install -D -m 644 %{SOURCE8} %{buildroot}%{_sysconfdir}/default/thanos-compact
 install -D -m 644 %{SOURCE9} %{buildroot}%{_unitdir}/thanos-rule.service
 install -D -m 644 %{SOURCE10} %{buildroot}%{_sysconfdir}/default/thanos-rule
 install -D -m 644 %{SOURCE11} %{buildroot}%{_sysconfdir}/prometheus/thanos_alerts.yml
+install -D -m 644 %{SOURCE12} %{buildroot}%{_unitdir}/thanos-query-frontend.service
+install -D -m 644 %{SOURCE13} %{buildroot}%{_sysconfdir}/default/thanos-query-frontend
 
 %pre
 getent group prometheus >/dev/null || groupadd -r prometheus
@@ -71,6 +74,7 @@ exit 0
 %systemd_post thanos-query.service
 %systemd_post thanos-compact.service
 %systemd_post thanos-rule.service
+%systemd_post thanos-query-frontend.service
 
 %preun
 %systemd_preun thanos-sidecar.service
@@ -78,6 +82,7 @@ exit 0
 %systemd_preun thanos-query.service
 %systemd_preun thanos-compact.service
 %systemd_preun thanos-rule.service
+%systemd_preun thanos-query-frontend.service
 
 %postun
 %systemd_postun thanos-sidecar.service
@@ -85,6 +90,7 @@ exit 0
 %systemd_postun thanos-query.service
 %systemd_postun thanos-compact.service
 %systemd_postun thanos-rule.service
+%systemd_postun thanos-query-frontend.service
 
 %files
 %defattr(-,root,root,-)
@@ -94,11 +100,13 @@ exit 0
 %{_unitdir}/thanos-query.service
 %{_unitdir}/thanos-compact.service
 %{_unitdir}/thanos-rule.service
+%{_unitdir}/thanos-query-frontend.service
 %config(noreplace) %{_sysconfdir}/default/thanos-sidecar
 %config(noreplace) %{_sysconfdir}/default/thanos-store
 %config(noreplace) %{_sysconfdir}/default/thanos-query
 %config(noreplace) %{_sysconfdir}/default/thanos-compact
 %config(noreplace) %{_sysconfdir}/default/thanos-rule
+%config(noreplace) %{_sysconfdir}/default/thanos-query-frontend
 %config(noreplace) %{_sysconfdir}/prometheus/thanos_alerts.yml
 %dir %attr(755, prometheus, prometheus)%{_sharedstatedir}/%{name}
 %dir %attr(750, prometheus, prometheus)%{_sharedstatedir}/%{name}/store
