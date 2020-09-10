@@ -2,7 +2,7 @@
 
 [Unit]
 Description=Thanos Rule service.
-Documentation=https://github.com/improbable-eng/thanos/
+Documentation=https://thanos.io/tip/thanos/
 After=network.target
 
 [Service]

@@ -1,16 +1,16 @@
 # -*- mode: conf -*-
 
 [Unit]
-Description=Thanos Sidecar service.
+Description=Thanos Query Frontend service.
 Documentation=https://thanos.io/tip/thanos/
 After=network.target
-After=prometheus2.service
+After=thanos-store.service
 
 [Service]
-EnvironmentFile=-/etc/default/thanos-sidecar
+EnvironmentFile=-/etc/default/thanos-query-frontend
 User=prometheus
-ExecStart=/usr/bin/thanos sidecar \
-          $THANOS_SIDECAR_OPTS
+ExecStart=/usr/bin/thanos query-frontend \
+          $THANOS_QUERY_FRONTEND_OPTS
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=always
 RestartSec=5s
