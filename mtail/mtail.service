@@ -1,0 +1,16 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Extract metrics from application logs
+Documentation=https://github.com/google/mtail
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/mtail
+User=root
+ExecStart=/usr/bin/mtail $MTAIL_OPTS
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

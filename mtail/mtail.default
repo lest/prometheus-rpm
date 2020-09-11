@@ -1,0 +1,2 @@
+# see docs at https://github.com/google/mtail for how to specify logs and write mtail programs
+MTAIL_OPTS="-log_dir /var/log/mtail -progs /etc/prometheus/mtail.d -logs /var/log/messages"
