@@ -183,12 +183,10 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.2.8
+        version: 0.2.9
         license: MIT
         user: frr
         group: frr
-        release: 2
         URL: https://github.com/tynany/frr_exporter
-        package: '%{name}_%{version}_linux_x86_64'
         summary: Prometheus exporter for FRR metrics
         description: Export FRR service metrics to Prometheus.
