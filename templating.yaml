@@ -187,7 +187,6 @@ packages:
         license: MIT
         user: frr
         group: frr
-        release: 2
         URL: https://github.com/tynany/frr_exporter
         summary: Prometheus exporter for FRR metrics
         description: Export FRR service metrics to Prometheus.
