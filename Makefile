@@ -22,7 +22,8 @@ iperf3_exporter \
 couchbase_exporter \
 junos_exporter \
 ssl_exporter \
-mtail
+mtail \
+openstack_exporter
 
 AUTO_GENERATED = node_exporter \
 pushgateway \
