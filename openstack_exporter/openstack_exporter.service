@@ -1,0 +1,16 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Prometheus exporter for OpenStack metrics
+Documentation=https://github.com/openstack-exporter/openstack-exporter
+After=network.target
+
+[Service]
+EnvironmentFile=-/etc/default/openstack_exporter
+User=prometheus
+ExecStart=/usr/bin/openstack_exporter $OPENSTACK_EXPORTER_OPTS
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
