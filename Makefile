@@ -23,7 +23,8 @@ couchbase_exporter \
 junos_exporter \
 ssl_exporter \
 mtail \
-openstack_exporter
+openstack_exporter \
+jiralert
 
 AUTO_GENERATED = node_exporter \
 pushgateway \
