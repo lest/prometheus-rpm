@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:    collectd_exporter
-Version: 0.4.0
-Release: 2%{?dist}
+Version: 0.5.0
+Release: 1%{?dist}
 Summary: Collectd stats exporter for Prometheus
 License: ASL 2.0
 URL:     https://github.com/prometheus/%{name}
