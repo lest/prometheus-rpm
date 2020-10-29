@@ -1,1 +1,1 @@
-THANOS_RULE_OPTS='--data-dir=/var/lib/thanos/rule --http-address=0.0.0.0:19902 --grpc-address=0.0.0.0:19901 --rule-file=/etc/prometheus/thanos_alerts.yml --query=localhost:19192'
+THANOS_RULE_OPTS='--data-dir=/var/lib/thanos/rule --http-address=0.0.0.0:10911 --grpc-address=0.0.0.0:10911 --rule-file=/etc/prometheus/thanos_alerts.yml --query=localhost:10904'
