@@ -48,7 +48,7 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
 
     with open(template_config, 'r') as tc:
-        config = yaml.load(tc)
+        config = yaml.safe_load(tc)
 
     # Work out which templates we are calculating
     if templates == "all":
