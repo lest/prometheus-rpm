@@ -1,1 +1,1 @@
-THANOS_QUERY_FRONTEND_OPTS='--http-address=0.0.0.0:10913 --query-frontend.downstream-url=http://localhost:19192'
+THANOS_QUERY_FRONTEND_OPTS='--http-address=0.0.0.0:10913 --query-frontend.downstream-url=http://localhost:10904'
