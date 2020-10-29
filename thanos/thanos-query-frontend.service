@@ -4,7 +4,7 @@
 Description=Thanos Query Frontend service.
 Documentation=https://thanos.io/tip/thanos/
 After=network.target
-After=thanos-store.service
+After=thanos-query.service
 
 [Service]
 EnvironmentFile=-/etc/default/thanos-query-frontend
