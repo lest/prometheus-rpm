@@ -214,5 +214,5 @@ packages:
         URL: https://github.com/percona/mongodb_exporter
         package: "%{name}-%{version}.linux-amd64"
         tarball_has_subdirectory: False
-        summary: A Prometheus exporter for MongoDB including sharding, replication and storage engines 
-        description: A Prometheus exporter for MongoDB including sharding, replication and storage engines 
+        summary: A Prometheus exporter for MongoDB including sharding, replication and storage engines
+        description: A Prometheus exporter for MongoDB including sharding, replication and storage engines
