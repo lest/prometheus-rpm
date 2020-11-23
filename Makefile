@@ -37,7 +37,8 @@ bind_exporter \
 keepalived_exporter \
 jolokia_exporter \
 frr_exporter \
-domain_exporter
+domain_exporter \
+mongodb_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
