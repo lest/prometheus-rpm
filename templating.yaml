@@ -202,3 +202,17 @@ packages:
         tarball_has_subdirectory: False
         summary: Prometheus exporter for domain expiration time metrics
         description: Exports the expiration time of your domains as Prometheus metrics.
+  mongodb_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 0.11.2
+        license: ASL 2.0
+        URL: https://github.com/percona/mongodb_exporter
+        package: "%{name}-%{version}.linux-amd64"
+        tarball_has_subdirectory: False
+        summary: A Prometheus exporter for MongoDB including sharding, replication and storage engines
+        description: A Prometheus exporter for MongoDB including sharding, replication and storage engines
