@@ -81,7 +81,6 @@ $(addprefix build7-,$(MANUAL)):
 
 auto8: $(addprefix build8-,$(AUTO_GENERATED))
 auto7: $(addprefix build7-,$(AUTO_GENERATED))
-auto6: $(addprefix build6-,$(AUTO_GENERATED))
 
 $(addprefix build8-,$(AUTO_GENERATED)):
 	$(eval PACKAGE=$(subst build8-,,$@))
@@ -137,33 +136,6 @@ sign7:
 		lest/centos-rpm-builder:7 \
 		bin/sign
 
-$(addprefix build6-,$(AUTO_GENERATED)):
-	$(eval PACKAGE=$(subst build6-,,$@))
-
-	python3 ./generate.py --templates ${PACKAGE}
-
-	docker run -it --rm \
-		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
-		-v ${PWD}/_dist6:/rpmbuild/RPMS/x86_64 \
-		-v ${PWD}/_dist6:/rpmbuild/RPMS/noarch \
-		lest/centos-rpm-builder:6 \
-		build-spec SOURCES/autogen_${PACKAGE}.spec
-	# Test the install
-	docker run -it --rm \
-		-v ${PWD}/_dist6:/var/tmp/ \
-		lest/centos-rpm-builder:6 \
-		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
-
-sign6:
-	docker run --rm \
-		-v ${PWD}/_dist6:/rpmbuild/RPMS/x86_64 \
-		-v ${PWD}/bin:/rpmbuild/bin \
-		-v ${PWD}/RPM-GPG-KEY-prometheus-rpm:/rpmbuild/RPM-GPG-KEY-prometheus-rpm \
-		-v ${PWD}/secret.asc:/rpmbuild/secret.asc \
-		-v ${PWD}/.passphrase:/rpmbuild/.passphrase \
-		lest/centos-rpm-builder:6 \
-		bin/sign
-
 $(foreach \
 	PACKAGE,$(MANUAL),$(eval \
 		${PACKAGE}: \
@@ -177,11 +149,10 @@ $(foreach \
 		${PACKAGE}: \
 			$(addprefix build8-,${PACKAGE}) \
 			$(addprefix build7-,${PACKAGE}) \
-			$(addprefix build6-,${PACKAGE}) \
 	) \
 )
 
-sign: sign8 sign7 sign6
+sign: sign8 sign7
 
 publish8: sign8
 	package_cloud push --skip-errors prometheus-rpm/release/el/8 _dist8/*.rpm
@@ -189,10 +160,7 @@ publish8: sign8
 publish7: sign7
 	package_cloud push --skip-errors prometheus-rpm/release/el/7 _dist7/*.rpm
 
-publish6: sign6
-	package_cloud push --skip-errors prometheus-rpm/release/el/6 _dist6/*.rpm
-
-publish: publish8 publish7 publish6
+publish: publish8 publish7
 
 clean:
 	rm -rf _dist*
