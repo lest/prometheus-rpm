@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:    memcached_exporter
-Version: 0.7.0
+Version: 0.8.0
 Release: 1%{?dist}
 Summary: Prometheus memcached exporter.
 License: ASL 2.0
