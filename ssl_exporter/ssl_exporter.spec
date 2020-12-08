@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:       ssl_exporter
-Version:    2.1.1
+Version:    2.2.0
 Release:    1%{?dist}
 Summary:    Prometheus exporter for SSL certificates.
 License:    ASL 2.0
