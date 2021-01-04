@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:    openstack_exporter
-Version: 1.2.0
+Version: 1.3.0
 Release: 1%{?dist}
 Summary: Prometheus exporter for OpenStack metrics
 License: MIT
