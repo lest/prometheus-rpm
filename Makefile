@@ -56,12 +56,12 @@ $(addprefix build8-,$(MANUAL)):
 		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist8:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist8:/rpmbuild/RPMS/noarch \
-		lest/centos-rpm-builder:8 \
+		ghcr.io/lest/centos-rpm-builder:8 \
 		build-spec SOURCES/${PACKAGE}.spec
 	# Test the install
 	docker run --privileged -it --rm \
 		-v ${PWD}/_dist8:/var/tmp/ \
-		lest/centos-rpm-builder:8 \
+		ghcr.io/lest/centos-rpm-builder:8 \
 		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 $(addprefix build7-,$(MANUAL)):
@@ -70,12 +70,12 @@ $(addprefix build7-,$(MANUAL)):
 		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/noarch \
-		lest/centos-rpm-builder:7 \
+		ghcr.io/lest/centos-rpm-builder:7 \
 		build-spec SOURCES/${PACKAGE}.spec
 	# Test the install
 	docker run --privileged -it --rm \
 		-v ${PWD}/_dist7:/var/tmp/ \
-		lest/centos-rpm-builder:7 \
+		ghcr.io/lest/centos-rpm-builder:7 \
 		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 
@@ -91,12 +91,12 @@ $(addprefix build8-,$(AUTO_GENERATED)):
 		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist8:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist8:/rpmbuild/RPMS/noarch \
-		lest/centos-rpm-builder:8 \
+		ghcr.io/lest/centos-rpm-builder:8 \
 		build-spec SOURCES/autogen_${PACKAGE}.spec
 	# Test the install
 	docker run --privileged -it --rm \
 		-v ${PWD}/_dist8:/var/tmp/ \
-		lest/centos-rpm-builder:8 \
+		ghcr.io/lest/centos-rpm-builder:8 \
 		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 sign8:
@@ -106,7 +106,7 @@ sign8:
 		-v ${PWD}/RPM-GPG-KEY-prometheus-rpm:/rpmbuild/RPM-GPG-KEY-prometheus-rpm \
 		-v ${PWD}/secret.asc:/rpmbuild/secret.asc \
 		-v ${PWD}/.passphrase:/rpmbuild/.passphrase \
-		lest/centos-rpm-builder:8 \
+		ghcr.io/lest/centos-rpm-builder:8 \
 		bin/sign
 
 $(addprefix build7-,$(AUTO_GENERATED)):
@@ -118,12 +118,12 @@ $(addprefix build7-,$(AUTO_GENERATED)):
 		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/noarch \
-		lest/centos-rpm-builder:7 \
+		ghcr.io/lest/centos-rpm-builder:7 \
 		build-spec SOURCES/autogen_${PACKAGE}.spec
 	# Test the install
 	docker run --privileged -it --rm \
 		-v ${PWD}/_dist7:/var/tmp/ \
-		lest/centos-rpm-builder:7 \
+		ghcr.io/lest/centos-rpm-builder:7 \
 		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 sign7:
@@ -133,7 +133,7 @@ sign7:
 		-v ${PWD}/RPM-GPG-KEY-prometheus-rpm:/rpmbuild/RPM-GPG-KEY-prometheus-rpm \
 		-v ${PWD}/secret.asc:/rpmbuild/secret.asc \
 		-v ${PWD}/.passphrase:/rpmbuild/.passphrase \
-		lest/centos-rpm-builder:7 \
+		ghcr.io/lest/centos-rpm-builder:7 \
 		bin/sign
 
 $(foreach \
