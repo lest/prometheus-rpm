@@ -4,7 +4,6 @@ thanos \
 elasticsearch_exporter \
 blackbox_exporter \
 consul_exporter \
-graphite_exporter \
 jmx_exporter \
 snmp_exporter \
 apache_exporter \
@@ -38,7 +37,8 @@ keepalived_exporter \
 jolokia_exporter \
 frr_exporter \
 domain_exporter \
-mongodb_exporter
+mongodb_exporter \
+graphite_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
