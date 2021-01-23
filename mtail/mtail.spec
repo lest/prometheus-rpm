@@ -9,7 +9,7 @@ Summary: Extract metrics from application logs
 License: ASL 2.0
 URL:     https://github.com/google/%{name}
 
-Source0: https://github.com/google/%{name}/releases/download/v%{pkg_version}/%{name}_v%{pkg_version}_linux_amd64
+Source0: https://github.com/google/%{name}/releases/download/v%{pkg_version}/%{name}_%{pkg_version}_Linux_arm64.tar.gz
 Source1: %{name}.service
 Source2: %{name}.default
 
@@ -21,6 +21,7 @@ Requires(pre): shadow-utils
 Extract metrics from application logs to be exported into a timeseries database or timeseries calculator for alerting and dashboarding.
 
 %prep
+%setup -q -D -c %{name}
 
 %build
 /bin/true
