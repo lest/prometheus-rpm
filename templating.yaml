@@ -178,7 +178,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.2.10
+        version: 0.2.11
         license: MIT
         user: frr
         group: frr
