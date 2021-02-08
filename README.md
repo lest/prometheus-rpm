@@ -3,13 +3,13 @@
 [![Build Status](https://travis-ci.org/lest/prometheus-rpm.svg?branch=master)](https://travis-ci.org/lest/prometheus-rpm)
 
 The repository contains the files needed to build [Prometheus][1] RPM packages
-for CentOS 6 & 7.
+for CentOS 7 & 8.
 
 ## Installing
 The packages are available in [the packagecloud repository][2] and can be used
 by adding the following `/etc/yum.repos.d/prometheus.repo`:
 
-### CentOS 6, 7 & 8
+### CentOS
 ``` conf
 [prometheus]
 name=prometheus
@@ -23,13 +23,13 @@ metadata_expire=300
 ```
 
 ## Adding a new exporter
-### Auto generation (CentOS 6, 7 & 8)
+### Auto generation
 1. Add a new section under `packages` in `templating.yaml` with the required information (overriding any defaults if required).
 2. Create a new directory with the name of the exporter and populate it with a file named `<exporter_name>.default` which will contain the default environment variables passed to the init and unit files.
 3. Once this is done add this exporter to the list of `AUTO_GENERATED` expoters in `Makefile`.
 4. Test that you can build this RPM using the command `make <exporter_name>`.
 
-### Custom (CentOS 7 & 8 only)
+### Custom
 1. Add the exporter to the list of `MANUAL` in the file `Makefile`.
 2. Make a new directory with the same name as the exporter.
 3. Populate this directory with all the required files to build the RPM.
@@ -49,7 +49,7 @@ or build a single package only, e.g.:
 make node_exporter
 ```
 
-The resulting RPMs will be created in the `_dist6`, `_dist7` or `_dist8` directory depending on the version of CentOS that they were built for. builds in `_dist6` may also work for el5.
+The resulting RPMs will be created in the `_dist7` or `_dist8` directories depending on the version of CentOS that they were built for.
 
 ## Ansible role
 
