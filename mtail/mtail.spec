@@ -1,6 +1,6 @@
 %define debug_package %{nil}
-%define pkg_version 3.0.0-rc43
-%define version 3.0.0rc43
+%define pkg_version 3.0.0-rc44
+%define version 3.0.0rc44
 
 Name:    mtail
 Version: %{version}
