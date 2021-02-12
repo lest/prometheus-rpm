@@ -7,6 +7,7 @@ This script generates spec, unit and init files for CentOS build_files.
 import argparse
 import logging
 import os
+
 import jinja2
 import yaml
 
