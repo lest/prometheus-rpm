@@ -69,7 +69,7 @@ $(addprefix build8-,$(MANUAL)):
 	docker run --privileged ${DOCKER_FLAGS} \
 		-v ${PWD}/_dist8:/var/tmp/ \
 		ghcr.io/lest/centos-rpm-builder:8 \
-		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
+		/bin/bash -c '/usr/bin/dnf install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 $(addprefix build7-,$(MANUAL)):
 	$(eval PACKAGE=$(subst build7-,,$@))
@@ -104,7 +104,7 @@ $(addprefix build8-,$(AUTO_GENERATED)):
 	docker run --privileged ${DOCKER_FLAGS} \
 		-v ${PWD}/_dist8:/var/tmp/ \
 		ghcr.io/lest/centos-rpm-builder:8 \
-		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
+		/bin/bash -c '/usr/bin/dnf install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 sign8:
 	docker run --rm \
