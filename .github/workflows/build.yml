@@ -28,7 +28,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup python environment
+      - name: Setup Python environment
         uses: actions/setup-python@v2
         with:
           python-version: "3.8"
@@ -52,6 +52,14 @@ jobs:
           - 7
     runs-on: ubuntu-20.04
     steps:
+      - name: Setup Ruby environment
+        uses: ruby/setup-python@v1
+        with:
+          ruby-version: "3.0"
+
+      - name: Install PackageCloud CLI
+        run: gem install package_cloud
+
       # following tasks will require adjustment:
       - if: env.RPM_GPG_KEY_SECRET != ''
         run: echo openssl aes-256-cbc -k ${RPM_GPG_KEY_SECRET} -in secret.asc.enc -out secret.asc -d
