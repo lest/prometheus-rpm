@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 
 """
-This script generates spec, unit and init files for CentOS build_filess.
+This script generates spec, unit and init files for CentOS build_files.
 """
 
+import argparse
+import logging
+import os
 import jinja2
 import yaml
-import os
-import logging
-import argparse
 
 
 def renderTemplateFromFile(templates_dir, template_file, context):
