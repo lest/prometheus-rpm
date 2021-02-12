@@ -1,43 +1,60 @@
 #!/usr/bin/python3
 
-'''
-This script generates spec, unit and init files for CentOS build_filess.
-'''
+"""
+This script generates spec, unit and init files for CentOS build_files.
+"""
+
+import argparse
+import logging
+import os
 
 import jinja2
 import yaml
-import os
-import logging
-import argparse
 
 
 def renderTemplateFromFile(templates_dir, template_file, context):
-    return jinja2.Environment(
-        loader=jinja2.FileSystemLoader(templates_dir or './')
-    ).get_template(template_file).render(context)
+    return (
+        jinja2.Environment(loader=jinja2.FileSystemLoader(templates_dir or "./"))
+        .get_template(template_file)
+        .render(context)
+    )
 
 
 def renderTemplateFromString(templates_dir, template_string, context):
-    return jinja2.Environment(
-        loader=jinja2.FileSystemLoader(templates_dir or './')
-    ).from_string(template_string).render(context)
+    return (
+        jinja2.Environment(loader=jinja2.FileSystemLoader(templates_dir or "./"))
+        .from_string(template_string)
+        .render(context)
+    )
 
 
 if __name__ == "__main__":
-    env_template_config = os.environ.get(
-        "TEMPLATE_CONFIG_FILE", "./templating.yaml")
+    env_template_config = os.environ.get("TEMPLATE_CONFIG_FILE", "./templating.yaml")
     env_templates_dir = os.environ.get("TEMPLATES_DIRECTORY", "./templates/")
 
-    parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('--templates', metavar='N', type=str, nargs='+',
-                        default='all',
-                        help='A list of templates to generate')
-    parser.add_argument('--template-config', metavar='file', type=str,
-                        default=env_template_config,
-                        help='The configuration file to generate templates with')
-    parser.add_argument('--templates-dir', metavar='directory', type=str,
-                        default=env_templates_dir,
-                        help='The directory that templates are stored in')
+    parser = argparse.ArgumentParser(description="Process some integers.")
+    parser.add_argument(
+        "--templates",
+        metavar="N",
+        type=str,
+        nargs="+",
+        default="all",
+        help="A list of templates to generate",
+    )
+    parser.add_argument(
+        "--template-config",
+        metavar="file",
+        type=str,
+        default=env_template_config,
+        help="The configuration file to generate templates with",
+    )
+    parser.add_argument(
+        "--templates-dir",
+        metavar="directory",
+        type=str,
+        default=env_templates_dir,
+        help="The directory that templates are stored in",
+    )
 
     args = parser.parse_args()
 
@@ -47,7 +64,7 @@ if __name__ == "__main__":
 
     logging.basicConfig(level=logging.INFO)
 
-    with open(template_config, 'r') as tc:
+    with open(template_config, "r") as tc:
         config = yaml.safe_load(tc)
 
     # Work out which templates we are calculating
@@ -77,36 +94,38 @@ if __name__ == "__main__":
                 context[context_name] = renderTemplateFromString(
                     templates_dir=templates_dir,
                     template_string=to_template,
-                    context=context
+                    context=context,
                 )
             elif type(to_template) is list:
                 context_element = []
                 for item in to_template:
-                    context_element.append(renderTemplateFromString(
-                        templates_dir=templates_dir,
-                        template_string=item,
-                        context=context)
+                    context_element.append(
+                        renderTemplateFromString(
+                            templates_dir=templates_dir,
+                            template_string=item,
+                            context=context,
+                        )
                     )
                 context[context_name] = context_element
             else:
-                raise TypeError("Invalid type {} for key {}".format(
-                    type(to_template), context_name))
+                raise TypeError(
+                    "Invalid type {} for key {}".format(type(to_template), context_name)
+                )
 
         print(context)
 
-        for build_step, template in exporter_config['build_steps'].items():
-            output = "{name}/autogen_{name}.{build_step}".format(**{
-                'name': exporter_name,
-                'build_step': build_step,
-            })
+        for build_step, template in exporter_config["build_steps"].items():
+            output = "{name}/autogen_{name}.{build_step}".format(
+                **{"name": exporter_name, "build_step": build_step}
+            )
 
-            logging.info("Rendering step {} for {}".format(
-                build_step, exporter_name))
-            rendered = renderTemplateFromString(templates_dir=templates_dir,
-                                                template_string=template,
-                                                context=context)
-            logging.info("Writing {} step {} to {}".format(
-                exporter_name, build_step, output))
+            logging.info("Rendering step {} for {}".format(build_step, exporter_name))
+            rendered = renderTemplateFromString(
+                templates_dir=templates_dir, template_string=template, context=context
+            )
+            logging.info(
+                "Writing {} step {} to {}".format(exporter_name, build_step, output)
+            )
             # print(rendered)
-            with open(output, 'w') as output_file:
+            with open(output, "w") as output_file:
                 output_file.write(rendered)
