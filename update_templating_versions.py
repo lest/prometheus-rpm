@@ -220,9 +220,7 @@ if __name__ == "__main__":
             exporter_latest_version,
             exporter_release_notes,
             exporter_url,
-        ) = getLatestGHReleaseVersion(
-            github_token, exporter_name, exporter_url
-        )
+        ) = getLatestGHReleaseVersion(github_token, exporter_name, exporter_url)
         logging.info(
             "%s: current version: %s, latest version %s"
             % (exporter_name, exporter_current_version, exporter_latest_version)
