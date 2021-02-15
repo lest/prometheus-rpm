@@ -42,6 +42,13 @@ jobs:
       - name: Build packages
         run: make ${{ matrix.build_type }}${{ matrix.version }}
 
+      - name: Cache built packages
+        uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: _dist${{ matrix.version }}/*
+          key: ${{ github.sha }}-${{ matrix.build_type }}${{ matrix.version }}
+
   publish_packages:
     needs: build_packages
     if: github.ref == 'refs/heads/master'
@@ -67,5 +74,27 @@ jobs:
       - if: env.RPM_GPG_KEY_PASSPHRASE != ''
         run: echo ${RPM_GPG_KEY_PASSPHRASE} > .passphrase
 
+      - uses: actions/cache@v2
+        with:
+          path: _dist7/*
+          key: ${{ github.sha }}-auto7
+
+      - uses: actions/cache@v2
+        with:
+          path: _dist7/*
+          key: ${{ github.sha }}-manual7
+
+      - uses: actions/cache@v2
+        with:
+          path: _dist8/*
+          key: ${{ github.sha }}-auto8
+
+      - uses: actions/cache@v2
+        with:
+          path: _dist8/*
+          key: ${{ github.sha }}-manual8
+
       - if: env.TRAVIS_REPO_SLUG == 'lest/prometheus-rpm'
         run: echo make publish${{ matrix.version }}
+        env:
+          PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
