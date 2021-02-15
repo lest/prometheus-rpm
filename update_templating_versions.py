@@ -42,7 +42,7 @@ def getLatestGHReleaseVersion(github_token, exporter_name, url):
         "Latest %s release title: %s" % (exporter_name, github_latest_release_title)
     )
     github_latest_release_version = re.search(
-        "\d+\.\d+\.\d+", github_latest_release_title
+        r"\d+\.\d+\.\d+", github_latest_release_title
     )
     if not github_latest_release_version.group():
         logging.error(
@@ -187,7 +187,7 @@ if __name__ == "__main__":
     try:
         with open(template_config, "r") as tc:
             config = yaml.load(tc)
-    except:
+    except IOError:
         logging.error("Couldn't open config file: %s" % template_config)
         sys.exit(1)
     else:
@@ -216,7 +216,11 @@ if __name__ == "__main__":
             "Checking updates for %s" % (exporter_name.upper().replace("_", " "))
         )
         # get latest exporter release:
-        exporter_latest_version, exporter_release_notes, exporter_url = getLatestGHReleaseVersion(
+        (
+            exporter_latest_version,
+            exporter_release_notes,
+            exporter_url,
+        ) = getLatestGHReleaseVersion(
             github_token, exporter_name, exporter_url
         )
         logging.info(
