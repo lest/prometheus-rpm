@@ -51,7 +51,10 @@ jobs:
 
   publish_packages:
     needs: build_packages
-    if: github.ref == 'refs/heads/master'
+    env:
+      PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
+    if: github.ref == 'refs/heads/master' &&
+        env.PACKAGECLOUD_TOKEN != null
     strategy:
       matrix:
         version:
@@ -68,33 +71,29 @@ jobs:
         run: gem install package_cloud
 
       # following tasks will require adjustment:
-      - if: env.RPM_GPG_KEY_SECRET != ''
-        run: echo openssl aes-256-cbc -k ${RPM_GPG_KEY_SECRET} -in secret.asc.enc -out secret.asc -d
-
-      - if: env.RPM_GPG_KEY_PASSPHRASE != ''
-        run: echo ${RPM_GPG_KEY_PASSPHRASE} > .passphrase
-
-      - uses: actions/cache@v2
-        with:
-          path: _dist7/*
-          key: ${{ github.sha }}-auto7
-
-      - uses: actions/cache@v2
-        with:
-          path: _dist7/*
-          key: ${{ github.sha }}-manual7
-
-      - uses: actions/cache@v2
-        with:
-          path: _dist8/*
-          key: ${{ github.sha }}-auto8
-
-      - uses: actions/cache@v2
-        with:
-          path: _dist8/*
-          key: ${{ github.sha }}-manual8
-
-      - if: env.TRAVIS_REPO_SLUG == 'lest/prometheus-rpm'
-        run: echo make publish${{ matrix.version }}
+      - name: Create GPG key secret
+        if: env.RPM_GPG_KEY_SECRET != null
+        run: openssl aes-256-cbc -k ${RPM_GPG_KEY_SECRET} -in secret.asc.enc -out secret.asc -d
         env:
-          PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
+          RPM_GPG_KEY_SECRET: ${{ secrets.RPM_GPG_KEY_SECRET }}
+
+      - name: Save GPG key passphrase
+        if: env.RPM_GPG_KEY_PASSPHRASE != null
+        run: echo ${RPM_GPG_KEY_PASSPHRASE} > .passphrase
+        env:
+          RPM_GPG_KEY_PASSPHRASE: ${{ secrets.RPM_GPG_KEY_PASSPHRASE }}
+
+      - name: Restore auto RPM package cache
+        uses: actions/cache@v2
+        with:
+          path: _dist${{ matrix.version }}/*
+          key: ${{ github.sha }}-auto${{ matrix.version }}
+
+      - name: Restore manual RPM package cache
+        uses: actions/cache@v2
+        with:
+          path: _dist${{ matrix.version }}/*
+          key: ${{ github.sha }}-manual${{ matrix.version }}
+
+      - if: env.GITHUB_REPOSITORY == 'lest/prometheus-rpm'
+        run: make publish${{ matrix.version }}
