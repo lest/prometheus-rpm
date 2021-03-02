@@ -20,7 +20,7 @@ Requires(pre): shadow-utils
 Prometheus exporter for PostgreSQL server metrics. Supported Postgres versions: 9.1 and up.
 
 %prep
-%setup -q -n %{name}_v%{version}_linux-amd64
+%setup -q -n %{name}-%{version}.linux-amd64
 
 %build
 /bin/true
