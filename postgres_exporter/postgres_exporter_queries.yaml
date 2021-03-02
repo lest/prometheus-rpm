@@ -32,15 +32,15 @@ pg_stat_user_tables:
       n_live_tup,
       n_dead_tup,
       n_mod_since_analyze,
-      COALESCE(last_vacuum, '1970-01-01Z') as last_vacuum, 
-      COALESCE(last_autovacuum, '1970-01-01Z') as last_autovacuum, 
-      COALESCE(last_analyze, '1970-01-01Z') as last_analyze, 
-      COALESCE(last_autoanalyze, '1970-01-01Z') as last_autoanalyze, 
-      vacuum_count, 
-      autovacuum_count, 
-      analyze_count, 
-      autoanalyze_count 
-    FROM 
+      COALESCE(last_vacuum, '1970-01-01Z') as last_vacuum,
+      COALESCE(last_autovacuum, '1970-01-01Z') as last_autovacuum,
+      COALESCE(last_analyze, '1970-01-01Z') as last_analyze,
+      COALESCE(last_autoanalyze, '1970-01-01Z') as last_autoanalyze,
+      vacuum_count,
+      autovacuum_count,
+      analyze_count,
+      autoanalyze_count
+    FROM
       pg_stat_user_tables
   metrics:
     - datname:
