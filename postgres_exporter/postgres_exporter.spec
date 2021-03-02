@@ -1,13 +1,13 @@
 %define debug_package %{nil}
 
 Name:    postgres_exporter
-Version: 0.8.0
+Version: 0.9.0
 Release: 5%{?dist}
 Summary: Prometheus exporter for PostgreSQL server metrics
 License: ASL 2.0
-URL:     https://github.com/wrouesnel/%{name}
+URL:     https://github.com/prometheus-community/%{name}
 
-Source0: https://github.com/wrouesnel/%{name}/releases/download/v%{version}/%{name}_v%{version}_linux-amd64.tar.gz
+Source0: https://github.com/prometheus-community/%{name}/releases/download/v%{version}/%{name}_v%{version}_linux-amd64.tar.gz
 Source1: %{name}.service
 Source2: %{name}.default
 Source3: %{name}_queries.yaml
