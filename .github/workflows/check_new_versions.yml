@@ -1,0 +1,32 @@
+---
+name: Check new exporter releases
+
+on:
+  schedule:
+    - cron: "15 9,17 * * *"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  check_new_releases:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup python environment
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+          architecture: "x64"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruamel.yaml PyGithub
+
+      - name: Run script to update auto package versions
+        run: python update_templating_versions.py
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
