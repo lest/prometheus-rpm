@@ -66,11 +66,11 @@ def getGHBranches(github_token):
     """
     Gets existing branches to check if PR is already present
     """
-    github_repo_path = "prometheus-rpm"
+    github_repo_path = "lest/prometheus-rpm"
     logging.debug("Getting list of existing GitHub branches")
     g = Github(github_token)
     branches = []
-    for branch in g.get_user().get_repo(github_repo_path).get_branches():
+    for branch in g.get_repo(github_repo_path).get_branches():
         branches.append(branch.name)
 
     return branches
@@ -82,9 +82,9 @@ def updateGHTemplate(
     """
     Creates PR with updated version
     """
-    github_repo_path = "prometheus-rpm"
+    github_repo_path = "lest/prometheus-rpm"
     g = Github(github_token)
-    repo = g.get_user().get_repo(github_repo_path)
+    repo = g.get_repo(github_repo_path)
 
     # create new branch:
     sb = repo.get_branch("master")
