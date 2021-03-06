@@ -10,15 +10,15 @@ anchors:
       user: prometheus
       group: prometheus
       package: '%{name}-%{version}.linux-amd64'
-      tarball_has_subdirectory: True
+      tarball_has_subdirectory: true
       release: 1
     dynamic: &default_dynamic_context
       tarball: '{{URL}}/releases/download/v%{version}/{{package}}.tar.gz'
       sources:
         - '{{tarball}}'
-        - 'autogen_%{name}.unit'
+        - autogen_%{name}.unit
         - '%{name}.default'
-        - 'autogen_%{name}.init'
+        - autogen_%{name}.init
 
 # Per-package configuration
 packages:
@@ -29,13 +29,14 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.1.1
+        version: 1.1.2
         license: ASL 2.0
         URL: https://github.com/prometheus/node_exporter
-        summary: Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
+        summary: Prometheus exporter for machine metrics, written in Go with pluggable
+          metric collectors.
         description: |
-            Prometheus exporter for hardware and OS metrics exposed by *NIX kernels,
-            written in Go with pluggable metric collectors.
+          Prometheus exporter for hardware and OS metrics exposed by *NIX kernels,
+          written in Go with pluggable metric collectors.
   mysqld_exporter:
     build_steps:
       <<: *default_build_steps
@@ -49,8 +50,8 @@ packages:
         URL: https://github.com/prometheus/mysqld_exporter
         summary: Prometheus exporter for MySQL server metrics.
         description: |
-            Prometheus exporter for MySQL server metrics. Supported MySQL versions: 5.5 and up.
-            NOTE: Not all collection methods are supported on MySQL < 5.6
+          Prometheus exporter for MySQL server metrics. Supported MySQL versions: 5.5 and up.
+          NOTE: Not all collection methods are supported on MySQL < 5.6
   redis_exporter:
     build_steps:
       <<: *default_build_steps
@@ -60,7 +61,8 @@ packages:
         version: 1.17.0
         license: MIT
         summary: Prometheus exporter for Redis server metrics.
-        description: Prometheus Exporter for Redis Metrics. Supports Redis 2.x, 3.x, 4.x, 5.x and 6.x
+        description: Prometheus Exporter for Redis Metrics. Supports Redis 2.x, 3.x,
+          4.x, 5.x and 6.x
         package: '%{name}-v%{version}.linux-amd64'
         URL: https://github.com/oliver006/redis_exporter
       dynamic:
@@ -75,8 +77,10 @@ packages:
         version: 0.12.0
         license: ASL 2.0
         URL: https://github.com/prometheus/haproxy_exporter
-        summary: This is a simple server that scrapes HAProxy stats and exports them via HTTP for Prometheus consumption.
-        description: This is a simple server that scrapes HAProxy stats and exports them via HTTP for Prometheus consumption.
+        summary: This is a simple server that scrapes HAProxy stats and exports them
+          via HTTP for Prometheus consumption.
+        description: This is a simple server that scrapes HAProxy stats and exports
+          them via HTTP for Prometheus consumption.
   kafka_exporter:
     build_steps:
       <<: *default_build_steps
@@ -100,9 +104,9 @@ packages:
         version: 0.8.0
         license: ASL 2.0
         release: 2
-        package: 'nginx-prometheus-exporter-%{version}-linux-amd64'
+        package: nginx-prometheus-exporter-%{version}-linux-amd64
         URL: https://github.com/nginxinc/nginx-prometheus-exporter
-        tarball_has_subdirectory: False
+        tarball_has_subdirectory: false
         fix_name: nginx-prometheus-exporter
         summary: NGINX Prometheus Exporter for NGINX and NGINX Plus.
         description: NGINX Prometheus Exporter for NGINX and NGINX Plus.
@@ -151,7 +155,7 @@ packages:
         package: '%{name}_%{version}'
         summary: Prometheus exporter for jolokia metrics
         description: Export jolokia metrics to Prometheus.
-        tarball_has_subdirectory: False
+        tarball_has_subdirectory: false
       dynamic:
         <<: *default_dynamic_context
         tarball: '{{URL}}/releases/download/%{version}/{{package}}_Linux_x86_64.tar.gz'
@@ -167,10 +171,10 @@ packages:
         URL: https://github.com/prometheus/pushgateway
         summary: Prometheus push acceptor for ephemeral and batch jobs.
         description: |
-            The Prometheus Pushgateway exists to allow ephemeral and batch jobs to
-            expose their metrics to Prometheus. Since these kinds of jobs may not
-            exist long enough to be scraped, they can instead push their metrics to
-            a Pushgateway. The Pushgateway then exposes these metrics to Prometheus.
+          The Prometheus Pushgateway exists to allow ephemeral and batch jobs to
+          expose their metrics to Prometheus. Since these kinds of jobs may not
+          exist long enough to be scraped, they can instead push their metrics to
+          a Pushgateway. The Pushgateway then exposes these metrics to Prometheus.
   frr_exporter:
     build_steps:
       <<: *default_build_steps
@@ -196,7 +200,7 @@ packages:
         license: MIT
         URL: https://github.com/caarlos0/domain_exporter
         package: '%{name}_linux_amd64'
-        tarball_has_subdirectory: False
+        tarball_has_subdirectory: false
         summary: Prometheus exporter for domain expiration time metrics
         description: Exports the expiration time of your domains as Prometheus metrics.
   mongodb_exporter:
@@ -209,10 +213,12 @@ packages:
         version: 0.20.1
         license: ASL 2.0
         URL: https://github.com/percona/mongodb_exporter
-        package: "%{name}-%{version}.linux-amd64"
-        tarball_has_subdirectory: False
-        summary: A Prometheus exporter for MongoDB including sharding, replication and storage engines
-        description: A Prometheus exporter for MongoDB including sharding, replication and storage engines
+        package: '%{name}-%{version}.linux-amd64'
+        tarball_has_subdirectory: false
+        summary: A Prometheus exporter for MongoDB including sharding, replication
+          and storage engines
+        description: A Prometheus exporter for MongoDB including sharding, replication
+          and storage engines
   graphite_exporter:
     build_steps:
       <<: *default_build_steps
@@ -223,8 +229,9 @@ packages:
         version: 0.9.0
         license: ASL 2.0
         URL: https://github.com/prometheus/graphite_exporter
-        summary: Server that accepts metrics via the Graphite protocol and exports them as Prometheus metrics.
+        summary: Server that accepts metrics via the Graphite protocol and exports
+          them as Prometheus metrics.
         description: |
-            An exporter for metrics exported in the Graphite plaintext protocol. It
-            accepts data over both TCP and UDP, and transforms and exposes them for
-            consumption by Prometheus.
+          An exporter for metrics exported in the Graphite plaintext protocol. It
+          accepts data over both TCP and UDP, and transforms and exposes them for
+          consumption by Prometheus.
