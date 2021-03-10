@@ -34,20 +34,23 @@ def getLatestGHReleaseVersion(github_token, exporter_name, url):
     repo = g.get_repo(github_repo_path)
     releases = repo.get_releases()
 
-    github_latest_release_title = releases[0].title
-    github_latest_release_body = releases[0].body
-    github_latest_release_url = releases[0].html_url
+    for release in releases:
+        if not release.prerelease and not release.draft:
+            github_latest_release_tag = release.tag_name
+            github_latest_release_body = release.body
+            github_latest_release_url = release.html_url
+            break
 
     logging.debug(
-        "Latest %s release title: %s" % (exporter_name, github_latest_release_title)
+        "Latest %s release tag: %s" % (exporter_name, github_latest_release_tag)
     )
     github_latest_release_version = re.search(
-        r"\d+\.\d+\.\d+", github_latest_release_title
+        r"\d+\.\d+\.\d+", github_latest_release_tag
     )
     if not github_latest_release_version.group():
         logging.error(
-            "Could not get release version for %s from latest release title: %s"
-            % (exporter_name, github_latest_release_title)
+            "Could not get release version for %s from latest release tag: %s"
+            % (exporter_name, github_latest_release_tag)
         )
         sys.exit(1)
     else:
