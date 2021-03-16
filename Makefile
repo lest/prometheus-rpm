@@ -5,7 +5,6 @@ elasticsearch_exporter \
 blackbox_exporter \
 jmx_exporter \
 snmp_exporter \
-apache_exporter \
 rabbitmq_exporter \
 sachet \
 ping_exporter \
@@ -38,7 +37,8 @@ collectd_exporter \
 memcached_exporter \
 consul_exporter \
 smokeping_prober \
-iperf3_exporter
+iperf3_exporter \
+apache_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
