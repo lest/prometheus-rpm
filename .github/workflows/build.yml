@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Setup Ruby environment
-        uses: ruby/setup-rubyn@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.0"
 
