@@ -322,3 +322,17 @@ packages:
         summary: Prometheus exporter for iPerf3 probing.
         description: |
           The iPerf3 exporter allows iPerf3 probing of endpoints.
+  apache_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 0.8.0
+        license: MIT
+        release: 2
+        URL: https://github.com/Lusitaniae/apache_exporter
+        summary: Prometheus exporter Apache webserver mertics.
+        description: |
+          Prometheus exporter for Apache mod_status statistics.
