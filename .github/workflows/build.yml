@@ -51,10 +51,7 @@ jobs:
 
   publish_packages:
     needs: build_packages
-    env:
-      PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
-    if: github.ref == 'refs/heads/master' &&
-        env.PACKAGECLOUD_TOKEN != null
+    if: github.ref == 'refs/heads/master'
     strategy:
       matrix:
         version:
@@ -97,3 +94,5 @@ jobs:
 
       - if: env.GITHUB_REPOSITORY == 'lest/prometheus-rpm'
         run: make publish${{ matrix.version }}
+        env:
+          PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
