@@ -42,6 +42,13 @@ graphite_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
+INTERACTIVE:=$(shell [ -t 0 ] && echo 1)
+ifdef INTERACTIVE
+	DOCKER_FLAGS = -it --rm
+else
+	DOCKER_FLAGS = --rm
+endif
+
 all: auto manual
 
 manual: $(MANUAL)
@@ -52,29 +59,33 @@ manual7: $(addprefix build7-,$(MANUAL))
 
 $(addprefix build8-,$(MANUAL)):
 	$(eval PACKAGE=$(subst build8-,,$@))
-	docker run -it --rm \
+	docker run ${DOCKER_FLAGS} \
 		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist8:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist8:/rpmbuild/RPMS/noarch \
+		-v ${PWD}/_cache_dnf:/var/cache/dnf \
 		ghcr.io/lest/centos-rpm-builder:8 \
 		build-spec SOURCES/${PACKAGE}.spec
 	# Test the install
-	docker run --privileged -it --rm \
+	docker run --privileged ${DOCKER_FLAGS} \
 		-v ${PWD}/_dist8:/var/tmp/ \
+		-v ${PWD}/_cache_dnf:/var/cache/dnf \
 		ghcr.io/lest/centos-rpm-builder:8 \
-		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
+		/bin/bash -c '/usr/bin/dnf install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 $(addprefix build7-,$(MANUAL)):
 	$(eval PACKAGE=$(subst build7-,,$@))
-	docker run -it --rm \
+	docker run ${DOCKER_FLAGS} \
 		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/noarch \
+		-v ${PWD}/_cache_yum:/var/cache/yum \
 		ghcr.io/lest/centos-rpm-builder:7 \
 		build-spec SOURCES/${PACKAGE}.spec
 	# Test the install
-	docker run --privileged -it --rm \
+	docker run --privileged ${DOCKER_FLAGS} \
 		-v ${PWD}/_dist7:/var/tmp/ \
+		-v ${PWD}/_cache_yum:/var/cache/yum \
 		ghcr.io/lest/centos-rpm-builder:7 \
 		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
@@ -87,17 +98,19 @@ $(addprefix build8-,$(AUTO_GENERATED)):
 
 	python3 ./generate.py --templates ${PACKAGE}
 
-	docker run -it --rm \
+	docker run ${DOCKER_FLAGS} \
 		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist8:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist8:/rpmbuild/RPMS/noarch \
+		-v ${PWD}/_cache_dnf:/var/cache/dnf \
 		ghcr.io/lest/centos-rpm-builder:8 \
 		build-spec SOURCES/autogen_${PACKAGE}.spec
 	# Test the install
-	docker run --privileged -it --rm \
+	docker run --privileged ${DOCKER_FLAGS} \
 		-v ${PWD}/_dist8:/var/tmp/ \
+		-v ${PWD}/_cache_dnf:/var/cache/dnf \
 		ghcr.io/lest/centos-rpm-builder:8 \
-		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
+		/bin/bash -c '/usr/bin/dnf install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 sign8:
 	docker run --rm \
@@ -114,15 +127,17 @@ $(addprefix build7-,$(AUTO_GENERATED)):
 
 	python3 ./generate.py --templates ${PACKAGE}
 
-	docker run -it --rm \
+	docker run ${DOCKER_FLAGS} \
 		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/noarch \
+		-v ${PWD}/_cache_yum:/var/cache/yum \
 		ghcr.io/lest/centos-rpm-builder:7 \
 		build-spec SOURCES/autogen_${PACKAGE}.spec
 	# Test the install
-	docker run --privileged -it --rm \
+	docker run --privileged ${DOCKER_FLAGS} \
 		-v ${PWD}/_dist7:/var/tmp/ \
+		-v ${PWD}/_cache_yum:/var/cache/yum \
 		ghcr.io/lest/centos-rpm-builder:7 \
 		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
@@ -163,7 +178,7 @@ publish7: sign7
 publish: publish8 publish7
 
 clean:
-	rm -rf _dist*
+	rm -rf _cache_dnf _cache_yum _dist*
 	rm -f **/*.tar.gz
 	rm -f **/*.jar
 	rm -f **/autogen_*{init,unit,spec}
