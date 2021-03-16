@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:    smokeping_prober
-Version: 0.3.0
+Version: 0.4.1
 Release: 1%{?dist}
 Summary: Smokeping-style prober for Prometheus
 License: ASL 2.0
