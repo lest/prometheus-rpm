@@ -38,7 +38,8 @@ memcached_exporter \
 consul_exporter \
 smokeping_prober \
 iperf3_exporter \
-apache_exporter
+apache_exporter \
+influxdb_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
