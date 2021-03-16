@@ -13,7 +13,6 @@ ping_exporter \
 postgres_exporter \
 process_exporter \
 exporter_exporter \
-iperf3_exporter \
 couchbase_exporter \
 junos_exporter \
 ssl_exporter \
@@ -38,7 +37,8 @@ graphite_exporter \
 statsd_exporter \
 collectd_exporter \
 memcached_exporter \
-smokeping_prober
+smokeping_prober \
+iperf3_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
