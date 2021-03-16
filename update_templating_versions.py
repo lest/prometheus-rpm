@@ -247,6 +247,8 @@ if __name__ == "__main__":
                 config["packages"][exporter_name]["context"]["static"][
                     "version"
                 ] = exporter_latest_version
+                # remove package release:
+                del config["packages"][exporter_name]["context"]["static"]["release"]
 
                 github_commit_message = "Update %s from %s to %s" % (
                     exporter_name,
