@@ -10,7 +10,6 @@ apache_exporter \
 collectd_exporter \
 rabbitmq_exporter \
 sachet \
-statsd_exporter \
 ping_exporter \
 postgres_exporter \
 process_exporter \
@@ -38,7 +37,8 @@ jolokia_exporter \
 frr_exporter \
 domain_exporter \
 mongodb_exporter \
-graphite_exporter
+graphite_exporter \
+statsd_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
