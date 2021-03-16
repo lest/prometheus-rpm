@@ -65,15 +65,14 @@ jobs:
       - name: Setup Ruby environment
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.0"
+          ruby-version: 2.7
 
       - name: Install PackageCloud CLI
         run: gem install package_cloud
 
-      # following tasks will require adjustment:
       - name: Create GPG key secret
         if: env.RPM_GPG_KEY_SECRET != null
-        run: openssl aes-256-cbc -k ${RPM_GPG_KEY_SECRET} -in secret.asc.enc -out secret.asc -d
+        run: openssl aes-256-cbc -k ${RPM_GPG_KEY_SECRET} -in secret.asc.enc -out secret.asc -d -md md5
         env:
           RPM_GPG_KEY_SECRET: ${{ secrets.RPM_GPG_KEY_SECRET }}
 
@@ -95,7 +94,7 @@ jobs:
           path: _dist${{ matrix.version }}/*
           key: ${{ github.sha }}-manual${{ matrix.version }}
 
-      - if: env.GITHUB_REPOSITORY == 'lest/prometheus-rpm'
+      - name: Publish
         run: make publish${{ matrix.version }}
         env:
           PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
