@@ -12,7 +12,6 @@ sachet \
 ping_exporter \
 postgres_exporter \
 process_exporter \
-smokeping_prober \
 exporter_exporter \
 iperf3_exporter \
 couchbase_exporter \
@@ -38,7 +37,8 @@ mongodb_exporter \
 graphite_exporter \
 statsd_exporter \
 collectd_exporter \
-memcached_exporter
+memcached_exporter \
+smokeping_prober
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
