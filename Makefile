@@ -3,7 +3,6 @@ alertmanager \
 thanos \
 elasticsearch_exporter \
 blackbox_exporter \
-consul_exporter \
 jmx_exporter \
 snmp_exporter \
 apache_exporter \
@@ -37,6 +36,7 @@ graphite_exporter \
 statsd_exporter \
 collectd_exporter \
 memcached_exporter \
+consul_exporter \
 smokeping_prober \
 iperf3_exporter
 
