@@ -7,7 +7,6 @@ consul_exporter \
 jmx_exporter \
 snmp_exporter \
 apache_exporter \
-collectd_exporter \
 rabbitmq_exporter \
 sachet \
 ping_exporter \
@@ -38,7 +37,8 @@ frr_exporter \
 domain_exporter \
 mongodb_exporter \
 graphite_exporter \
-statsd_exporter
+statsd_exporter \
+collectd_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
