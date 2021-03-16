@@ -280,6 +280,20 @@ packages:
         summary: Memcached stats exporter for Prometheus.
         description: |
           The memcached exporter exports metrics from a memcached server for consumption by Prometheus.
+  consul_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 0.7.1
+        license: ASL 2.0
+        release: 2
+        URL: https://github.com/prometheus/consul_exporter
+        summary: Consul stats exporter for Prometheus.
+        description: |
+          Export Consul service health to Prometheus.
   smokeping_prober:
     build_steps:
       <<: *default_build_steps
