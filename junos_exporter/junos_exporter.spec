@@ -1,13 +1,13 @@
 %define debug_package %{nil}
 
 Name:    junos_exporter
-Version: 0.9.6
-Release: 3%{?dist}
+Version: 0.9.8
+Release: 1%{?dist}
 Summary: Prometheus exporter for Junos device metrics
 License: MIT
 URL:     https://github.com/czerwonk/%{name}
 
-Source0: https://github.com/czerwonk/%{name}/releases/download/%{version}/%{name}_linux_amd64
+Source0: https://github.com/czerwonk/%{name}/releases/download/%{version}/%{name}_%{version}_linux_amd64.tar.gz
 Source1: %{name}.service
 Source2: %{name}.default
 Source3: %{name}.yaml
@@ -20,16 +20,17 @@ Requires(pre): shadow-utils
 Prometheus exporter for Junos device metrics.
 
 %prep
+%setup -q -c -n %{name}_%{version}_linux_amd64
 
 %build
 /bin/true
 
 %install
 mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
-install -D -m 755 %{SOURCE0} %{buildroot}%{_bindir}/%{name}
+install -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
 install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/%{name}
-install -D -m 644 %{SOURCE3} %{buildroot}%{_sysconfdir}/prometheus/%{name}.yaml
+install -D -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/prometheus/%{name}.yaml
 
 %pre
 getent group prometheus >/dev/null || groupadd -r prometheus
