@@ -7,7 +7,7 @@ Summary: Prometheus exporter for Junos device metrics
 License: MIT
 URL:     https://github.com/czerwonk/%{name}
 
-Source0: https://github.com/czerwonk/%{name}/releases/download/%{version}/%{name}_linux_amd64
+Source0: https://github.com/czerwonk/%{name}/releases/download/%{version}/%{name}_%{version}_linux_amd64.tar.gz
 Source1: %{name}.service
 Source2: %{name}.default
 Source3: %{name}.yaml
