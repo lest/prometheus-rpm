@@ -45,6 +45,26 @@ packages:
         description: |
           Prometheus exporter for hardware and OS metrics exposed by *NIX kernels,
           written in Go with pluggable metric collectors.
+  blackbox_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 0.18.0
+        release: 2
+        license: ASL 2.0
+        URL: https://github.com/prometheus/blackbox_exporter
+        additional_sources:
+          - path: blackbox.yml
+            dest: "%{_sysconfdir}/prometheus/blackbox.yml"
+            from_tarball: true
+            mode: 640
+        summary: Blackbox prober exporter
+        description: |
+          The blackbox exporter allows blackbox probing of endpoints over HTTP, HTTPS,
+          DNS, TCP and ICMP.
   mysqld_exporter:
     build_steps:
       <<: *default_build_steps

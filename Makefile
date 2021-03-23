@@ -2,7 +2,6 @@ MANUAL = prometheus2 \
 alertmanager \
 thanos \
 elasticsearch_exporter \
-blackbox_exporter \
 jmx_exporter \
 snmp_exporter \
 rabbitmq_exporter \
@@ -18,6 +17,7 @@ openstack_exporter \
 jiralert
 
 AUTO_GENERATED = node_exporter \
+blackbox_exporter \
 pushgateway \
 mysqld_exporter \
 redis_exporter \
