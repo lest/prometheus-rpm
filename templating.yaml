@@ -12,6 +12,14 @@ anchors:
       package: '%{name}-%{version}.linux-amd64'
       tarball_has_subdirectory: true
       release: 1
+      #additional_sources:
+      #  - path: example.yml
+      #    from_tarball: false # take file from tarball or repository
+      #    dest: "%{_sysconfdir}/prometheus/example.yml"
+      #    mode: 644           # optional
+      #    user: root          # optional
+      #    group: root         # optional
+      #    config: true        # specify not to override config files
     dynamic: &default_dynamic_context
       tarball: '{{URL}}/releases/download/v%{version}/{{package}}.tar.gz'
       sources:
