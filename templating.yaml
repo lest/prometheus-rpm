@@ -53,7 +53,7 @@ packages:
       static:
         <<: *default_static_context
         version: 0.18.0
-        release: 2
+        release: 3
         license: ASL 2.0
         URL: https://github.com/prometheus/blackbox_exporter
         additional_sources:
@@ -61,6 +61,7 @@ packages:
             dest: "%{_sysconfdir}/prometheus/blackbox.yml"
             from_tarball: true
             mode: 640
+            group: prometheus
         summary: Blackbox prober exporter
         description: |
           The blackbox exporter allows blackbox probing of endpoints over HTTP, HTTPS,
