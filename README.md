@@ -1,6 +1,6 @@
 # Prometheus RPM Packages
 
-[![Build Status](https://travis-ci.org/lest/prometheus-rpm.svg?branch=master)](https://travis-ci.org/lest/prometheus-rpm)
+![Build Status](https://github.com/lest/prometheus-rpm/actions/workflows/build.yml/badge.svg) ![Lint Status](https://github.com/lest/prometheus-rpm/actions/workflows/linter.yml/badge.svg) ![Update Status](https://github.com/lest/prometheus-rpm/actions/workflows/check_new_versions.yml/badge.svg)
 
 The repository contains the files needed to build [Prometheus][1] RPM packages
 for CentOS 7 & 8.
