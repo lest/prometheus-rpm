@@ -20,6 +20,13 @@ URL:     {{URL}}
 {%- for source in sources %}
 Source{{loop.index - 1}}: {{source}}
 {%- endfor %}
+{%- if additional_sources is defined %}
+{%-   for additional_source in additional_sources %}
+{%-     if not additional_source.from_tarball|d(false) %}
+Source{{ loop.index - 1 + sources | length }}: {{ additional_source.path }}
+{%-     endif %}
+{%-   endfor %}
+{%- endif %}
 {% endblock sources %}
 
 {%- block requires %}
@@ -73,22 +80,27 @@ install -D -m 755 %{SOURCE3} %{buildroot}%{_initrddir}/%{name}
     install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
     %endif
 %endif
+{%- if additional_sources is defined %}
+{%- for additional_source in additional_sources %}
+install -D -m {{ additional_source.mode|d('644') }} {{ additional_source.path if additional_source.from_tarball|d(false) else '%{SOURCE' ~ (loop.index - 1 + sources | length) ~ '}' }} %{buildroot}{{ additional_source.dest }}
+{%- endfor %}
+{%- endif %}
 {% endblock install %}
 
 %pre
 {%- block pre %}
 {%- if group != "root" %}
-getent group {{ group }} >/dev/null || groupadd -r {{ group }} 
+getent group {{ group }} >/dev/null || groupadd -r {{ group }}
 {%- endif %}
 {%- if user != "root" %}
 {%-   if user == "prometheus" %}
 getent passwd {{ user }} >/dev/null || \
   useradd -r -g {{ group }} -d %{_sharedstatedir}/prometheus -s /sbin/nologin \
-          -c "Prometheus services" {{ user }} 
+          -c "Prometheus services" {{ user }}
 {%-   else %}
 getent passwd {{ user }} >/dev/null || \
   useradd -r -g {{ group }} -d %{_sharedstatedir}/%{name} -s /sbin/nologin \
-          -c "{{ name }} service" {{ user }} 
+          -c "{{ name }} service" {{ user }}
 {%-   endif %}
 {%- endif %}
 exit 0
@@ -145,4 +157,9 @@ fi
     %{_unitdir}/%{name}.service
     %endif
 %endif
+{%- if additional_sources is defined %}
+{%-   for additional_source in additional_sources %}
+{% if additional_source.config|d(true) %}%config(noreplace) {% endif %}{% if additional_source.mode is defined or additional_source.user is defined or additional_source.group is defined %}%attr({{ additional_source.mode|d('-') }}, {{ additional_source.user|d('-') }}, {{ additional_source.group|d('-') }}){% endif %}{{ additional_source.dest }}
+{%-   endfor %}
+{%- endif %}
 {% endblock files %}
