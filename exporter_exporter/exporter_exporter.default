@@ -1,4 +1,4 @@
-EXPORTER_EXPORTER_OPTS='-config.file=/etc/prometheus/exporter_exporter.yml -config.dirs=/etc/prometheus/exporter_exporter.d'
+EXPORTER_EXPORTER_OPTS='-config.file=/etc/prometheus/exporter_exporter.yml'
 
 # You can use exporter_exporter with TLS to encrypt the traffic, and at the same
 # time enforce strong mutual authentication between the nodes and the prometheus
@@ -7,4 +7,4 @@ EXPORTER_EXPORTER_OPTS='-config.file=/etc/prometheus/exporter_exporter.yml -conf
 # -web.tls.cert=/etc/prometheus/ssl/prom_node_cert.pem \
 # -web.tls.key=/etc/prometheus/ssl/prom_node_key.pem \
 # -web.tls.ca=/etc/prometheus/ssl/prometheus_cert.pem \
-# -web.tls.verify' 
+# -web.tls.verify'
