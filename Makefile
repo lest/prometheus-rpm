@@ -10,7 +10,6 @@ sachet \
 ping_exporter \
 postgres_exporter \
 process_exporter \
-exporter_exporter \
 couchbase_exporter \
 junos_exporter \
 ssl_exporter \
@@ -39,7 +38,8 @@ consul_exporter \
 smokeping_prober \
 iperf3_exporter \
 apache_exporter \
-influxdb_exporter
+influxdb_exporter \
+exporter_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
