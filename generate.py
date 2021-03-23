@@ -7,6 +7,7 @@ This script generates spec, unit and init files for CentOS build_files.
 import argparse
 import logging
 import os
+from pprint import pprint
 
 import jinja2
 import yaml
@@ -89,7 +90,7 @@ if __name__ == "__main__":
         # as they are compiled before.
         for context_name in ["tarball", "sources"]:
             to_template = exporter_config["context"]["dynamic"][context_name]
-            print(context_name)
+            print("context name: %s" % context_name)
             if type(to_template) is str:
                 context[context_name] = renderTemplateFromString(
                     templates_dir=templates_dir,
@@ -112,7 +113,7 @@ if __name__ == "__main__":
                     "Invalid type {} for key {}".format(type(to_template), context_name)
                 )
 
-        print(context)
+        pprint(context)
 
         for build_step, template in exporter_config["build_steps"].items():
             output = "{name}/autogen_{name}.{build_step}".format(
