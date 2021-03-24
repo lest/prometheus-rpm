@@ -7,7 +7,6 @@ rabbitmq_exporter \
 ping_exporter \
 couchbase_exporter \
 mtail \
-jiralert
 
 AUTO_GENERATED = node_exporter \
 blackbox_exporter \
@@ -39,7 +38,8 @@ junos_exporter \
 openstack_exporter \
 process_exporter \
 ssl_exporter \
-sachet
+sachet \
+jiralert
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
