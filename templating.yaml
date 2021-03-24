@@ -518,6 +518,7 @@ packages:
         URL: https://github.com/ribbybibby/ssl_exporter
         package: '%{name}_%{version}_linux_amd64'
         fix_name: process-exporter
+        tarball_has_subdirectory: false
         additional_sources:
           - path: 'https://raw.githubusercontent.com/ribbybibby/ssl_exporter/v%{version}/examples/ssl_exporter.yaml'
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
