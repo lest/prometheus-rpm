@@ -587,7 +587,7 @@ packages:
         version: 1.0
         release: 2
         license: ASL 2.0
-        URL: https://github.com/prometheus-community/jiraalert
+        URL: https://github.com/prometheus-community/jiralert
         service_opts:
           - --config=/etc/prometheus/jiralert.yml
         additional_sources:
