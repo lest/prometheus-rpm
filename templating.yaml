@@ -461,3 +461,26 @@ packages:
       dynamic:
         <<: *default_dynamic_context
         tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
+  openstack_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 1.3.0
+        release: 2
+        license: MIT
+        URL: https://github.com/openstack-exporter/openstack-exporter
+        package: 'openstack-exporter-%{version}.linux-amd64'
+        fix_name: openstack-exporter
+        additional_sources:
+          - path: '%name_clouds.yaml'
+            dest: '%{_sysconfdir}/prometheus/%{name}_clouds.yaml'
+            group: prometheus
+            mode: 640
+        service_opts:
+          - --os-client-config=/etc/prometheus/openstack_exporter_clouds.yaml
+        summary: Prometheus exporter for OpenStack metrics.
+        description: |
+          OpenStack exporter for Prometheus written in Golang using the gophercloud library.
