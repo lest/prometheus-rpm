@@ -397,3 +397,23 @@ packages:
           binary alternative to nginx/apache for use in environments where opening
           multiple TCP ports to all servers might be difficult (technically or
           politically).
+  junos_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 0.9.8
+        release: 2
+        license: MIT
+        URL: https://github.com/czezwonk/junos_exporter
+        package: '%{name}_%{version}_linux_amd64'
+        additional_sources:
+          - path: junos_exporter.yaml
+            dest: '%{_sysconfdir}/prometheus/exporter_exporter.yaml'
+            group: prometheus
+            mode: 640
+        summary: Prometheus exporter for Junos device metrics.
+        description: |
+          Prometheus exporter for Junos device metrics.
