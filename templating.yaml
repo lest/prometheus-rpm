@@ -409,6 +409,7 @@ packages:
         license: MIT
         URL: https://github.com/czerwonk/junos_exporter
         package: '%{name}_%{version}_linux_amd64'
+        tarball_has_subdirectory: false
         additional_sources:
           - path: junos_exporter.yaml
             dest: '%{_sysconfdir}/prometheus/exporter_exporter.yaml'
