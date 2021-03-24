@@ -603,3 +603,6 @@ packages:
         description: |
           JIRAlert implements Alertmanager's webhook HTTP API and connects to one or more
           JIRA instances to create highly configurable JIRA issues.
+      dynamic:
+        <<: *default_dynamic_context
+        tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
