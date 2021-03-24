@@ -407,7 +407,7 @@ packages:
         version: 0.9.8
         release: 2
         license: MIT
-        URL: https://github.com/czezwonk/junos_exporter
+        URL: https://github.com/czerwonk/junos_exporter
         package: '%{name}_%{version}_linux_amd64'
         additional_sources:
           - path: junos_exporter.yaml
