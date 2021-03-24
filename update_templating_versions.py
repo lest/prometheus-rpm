@@ -45,7 +45,7 @@ def getLatestGHReleaseVersion(github_token, exporter_name, url):
         "Latest %s release tag: %s" % (exporter_name, github_latest_release_tag)
     )
     github_latest_release_version = re.search(
-        r"\d+\.\d+\.\d+", github_latest_release_tag
+        r"\d+\.\d+(\.\d+)?", github_latest_release_tag
     )
     if not github_latest_release_version.group():
         logging.error(
