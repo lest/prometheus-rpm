@@ -125,9 +125,9 @@ packages:
         service_opts:
           - --extend.query-path=/etc/prometheus/postgres_exporter_queries.yaml
         environment:
-          DATA_SOURCE_NAME: 'user=postgres host=/var/run/postgresql/ sslmode=disable'
+          DATA_SOURCE_NAME: user=postgres host=/var/run/postgresql/ sslmode=disable
         additional_sources:
-          - path: 'https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/queries.yaml'
+          - path: https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/queries.yaml
             dest: '%{_sysconfdir}/prometheus/%{name}_queries.yaml'
             from_tarball: false
         summary: Prometheus exporter for PostgreSQL server metrics
@@ -171,9 +171,8 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.2.0
+        version: 1.3.0
         license: ASL 2.0
-        release: 2
         URL: https://github.com/danielqsj/kafka_exporter
         summary: Kafka exporter for Prometheus.
         description: Kafka exporter for Prometheus.
@@ -448,7 +447,7 @@ packages:
         license: ASL 2.0
         URL: https://github.com/QubitProducts/exporter_exporter
         additional_sources:
-          - path: 'https://raw.githubusercontent.com/QubitProducts/%{name}/v%{version}/expexp.yaml'
+          - path: https://raw.githubusercontent.com/QubitProducts/%{name}/v%{version}/expexp.yaml
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
         service_opts:
           - --config.file=/etc/prometheus/exporter_exporter.yml
@@ -495,7 +494,7 @@ packages:
         release: 2
         license: MIT
         URL: https://github.com/openstack-exporter/openstack-exporter
-        package: 'openstack-exporter-%{version}.linux-amd64'
+        package: openstack-exporter-%{version}.linux-amd64
         fix_name: openstack-exporter
         additional_sources:
           - path: '%{name}_clouds.yaml'
@@ -518,10 +517,10 @@ packages:
         release: 2
         license: MIT
         URL: https://github.com/ncabatoff/process-exporter
-        package: 'process-exporter-%{version}.linux-amd64'
+        package: process-exporter-%{version}.linux-amd64
         fix_name: process-exporter
         additional_sources:
-          - path: 'https://raw.githubusercontent.com/ncabatoff/process-exporter/v%{version}/packaging/conf/all.yaml'
+          - path: https://raw.githubusercontent.com/ncabatoff/process-exporter/v%{version}/packaging/conf/all.yaml
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
         service_opts:
           - --config.path=/etc/prometheus/process_exporter.yml
@@ -542,7 +541,7 @@ packages:
         package: '%{name}_%{version}_linux_amd64'
         tarball_has_subdirectory: false
         additional_sources:
-          - path: 'https://raw.githubusercontent.com/ribbybibby/%{name}/v%{version}/examples/%{name}.yaml'
+          - path: https://raw.githubusercontent.com/ribbybibby/%{name}/v%{version}/examples/%{name}.yaml
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
         service_opts:
           - --config.file=/etc/prometheus/ssl_exporter.yml
@@ -564,7 +563,7 @@ packages:
         license: BSD
         URL: https://github.com/messagebird/sachet
         additional_sources:
-          - path: 'https://raw.githubusercontent.com/messagebird/%{name}/%{version}/examples/config.yaml'
+          - path: https://raw.githubusercontent.com/messagebird/%{name}/%{version}/examples/config.yaml
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
             mode: 640
             group: '%{group}'
