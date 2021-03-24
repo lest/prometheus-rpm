@@ -543,6 +543,8 @@ packages:
         additional_sources:
           - path: 'https://raw.githubusercontent.com/messagebird/%{name}/%{version}/examples/config.yaml'
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
+            mode: 640
+            group: prometheus
         service_opts:
           - --config=/etc/prometheus/sachet.yml
         summary: SMS alerts for Prometheus Alertmanager.
