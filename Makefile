@@ -8,7 +8,6 @@ rabbitmq_exporter \
 sachet \
 ping_exporter \
 couchbase_exporter \
-ssl_exporter \
 mtail \
 jiralert
 
@@ -39,7 +38,8 @@ influxdb_exporter \
 exporter_exporter \
 junos_exporter \
 openstack_exporter \
-process_exporter
+process_exporter \
+ssl_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
