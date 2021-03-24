@@ -1,1 +1,0 @@
-JIRALERT_OPTS=-config /etc/prometheus/jiralert/jiralert.yml
