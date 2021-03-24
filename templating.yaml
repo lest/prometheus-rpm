@@ -417,3 +417,6 @@ packages:
         summary: Prometheus exporter for Junos device metrics.
         description: |
           Prometheus exporter for Junos device metrics.
+      dynamic:
+        <<: *default_dynamic_context
+        tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
