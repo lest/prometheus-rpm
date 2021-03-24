@@ -529,3 +529,28 @@ packages:
           probes, local files or Kubernetes secrets. The metrics are labelled with fields
           from the certificate, which allows for informational dashboards and flexible
           alert routing.
+  sachet:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 0.2.3
+        release: 3
+        license: BSD
+        URL: https://github.com/messagebird/%{name}
+        additional_sources:
+          - path: 'https://raw.githubusercontent.com/messagebird/%{name}/%{version}/examples/config.yaml'
+            dest: '%{_sysconfdir}/prometheus/%{name}.yml'
+            mode: 640
+            group: prometheus
+        service_opts:
+          - --config=/etc/prometheus/sachet.yml
+        summary: SMS alerts for Prometheus Alertmanager.
+        description: |
+          Sachet is Hindi for conscious. Sachet is an SMS alerting tool for the
+          Prometheus Alertmanager.
+      dynamic:
+        <<: *default_dynamic_context
+        tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
