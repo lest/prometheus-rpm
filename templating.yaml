@@ -484,3 +484,24 @@ packages:
         summary: Prometheus exporter for OpenStack metrics.
         description: |
           OpenStack exporter for Prometheus written in Golang using the gophercloud library.
+  process_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 0.7.5
+        release: 2
+        license: MIT
+        URL: https://github.com/ncabatoff/process-exporter
+        package: 'process-exporter-%{version}.linux-amd64'
+        fix_name: process-exporter
+        additional_sources:
+          - path: 'https://raw.githubusercontent.com/ncabatoff/process-exporter/v%{version}/packaging/conf/all.yaml'
+            dest: '%{_sysconfdir}/prometheus/%{name}.yml'
+        service_opts:
+          - --config.path=/etc/prometheus/process_exporter.yml
+        summary: Process exporter for Prometheus.
+        description: |
+          Prometheus exporter that mines /proc to report on selected processes.

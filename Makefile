@@ -7,7 +7,6 @@ snmp_exporter \
 rabbitmq_exporter \
 sachet \
 ping_exporter \
-process_exporter \
 couchbase_exporter \
 ssl_exporter \
 mtail \
@@ -39,7 +38,8 @@ apache_exporter \
 influxdb_exporter \
 exporter_exporter \
 junos_exporter \
-openstack_exporter
+openstack_exporter \
+process_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
