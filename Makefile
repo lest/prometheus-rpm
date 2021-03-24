@@ -11,7 +11,6 @@ process_exporter \
 couchbase_exporter \
 ssl_exporter \
 mtail \
-openstack_exporter \
 jiralert
 
 AUTO_GENERATED = node_exporter \
@@ -39,7 +38,8 @@ iperf3_exporter \
 apache_exporter \
 influxdb_exporter \
 exporter_exporter \
-junos_exporter
+junos_exporter \
+openstack_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 

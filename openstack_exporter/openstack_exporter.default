@@ -1,1 +1,0 @@
-OPENSTACK_EXPORTER_OPTS="--os-client-config=/etc/prometheus/openstack_exporter_clouds.yaml"
