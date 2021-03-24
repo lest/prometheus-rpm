@@ -66,7 +66,7 @@ packages:
             dest: '%{_sysconfdir}/prometheus/blackbox.yml'
             from_tarball: true
             mode: 640
-            group: prometheus
+            group: '%{group}'
         summary: Blackbox prober exporter
         description: |
           The blackbox exporter allows blackbox probing of endpoints over HTTP, HTTPS,
@@ -474,7 +474,7 @@ packages:
         additional_sources:
           - path: '%{name}.yaml'
             dest: '%{_sysconfdir}/prometheus/%{name}.yaml'
-            group: prometheus
+            group: '%{group}'
             mode: 640
         service_opts:
           - --config.file=/etc/prometheus/junos_exporter.yaml
@@ -500,7 +500,7 @@ packages:
         additional_sources:
           - path: '%{name}_clouds.yaml'
             dest: '%{_sysconfdir}/prometheus/%{name}_clouds.yaml'
-            group: prometheus
+            group: '%{group}'
             mode: 640
         service_opts:
           - --os-client-config=/etc/prometheus/openstack_exporter_clouds.yaml
@@ -567,7 +567,7 @@ packages:
           - path: 'https://raw.githubusercontent.com/messagebird/%{name}/%{version}/examples/config.yaml'
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
             mode: 640
-            group: prometheus
+            group: '%{group}'
         service_opts:
           - --config=/etc/prometheus/sachet.yml
         summary: SMS alerts for Prometheus Alertmanager.
