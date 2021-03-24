@@ -505,3 +505,27 @@ packages:
         summary: Process exporter for Prometheus.
         description: |
           Prometheus exporter that mines /proc to report on selected processes.
+  ssl_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 2.2.0
+        release: 2
+        license: ASL 2.0
+        URL: https://github.com/ribbybibby/ssl_exporter
+        package: '%{name}_%{version}_linux_amd64'
+        fix_name: process-exporter
+        additional_sources:
+          - path: 'https://raw.githubusercontent.com/ribbybibby/ssl_exporter/v%{version}/examples/ssl_exporter.yaml'
+            dest: '%{_sysconfdir}/prometheus/%{name}.yml'
+        service_opts:
+          - --config.file=/etc/prometheus/ssl_exporter.yml
+        summary: Prometheus exporter for SSL certificates.
+        description: |
+          Prometehus exporter that exports metrics for certificates collected from TCP
+          probes, local files or Kubernetes secrets. The metrics are labelled with fields
+          from the certificate, which allows for informational dashboards and flexible
+          alert routing.
