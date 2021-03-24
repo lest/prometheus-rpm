@@ -1,1 +1,0 @@
-BLACKBOX_EXPORTER_OPTS="--config.file /etc/prometheus/blackbox.yml"

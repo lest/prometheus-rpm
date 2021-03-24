@@ -1,1 +1,0 @@
-JUNOS_EXPORTER_OPTS="-config.file=/etc/prometheus/junos_exporter.yaml"

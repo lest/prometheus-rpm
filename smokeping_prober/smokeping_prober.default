@@ -1,2 +1,0 @@
-# smokeping_prober requires a list of hosts to ping
-SMOKEPING_PROBER_OPTS="localhost"
