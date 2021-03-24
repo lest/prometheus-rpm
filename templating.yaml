@@ -446,10 +446,10 @@ packages:
         version: 0.4.2
         release: 2
         license: ASL 2.0
-        URL: https://github.com/QubitProducts/exporter_exporter
+        URL: https://github.com/QubitProducts/%{name}
         additional_sources:
-          - path: exporter_exporter.yml
-            dest: '%{_sysconfdir}/prometheus/exporter_exporter.yml'
+          - path: 'https://raw.githubusercontent.com/QubitProducts/%{name}/v%{version}/expexp.yaml'
+            dest: '%{_sysconfdir}/prometheus/%{name}.yml'
         service_opts:
           - --config.file=/etc/prometheus/exporter_exporter.yml
         summary: Simple reverse proxy for Prometheus exporters
