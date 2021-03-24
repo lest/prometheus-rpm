@@ -79,9 +79,9 @@ packages:
       static:
         <<: *default_static_context
         version: 0.20.0
-        release: 2
+        release: 3
         license: ASL 2.0
-        URL: https://github.com/prometheus/%{name}
+        URL: https://github.com/prometheus/snmp_exporter
         service_opts:
           - --config.file=/etc/prometheus/snmp.yml
         additional_sources:
@@ -127,8 +127,8 @@ packages:
         environment:
           DATA_SOURCE_NAME: 'user=postgres host=/var/run/postgresql/ sslmode=disable'
         additional_sources:
-          - path: 'https://raw.githubusercontent.com/prometheus-community/postgres_exporter/v%{version}/queries.yaml'
-            dest: '%{_sysconfdir}/prometheus/postgres_exporter_queries.yaml'
+          - path: 'https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/queries.yaml'
+            dest: '%{_sysconfdir}/prometheus/%{name}_queries.yaml'
             from_tarball: false
         summary: Prometheus exporter for PostgreSQL server metrics
         description: |
@@ -444,9 +444,9 @@ packages:
       static:
         <<: *default_static_context
         version: 0.4.2
-        release: 2
+        release: 3
         license: ASL 2.0
-        URL: https://github.com/QubitProducts/%{name}
+        URL: https://github.com/QubitProducts/exporter_exporter
         additional_sources:
           - path: 'https://raw.githubusercontent.com/QubitProducts/%{name}/v%{version}/expexp.yaml'
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
@@ -466,18 +466,18 @@ packages:
       static:
         <<: *default_static_context
         version: 0.9.8
-        release: 2
+        release: 3
         license: MIT
         URL: https://github.com/czerwonk/junos_exporter
         package: '%{name}_%{version}_linux_amd64'
         tarball_has_subdirectory: false
         additional_sources:
-          - path: junos_exporter.yaml
-            dest: '%{_sysconfdir}/prometheus/exporter_exporter.yaml'
+          - path: '%{name}.yaml'
+            dest: '%{_sysconfdir}/prometheus/%{name}.yaml'
             group: prometheus
             mode: 640
         service_opts:
-          - --config.file=/etc/prometheus/exporter_exporter.yml
+          - --config.file=/etc/prometheus/junos_exporter.yaml
         summary: Prometheus exporter for Junos device metrics.
         description: |
           Prometheus exporter for Junos device metrics.
@@ -542,7 +542,7 @@ packages:
         package: '%{name}_%{version}_linux_amd64'
         tarball_has_subdirectory: false
         additional_sources:
-          - path: 'https://raw.githubusercontent.com/ribbybibby/ssl_exporter/v%{version}/examples/ssl_exporter.yaml'
+          - path: 'https://raw.githubusercontent.com/ribbybibby/%{name}/v%{version}/examples/%{name}.yaml'
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
         service_opts:
           - --config.file=/etc/prometheus/ssl_exporter.yml
@@ -560,9 +560,9 @@ packages:
       static:
         <<: *default_static_context
         version: 0.2.3
-        release: 3
+        release: 4
         license: BSD
-        URL: https://github.com/messagebird/%{name}
+        URL: https://github.com/messagebird/sachet
         additional_sources:
           - path: 'https://raw.githubusercontent.com/messagebird/%{name}/%{version}/examples/config.yaml'
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
