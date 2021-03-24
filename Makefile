@@ -3,7 +3,6 @@ alertmanager \
 thanos \
 elasticsearch_exporter \
 jmx_exporter \
-snmp_exporter \
 rabbitmq_exporter \
 ping_exporter \
 couchbase_exporter \
@@ -12,6 +11,7 @@ jiralert
 
 AUTO_GENERATED = node_exporter \
 blackbox_exporter \
+snmp_exporter \
 pushgateway \
 mysqld_exporter \
 postgres_exporter \
