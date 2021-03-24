@@ -213,7 +213,7 @@ if __name__ == "__main__":
         context = exporter_config["context"]["static"]
 
         exporter_url = context["URL"]
-        exporter_current_version = context["version"]
+        exporter_current_version = str(context["version"])
 
         logging.info(
             "Checking updates for %s" % (exporter_name.upper().replace("_", " "))
