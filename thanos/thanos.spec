@@ -1,4 +1,4 @@
-%define debug_package %{nil}
+%global debug_package %{nil}
 
 Name:	 thanos
 Version: 0.18.0

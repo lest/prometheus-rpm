@@ -1,4 +1,4 @@
-%define debug_package %{nil}
+%global debug_package %{nil}
 
 Name:    rabbitmq_exporter
 Version: 0.28.0
