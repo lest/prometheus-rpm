@@ -102,7 +102,7 @@ def updateGHTemplate(
     # format YAML file:
     formatted_template = io.BytesIO()
     yaml.explicit_start = True
-    yaml.indent(offset=2)
+    yaml.indent(sequence=4, offset=2)
     yaml.dump(template, formatted_template)
 
     # get existing file checksum:
