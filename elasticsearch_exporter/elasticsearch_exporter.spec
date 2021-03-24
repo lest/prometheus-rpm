@@ -1,4 +1,4 @@
-%define debug_package %{nil}
+%global debug_package %{nil}
 
 Name:    elasticsearch_exporter
 Version: 1.1.0

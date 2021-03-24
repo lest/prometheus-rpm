@@ -1,6 +1,6 @@
-%define debug_package %{nil}
-%define user prometheus
-%define group prometheus
+%global debug_package %{nil}
+%global user prometheus
+%global group prometheus
 
 Name:    couchbase_exporter
 Version: 0.9.6

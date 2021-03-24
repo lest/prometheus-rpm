@@ -1,6 +1,6 @@
-%define debug_package %{nil}
-%define pkg_version 3.0.0-rc44
-%define version 3.0.0rc44
+%global debug_package %{nil}
+%global pkg_version 3.0.0-rc44
+%global version 3.0.0rc44
 
 Name:    mtail
 Version: %{version}
