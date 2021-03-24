@@ -551,3 +551,6 @@ packages:
         description: |
           Sachet is Hindi for conscious. Sachet is an SMS alerting tool for the
           Prometheus Alertmanager.
+      dynamic:
+        <<: *default_dynamic_context
+        tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
