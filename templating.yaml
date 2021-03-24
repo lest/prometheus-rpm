@@ -475,7 +475,7 @@ packages:
         package: 'openstack-exporter-%{version}.linux-amd64'
         fix_name: openstack-exporter
         additional_sources:
-          - path: '%name_clouds.yaml'
+          - path: '%{name}_clouds.yaml'
             dest: '%{_sysconfdir}/prometheus/%{name}_clouds.yaml'
             group: prometheus
             mode: 640
