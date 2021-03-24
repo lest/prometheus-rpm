@@ -182,4 +182,4 @@ clean:
 	rm -rf _cache_dnf _cache_yum _dist*
 	rm -f **/*.tar.gz
 	rm -f **/*.jar
-	rm -f **/autogen_*{init,unit,spec}
+	rm -f **/autogen_*{default,init,unit,spec}

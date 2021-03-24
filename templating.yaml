@@ -2,6 +2,7 @@
 # Use YAML anchors so we can prevent repeating ourselves
 anchors:
   default_build_steps: &default_build_steps
+    default: '{% extends "default.tpl" %}'
     spec: '{% extends "spec.tpl" %}'
     unit: '{% extends "unit.tpl" %}'
     init: '{% extends "init.tpl" %}'
@@ -12,6 +13,8 @@ anchors:
       package: '%{name}-%{version}.linux-amd64'
       tarball_has_subdirectory: true
       release: 1
+      service_opts: []
+      environment: {}
       #additional_sources:
       #  - path: example.yml
       #    from_tarball: false # take file from tarball or repository
@@ -25,7 +28,7 @@ anchors:
       sources:
         - '{{tarball}}'
         - autogen_%{name}.unit
-        - '%{name}.default'
+        - autogen_%{name}.default
         - autogen_%{name}.init
 
 # Per-package configuration
@@ -56,6 +59,8 @@ packages:
         release: 3
         license: ASL 2.0
         URL: https://github.com/prometheus/blackbox_exporter
+        service_opts:
+          - --config.file=/etc/prometheus/blackbox.yml
         additional_sources:
           - path: blackbox.yml
             dest: '%{_sysconfdir}/prometheus/blackbox.yml'
@@ -94,6 +99,10 @@ packages:
         URL: https://github.com/prometheus-community/postgres_exporter
         user: postgres
         group: postgres
+        service_opts:
+          - --extend.query-path=/etc/prometheus/postgres_exporter_queries.yaml
+        environment:
+          DATA_SOURCE_NAME: 'user=postgres host=/var/run/postgresql/ sslmode=disable'
         additional_sources:
           - path: 'https://raw.githubusercontent.com/prometheus-community/postgres_exporter/v%{version}/queries.yaml'
             dest: '%{_sysconfdir}/prometheus/postgres_exporter_queries.yaml'
@@ -101,7 +110,6 @@ packages:
         summary: Prometheus exporter for PostgreSQL server metrics
         description: |
           Prometheus exporter for PostgreSQL server metrics.
-
   redis_exporter:
     build_steps:
       <<: *default_build_steps
@@ -127,6 +135,8 @@ packages:
         version: 0.12.0
         license: ASL 2.0
         URL: https://github.com/prometheus/haproxy_exporter
+        service_opts:
+          - --haproxy.scrape-uri=unix:/var/lib/haproxy/stats
         summary: This is a simple server that scrapes HAProxy stats and exports them
           via HTTP for Prometheus consumption.
         description: This is a simple server that scrapes HAProxy stats and exports
@@ -157,6 +167,9 @@ packages:
         URL: https://github.com/nginxinc/nginx-prometheus-exporter
         tarball_has_subdirectory: false
         fix_name: nginx-prometheus-exporter
+        service_opts:
+          - --nginx.plus
+          - --nginx.scrape-uri=http://127.0.0.1:8080/api
         summary: NGINX Prometheus Exporter for NGINX and NGINX Plus.
         description: NGINX Prometheus Exporter for NGINX and NGINX Plus.
   bind_exporter:
@@ -354,6 +367,8 @@ packages:
         license: ASL 2.0
         release: 2
         URL: https://github.com/SuperQ/smokeping_prober
+        service_opts:
+          - localhost
         summary: Smokeping-style prober for Prometheus.
         description: |
           The smokeping-style prober sends a series of ICMP (or UDP) pings to a target and records the responses in Prometheus histogram metrics.
@@ -412,6 +427,8 @@ packages:
         additional_sources:
           - path: exporter_exporter.yml
             dest: '%{_sysconfdir}/prometheus/exporter_exporter.yml'
+        service_opts:
+          - --config.file=/etc/prometheus/exporter_exporter.yml
         summary: Simple reverse proxy for Prometheus exporters
         description: |
           A simple reverse proxy for prometheus exporters. It is intended as a single
@@ -436,6 +453,8 @@ packages:
             dest: '%{_sysconfdir}/prometheus/exporter_exporter.yaml'
             group: prometheus
             mode: 640
+        service_opts:
+          - --config.file=/etc/prometheus/exporter_exporter.yml
         summary: Prometheus exporter for Junos device metrics.
         description: |
           Prometheus exporter for Junos device metrics.

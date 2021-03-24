@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 
 """
-This script generates spec, unit and init files for CentOS build_files.
+This script generates default, spec, unit and init files for CentOS build_files.
 """
 
 import argparse
 import logging
 import os
 from pprint import pprint
+import sys
 
 import jinja2
 import yaml
@@ -78,6 +79,12 @@ if __name__ == "__main__":
 
     for exporter_name, exporter_config in work.items():
         logging.info("Building exporter {}".format(exporter_name))
+
+        try:
+            os.makedirs(exporter_name, exist_ok=True)
+        except OSError:
+            logging.error("Failed to create directory %s" % exporter_name)
+            sys.exit(1)
 
         # First we need to work out the context for this build
         context = exporter_config["context"]["static"]
