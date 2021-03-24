@@ -15,7 +15,7 @@ anchors:
       #additional_sources:
       #  - path: example.yml
       #    from_tarball: false # take file from tarball or repository
-      #    dest: "%{_sysconfdir}/prometheus/example.yml"
+      #    dest: '%{_sysconfdir}/prometheus/example.yml'
       #    mode: 644           # optional
       #    user: root          # optional
       #    group: root         # optional
@@ -58,7 +58,7 @@ packages:
         URL: https://github.com/prometheus/blackbox_exporter
         additional_sources:
           - path: blackbox.yml
-            dest: "%{_sysconfdir}/prometheus/blackbox.yml"
+            dest: '%{_sysconfdir}/prometheus/blackbox.yml'
             from_tarball: true
             mode: 640
             group: prometheus
@@ -81,6 +81,27 @@ packages:
         description: |
           Prometheus exporter for MySQL server metrics. Supported MySQL versions: 5.5 and up.
           NOTE: Not all collection methods are supported on MySQL < 5.6
+  postgres_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 0.9.0
+        release: 2
+        license: ASL 2.0
+        URL: https://github.com/prometheus-community/postgres_exporter
+        user: postgres
+        group: postgres
+        additional_sources:
+          - path: 'https://raw.githubusercontent.com/prometheus-community/postgres_exporter/v%{version}/queries.yaml'
+            dest: '%{_sysconfdir}/prometheus/postgres_exporter_queries.yaml'
+            from_tarball: false
+        summary: Blackbox prober exporter
+        description: |
+          The blackbox exporter allows blackbox probing of endpoints over HTTP, HTTPS,
+          DNS, TCP and ICMP.
   redis_exporter:
     build_steps:
       <<: *default_build_steps
@@ -390,7 +411,7 @@ packages:
         URL: https://github.com/QubitProducts/exporter_exporter
         additional_sources:
           - path: exporter_exporter.yml
-            dest: "%{_sysconfdir}/prometheus/exporter_exporter.yml"
+            dest: '%{_sysconfdir}/prometheus/exporter_exporter.yml'
         summary: Simple reverse proxy for Prometheus exporters
         description: |
           A simple reverse proxy for prometheus exporters. It is intended as a single

@@ -7,7 +7,6 @@ snmp_exporter \
 rabbitmq_exporter \
 sachet \
 ping_exporter \
-postgres_exporter \
 process_exporter \
 couchbase_exporter \
 ssl_exporter \
@@ -19,6 +18,7 @@ AUTO_GENERATED = node_exporter \
 blackbox_exporter \
 pushgateway \
 mysqld_exporter \
+postgres_exporter \
 redis_exporter \
 haproxy_exporter \
 kafka_exporter \
