@@ -78,7 +78,7 @@ if __name__ == "__main__":
             work[t] = config["packages"][t]
 
     for exporter_name, exporter_config in work.items():
-        logging.info("Building exporter {}".format(exporter_name))
+        logging.info("Building {}".format(exporter_name.upper()))
 
         try:
             os.makedirs(exporter_name, exist_ok=True)
