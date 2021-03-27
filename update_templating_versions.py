@@ -24,6 +24,11 @@ try:
 except ImportError:
     sys.exit("yuamel.yaml python module is required for this script.")
 
+try:
+    from packaging import version
+except ImportError:
+    sys.exit("packaging python module is required for this script.")
+
 
 def getLatestGHReleaseVersion(github_token, exporter_name, url):
     """
@@ -80,7 +85,7 @@ def getGHBranches(github_token):
 
 
 def updateGHTemplate(
-    github_token, filename, branch, message, template, release_notes, url
+    github_token, filename, branch, message, template, release_notes, url, pr_labels
 ):
     """
     Creates PR with updated version
@@ -118,6 +123,11 @@ def updateGHTemplate(
     logging.debug("Creating new pull request")
     pr = repo.create_pull(title=message, body=pr_body, head=branch, base="master")
     logging.info("Pull request #%u created" % pr.number)
+
+    # add PR labels:
+    if len(pr_labels) > 0:
+        logging.debug("Adding PR labels: %s" % ", ".join(pr_labels))
+        pr.set_labels(*pr_labels)
 
 
 if __name__ == "__main__":
@@ -230,7 +240,27 @@ if __name__ == "__main__":
         )
 
         # check if we are already on latest version:
-        if exporter_current_version != exporter_latest_version:
+        if version.parse(exporter_latest_version) > version.parse(
+            exporter_current_version
+        ):
+            # add labels depending on version change:
+            pr_labels = ["enhancement"]
+            if (
+                version.parse(exporter_latest_version).major
+                > version.parse(exporter_current_version).major
+            ):
+                pr_labels.append("major update")
+            elif (
+                version.parse(exporter_latest_version).minor
+                > version.parse(exporter_current_version).minor
+            ):
+                pr_labels.append("minor update")
+            elif (
+                version.parse(exporter_latest_version).micro
+                > version.parse(exporter_current_version).micro
+            ):
+                pr_labels.append("patch update")
+
             github_branch = "%s_%s" % (
                 exporter_name,
                 exporter_latest_version.replace(".", "_"),
@@ -267,6 +297,7 @@ if __name__ == "__main__":
                         config,
                         exporter_release_notes,
                         exporter_url,
+                        pr_labels,
                     )
 
                 # exit so that there is exactly one update present in PR:
