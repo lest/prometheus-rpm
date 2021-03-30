@@ -55,11 +55,16 @@ Requires(preun): initscripts
 {%- if fix_name is defined %}
 mv -v {{fix_name}} %{name}
 {%- endif %}
+{%- for prep_cmd in prep_cmds %}
+{{ prep_cmd }}
+{%- endfor %}
 {% endblock prep %}
 
 %build
 {%- block build %}
-/bin/true
+{%- for build_cmd in build_cmds %}
+{{ build_cmd }}
+{%- endfor %}
 {% endblock build %}
 
 %install
@@ -85,6 +90,9 @@ install -D -m 755 %{SOURCE3} %{buildroot}%{_initrddir}/%{name}
 install -D -m {{ additional_source.mode|d('644') }} {{ additional_source.path if additional_source.from_tarball|d(false) else '%{SOURCE' ~ (loop.index - 1 + sources | length) ~ '}' }} %{buildroot}{{ additional_source.dest }}
 {%- endfor %}
 {%- endif %}
+{%- for install_cmd in install_cmds %}
+{{ install_cmd }}
+{%- endfor %}
 {% endblock install %}
 
 %pre
@@ -104,6 +112,9 @@ getent passwd {{ user }} >/dev/null || \
 {%-   endif %}
 {%- endif %}
 exit 0
+{%- for pre_cmd in pre_cmds %}
+{{ pre_cmd }}
+{%- endfor %}
 {% endblock pre %}
 
 %post
@@ -113,6 +124,9 @@ chkconfig --add %{name}
 %else
 %systemd_post %{name}.service
 %endif
+{%- for post_cmd in post_cmds %}
+{{ post_cmd }}
+{%- endfor %}
 {% endblock post %}
 
 %preun
@@ -125,6 +139,9 @@ fi
 %else
 %systemd_preun %{name}.service
 %endif
+{%- for preun_cmd in preun_cmds %}
+{{ preun_cmd }}
+{%- endfor %}
 {% endblock preun %}
 
 %postun
@@ -136,6 +153,9 @@ fi
 %else
 %systemd_postun %{name}.service
 %endif
+{%- for postun_cmd in postun_cmds %}
+{{ postun_cmd }}
+{%- endfor %}
 {% endblock postun %}
 
 %files
