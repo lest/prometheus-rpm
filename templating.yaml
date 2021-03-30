@@ -23,6 +23,14 @@ anchors:
       #    user: root          # optional
       #    group: root         # optional
       #    config: true        # specify not to override config files
+      prep_cmds: []
+      build_cmds:
+        - /bin/true
+      install_cmds: []
+      pre_cmds: []
+      post_cmds: []
+      preun_cmds: []
+      postun_cmds: []
     dynamic: &default_dynamic_context
       tarball: '{{URL}}/releases/download/v%{version}/{{package}}.tar.gz'
       sources:
