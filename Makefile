@@ -19,6 +19,7 @@ haproxy_exporter \
 kafka_exporter \
 nginx_exporter \
 bind_exporter \
+json_exporter \
 keepalived_exporter \
 jolokia_exporter \
 frr_exporter \
