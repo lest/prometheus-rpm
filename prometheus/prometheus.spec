@@ -6,7 +6,7 @@ Release: 1%{?dist}
 Summary: The Prometheus monitoring system and time series database.
 License: ASL 2.0
 URL:     https://prometheus.io
-Conflicts: prometheus
+Obsoletes: prometheus2
 
 Source0: https://github.com/prometheus/%{name}/releases/download/v%{version}/%{name}-%{version}.linux-amd64.tar.gz
 Source1: %{name}.service
