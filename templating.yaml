@@ -325,7 +325,6 @@ packages:
         license: ASL 2.0
         URL: https://github.com/percona/mongodb_exporter
         package: '%{name}-%{version}.linux-amd64'
-        tarball_has_subdirectory: false
         summary: A Prometheus exporter for MongoDB including sharding, replication
           and storage engines
         description: A Prometheus exporter for MongoDB including sharding, replication
