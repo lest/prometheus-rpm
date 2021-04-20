@@ -61,8 +61,8 @@ manual7: $(addprefix build7-,$(MANUAL))
 
 $(addprefix build8-,$(MANUAL)):
 	$(eval PACKAGE=$(subst build8-,,$@))
-	[ -d _dist8 ] || mkdir ${PWD}/_dist8 
-	[ -d _cache_dnf ] || mkdir ${PWD}/_cache_dnf 
+	[ -d ${PWD}/_dist8 ] || mkdir ${PWD}/_dist8 
+	[ -d ${PWD}/_cache_dnf ] || mkdir ${PWD}/_cache_dnf 
 	docker run ${DOCKER_FLAGS} \
 		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist8:/rpmbuild/RPMS/x86_64 \
@@ -71,8 +71,8 @@ $(addprefix build8-,$(MANUAL)):
 		ghcr.io/lest/centos-rpm-builder:8 \
 		build-spec SOURCES/${PACKAGE}.spec
 	# Test the install
-	[ -d _dist8 ] || mkdir ${PWD}/_dist8      
-	[ -d _cache_dnf ] || mkdir ${PWD}/_cache_dnf
+	[ -d ${PWD}/_dist8 ] || mkdir ${PWD}/_dist8      
+	[ -d ${PWD}/_cache_dnf ] || mkdir ${PWD}/_cache_dnf
 	docker run --privileged ${DOCKER_FLAGS} \
 		-v ${PWD}/_dist8:/var/tmp/ \
 		-v ${PWD}/_cache_dnf:/var/cache/dnf \
@@ -81,8 +81,8 @@ $(addprefix build8-,$(MANUAL)):
 
 $(addprefix build7-,$(MANUAL)):
 	$(eval PACKAGE=$(subst build7-,,$@))
-	[ -d _dist7 ] || mkdir ${PWD}/_dist7      
-	[ -d _cache_yum ] || mkdir ${PWD}/_cache_yum
+	[ -d ${PWD}/_dist7 ] || mkdir ${PWD}/_dist7      
+	[ -d ${PWD}/_cache_yum ] || mkdir ${PWD}/_cache_yum
 	docker run ${DOCKER_FLAGS} \
 		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
@@ -91,8 +91,8 @@ $(addprefix build7-,$(MANUAL)):
 		ghcr.io/lest/centos-rpm-builder:7 \
 		build-spec SOURCES/${PACKAGE}.spec
 	# Test the install
-	[ -d _dist7 ] || mkdir ${PWD}/_dist7      
-	[ -d _cache_yum ] || mkdir ${PWD}/_cache_yum
+	[ -d ${PWD}/_dist7 ] || mkdir ${PWD}/_dist7      
+	[ -d ${PWD}/_cache_yum ] || mkdir ${PWD}/_cache_yum
 	docker run --privileged ${DOCKER_FLAGS} \
 		-v ${PWD}/_dist7:/var/tmp/ \
 		-v ${PWD}/_cache_yum:/var/cache/yum \
@@ -107,8 +107,8 @@ $(addprefix build8-,$(AUTO_GENERATED)):
 	$(eval PACKAGE=$(subst build8-,,$@))
 
 	python3 ./generate.py --templates ${PACKAGE}
-	[ -d _dist8 ] || mkdir ${PWD}/_dist8      
-	[ -d _cache_dnf ] || mkdir ${PWD}/_cache_dnf
+	[ -d ${PWD}/_dist8 ] || mkdir ${PWD}/_dist8      
+	[ -d ${PWD}/_cache_dnf ] || mkdir ${PWD}/_cache_dnf
 	docker run ${DOCKER_FLAGS} \
 		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist8:/rpmbuild/RPMS/x86_64 \
@@ -117,8 +117,8 @@ $(addprefix build8-,$(AUTO_GENERATED)):
 		ghcr.io/lest/centos-rpm-builder:8 \
 		build-spec SOURCES/autogen_${PACKAGE}.spec
 	# Test the install
-	[ -d _dist8 ] || mkdir ${PWD}/_dist8      
-	[ -d _cache_dnf ] || mkdir ${PWD}/_cache_dnf
+	[ -d ${PWD}/_dist8 ] || mkdir ${PWD}/_dist8      
+	[ -d ${PWD}/_cache_dnf ] || mkdir ${PWD}/_cache_dnf
 	docker run --privileged ${DOCKER_FLAGS} \
 		-v ${PWD}/_dist8:/var/tmp/ \
 		-v ${PWD}/_cache_dnf:/var/cache/dnf \
@@ -139,8 +139,8 @@ $(addprefix build7-,$(AUTO_GENERATED)):
 	$(eval PACKAGE=$(subst build7-,,$@))
 
 	python3 ./generate.py --templates ${PACKAGE}
-	[ -d _dist7 ] || mkdir ${PWD}/_dist7
-	[ -d _cache_yum ] || mkdir ${PWD}/_cache_yum
+	[ -d ${PWD}/_dist7 ] || mkdir ${PWD}/_dist7
+	[ -d ${PWD}/_cache_yum ] || mkdir ${PWD}/_cache_yum
 	docker run ${DOCKER_FLAGS} \
 		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
 		-v ${PWD}/_dist7:/rpmbuild/RPMS/x86_64 \
@@ -149,8 +149,8 @@ $(addprefix build7-,$(AUTO_GENERATED)):
 		ghcr.io/lest/centos-rpm-builder:7 \
 		build-spec SOURCES/autogen_${PACKAGE}.spec
 	# Test the install
-	[ -d _dist7 ] || mkdir ${PWD}/_dist7
-	[ -d _cache_yum ] || mkdir ${PWD}/_cache_yum
+	[ -d ${PWD}/_dist7 ] || mkdir ${PWD}/_dist7
+	[ -d ${PWD}/_cache_yum ] || mkdir ${PWD}/_cache_yum
 	docker run --privileged ${DOCKER_FLAGS} \
 		-v ${PWD}/_dist7:/var/tmp/ \
 		-v ${PWD}/_cache_yum:/var/cache/yum \
