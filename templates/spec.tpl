@@ -161,7 +161,7 @@ fi
 %files
 {%- block files %}
 %defattr(-,root,root,-)
-%{_bindir}/%{name}
+{% if caps is defined %}%caps({{ caps }}) {% endif %}%{_bindir}/%{name}
 %config(noreplace) %{_sysconfdir}/default/%{name}
 {%- if user == "prometheus" and group == "prometheus" %}
 %dir %attr(755, %{user}, %{group}) %{_sharedstatedir}/prometheus
