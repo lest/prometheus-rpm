@@ -41,7 +41,8 @@ process_exporter \
 ssl_exporter \
 sachet \
 jiralert \
-ebpf_exporter
+ebpf_exporter \
+karma
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
