@@ -40,7 +40,8 @@ openstack_exporter \
 process_exporter \
 ssl_exporter \
 sachet \
-jiralert
+jiralert \
+ebpf_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
