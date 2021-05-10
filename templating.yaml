@@ -411,10 +411,12 @@ packages:
       static:
         <<: *default_static_context
         version: 0.4.2
+        release: 2
         license: ASL 2.0
         URL: https://github.com/SuperQ/smokeping_prober
         service_opts:
           - localhost
+        caps: cap_net_raw=ep
         summary: Smokeping-style prober for Prometheus.
         description: |
           The smokeping-style prober sends a series of ICMP (or UDP) pings to a target and records the responses in Prometheus histogram metrics.
