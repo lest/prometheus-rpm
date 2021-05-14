@@ -582,8 +582,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.2.3
-        release: 4
+        version: 0.2.4
         license: BSD
         URL: https://github.com/messagebird/sachet
         additional_sources:
