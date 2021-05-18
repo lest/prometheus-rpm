@@ -1,4 +1,4 @@
-MANUAL = prometheus \
+MANUAL = prometheus2 \
 alertmanager \
 thanos \
 elasticsearch_exporter \
