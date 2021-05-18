@@ -1,16 +1,16 @@
 %global debug_package %{nil}
 
 Name:		 prometheus2
-Version: 2.25.2
+Version: 2.26.0
 Release: 1%{?dist}
-Summary: The Prometheus 2.x monitoring system and time series database.
+Summary: The Prometheus monitoring system and time series database.
 License: ASL 2.0
 URL:     https://prometheus.io
-Conflicts: prometheus
+Provides: prometheus
 
 Source0: https://github.com/prometheus/prometheus/releases/download/v%{version}/prometheus-%{version}.linux-amd64.tar.gz
-Source1: prometheus.service
-Source2: prometheus.default
+Source1: %{name}.service
+Source2: %{name}.default
 
 %{?systemd_requires}
 Requires(pre): shadow-utils
