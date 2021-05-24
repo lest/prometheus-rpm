@@ -655,8 +655,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.85
-        release: 1
+        version: '0.86'
         license: ASL 2.0
         URL: https://github.com/prymitive/karma
         package: '%{name}-linux-amd64'
