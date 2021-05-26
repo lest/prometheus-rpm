@@ -31,6 +31,7 @@ anchors:
       post_cmds: []
       preun_cmds: []
       postun_cmds: []
+      #open_file_limit: 4096   # optionally specify open file limit 
     dynamic: &default_dynamic_context
       tarball: '{{URL}}/releases/download/v%{version}/{{package}}.tar.gz'
       sources:
@@ -65,6 +66,7 @@ packages:
             from_tarball: true
             mode: 640
             group: '%{group}'
+        open_file_limit: 16384
         summary: Prometheus Alertmanager.
         description: |
           The Alertmanager handles alerts sent by client applications such as the
