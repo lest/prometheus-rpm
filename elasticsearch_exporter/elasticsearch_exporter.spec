@@ -5,9 +5,9 @@ Version: 1.1.0
 Release: 2%{?dist}
 Summary: Elasticsearch stats exporter for Prometheus
 License: ASL 2.0
-URL:     https://github.com/justwatchcom/%{name}
+URL:     https://github.com/prometheus-community/%{name}
 
-Source0: https://github.com/justwatchcom/%{name}/releases/download/v%{version}/%{name}-%{version}.linux-amd64.tar.gz
+Source0: https://github.com/prometheus-community/%{name}/releases/download/v%{version}/%{name}-%{version}.linux-amd64.tar.gz
 Source1: %{name}.service
 Source2: %{name}.default
 

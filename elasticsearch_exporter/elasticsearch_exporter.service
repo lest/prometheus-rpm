@@ -2,7 +2,7 @@
 
 [Unit]
 Description=Elasticsearch stats exporter for Prometheus
-Documentation=https://github.com/justwatchcom/elasticsearch_exporter
+Documentation=https://github.com/prometheus-community/elasticsearch_exporter
 After=network.target
 
 [Service]
