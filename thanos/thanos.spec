@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:	 thanos
-Version: 0.20.2
+Version: 0.21.0
 Release: 1%{?dist}
 Summary: Highly available Prometheus setup with long term storage capabilities.
 License: ASL 2.0
