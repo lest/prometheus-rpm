@@ -1,5 +1,4 @@
 MANUAL = prometheus2 \
-alertmanager \
 thanos \
 elasticsearch_exporter \
 jmx_exporter \
@@ -8,7 +7,8 @@ ping_exporter \
 couchbase_exporter \
 mtail \
 
-AUTO_GENERATED = node_exporter \
+AUTO_GENERATED = alertmanager \
+node_exporter \
 blackbox_exporter \
 snmp_exporter \
 pushgateway \

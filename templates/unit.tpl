@@ -1,22 +1,25 @@
 # -*- mode: conf -*-
 
 [Unit]
-{% block unit %}
+{% block unit -%}
 Description={{summary}}
 Documentation={{URL}}
 After=network.target
-{% endblock unit %}
+{%- endblock unit %}
 
 [Service]
-{% block service %}
+{% block service -%}
 EnvironmentFile=-/etc/default/{{name}}
 User={{user}}
 ExecStart=/usr/bin/{{name}} ${{name|upper}}_OPTS
 Restart=on-failure
 RestartSec=5s
-{% endblock service %}
+{% if open_file_limit is defined -%}
+LimitNOFILE={{open_file_limit}}
+{% endif %}
+{%- endblock service %}
 
 [Install]
-{% block install %}
+{% block install -%}
 WantedBy=multi-user.target
 {% endblock install %}
