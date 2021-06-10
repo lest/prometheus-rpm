@@ -1,6 +1,5 @@
 MANUAL = prometheus2 \
 thanos \
-elasticsearch_exporter \
 jmx_exporter \
 rabbitmq_exporter \
 ping_exporter \
@@ -13,6 +12,7 @@ blackbox_exporter \
 snmp_exporter \
 pushgateway \
 mysqld_exporter \
+elasticsearch_exporter \
 postgres_exporter \
 redis_exporter \
 haproxy_exporter \
