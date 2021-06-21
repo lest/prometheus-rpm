@@ -108,7 +108,7 @@ packages:
             from_tarball: true
             mode: 640
             group: '%{group}'
-        open_file_limit: 16384     
+        open_file_limit: 16384
         summary: Blackbox prober exporter
         description: |
           The blackbox exporter allows blackbox probing of endpoints over HTTP, HTTPS,
