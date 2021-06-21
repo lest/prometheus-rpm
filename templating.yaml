@@ -96,6 +96,7 @@ packages:
       static:
         <<: *default_static_context
         version: 0.19.0
+        release: 1
         license: ASL 2.0
         URL: https://github.com/prometheus/blackbox_exporter
         service_opts:
@@ -107,6 +108,7 @@ packages:
             from_tarball: true
             mode: 640
             group: '%{group}'
+        open_file_limit: 16384     
         summary: Blackbox prober exporter
         description: |
           The blackbox exporter allows blackbox probing of endpoints over HTTP, HTTPS,
