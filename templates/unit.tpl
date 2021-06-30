@@ -12,6 +12,7 @@ After=network.target
 EnvironmentFile=-/etc/default/{{name}}
 User={{user}}
 ExecStart=/usr/bin/{{name}} ${{name|upper}}_OPTS
+ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 RestartSec=5s
 {% if open_file_limit is defined -%}
