@@ -43,7 +43,8 @@ sachet \
 jiralert \
 ebpf_exporter \
 karma \
-bareos_exporter
+bareos_exporter \
+artifactory_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
