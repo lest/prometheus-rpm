@@ -1,0 +1,1 @@
+THANOS_RECEIVE_OPTS='--tsdb.path=/var/lib/thanos/receive --grpc-address 0.0.0.0:10907 --http-address 0.0.0.0:10909'
