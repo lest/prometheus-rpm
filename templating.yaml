@@ -741,5 +741,8 @@ packages:
         URL: https://github.com/peimanja/artifactory_exporter
         package: '%{name}-v%{version}-linux-amd64'
         tarball_has_subdirectory: false
+        environment:
+          ARTI_USERNAME: username
+          ARTI_PASSWORD: password
         summary: Prometheus exporter for JFrog Artifactory stats.
         description: Collects metrics about an Artifactory system
