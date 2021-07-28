@@ -1,0 +1,19 @@
+# -*- mode: conf -*-
+
+[Unit]
+Description=Thanos Receive service.
+Documentation=https://thanos.io/tip/thanos/
+After=network.target
+After=prometheus2.service
+
+[Service]
+EnvironmentFile=-/etc/default/thanos-receive
+User=prometheus
+ExecStart=/usr/bin/thanos receive \
+          $THANOS_RECEIVE_OPTS
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

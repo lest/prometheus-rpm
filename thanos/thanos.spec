@@ -2,7 +2,7 @@
 
 Name:	 thanos
 Version: 0.22.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Highly available Prometheus setup with long term storage capabilities.
 License: ASL 2.0
 URL:     https://thanos.io
@@ -21,6 +21,8 @@ Source10: thanos-rule.default
 Source11: thanos_alerts.yml
 Source12: thanos-query-frontend.service
 Source13: thanos-query-frontend.default
+Source14: thanos-receive.service
+Source15: thanos-receive.default
 
 %{?systemd_requires}
 Requires(pre): shadow-utils
@@ -44,7 +46,7 @@ installations and can merge data from Prometheus HA pairs on the fly.
 %install
 mkdir -vp %{buildroot}%{_sharedstatedir}/%{name}
 install -D -m 755 thanos %{buildroot}%{_bindir}/thanos
-for dir in store rule; do
+for dir in store rule receive; do
     install -D -m 755 -d %{buildroot}%{_sharedstatedir}/%{name}/${dir}
 done
 install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/thanos-sidecar.service
@@ -60,6 +62,8 @@ install -D -m 644 %{SOURCE10} %{buildroot}%{_sysconfdir}/default/thanos-rule
 install -D -m 644 %{SOURCE11} %{buildroot}%{_sysconfdir}/prometheus/thanos_alerts.yml
 install -D -m 644 %{SOURCE12} %{buildroot}%{_unitdir}/thanos-query-frontend.service
 install -D -m 644 %{SOURCE13} %{buildroot}%{_sysconfdir}/default/thanos-query-frontend
+install -D -m 644 %{SOURCE14} %{buildroot}%{_unitdir}/thanos-receive.service
+install -D -m 644 %{SOURCE15} %{buildroot}%{_sysconfdir}/default/thanos-receive
 
 %pre
 getent group prometheus >/dev/null || groupadd -r prometheus
@@ -75,6 +79,7 @@ exit 0
 %systemd_post thanos-compact.service
 %systemd_post thanos-rule.service
 %systemd_post thanos-query-frontend.service
+%systemd_post thanos-receive.service
 
 %preun
 %systemd_preun thanos-sidecar.service
@@ -83,6 +88,7 @@ exit 0
 %systemd_preun thanos-compact.service
 %systemd_preun thanos-rule.service
 %systemd_preun thanos-query-frontend.service
+%systemd_preun thanos-receive.service
 
 %postun
 %systemd_postun thanos-sidecar.service
@@ -91,6 +97,7 @@ exit 0
 %systemd_postun thanos-compact.service
 %systemd_postun thanos-rule.service
 %systemd_postun thanos-query-frontend.service
+%systemd_postun thanos-receive.service
 
 %files
 %defattr(-,root,root,-)
@@ -101,13 +108,16 @@ exit 0
 %{_unitdir}/thanos-compact.service
 %{_unitdir}/thanos-rule.service
 %{_unitdir}/thanos-query-frontend.service
+%{_unitdir}/thanos-receive.service
 %config(noreplace) %{_sysconfdir}/default/thanos-sidecar
 %config(noreplace) %{_sysconfdir}/default/thanos-store
 %config(noreplace) %{_sysconfdir}/default/thanos-query
 %config(noreplace) %{_sysconfdir}/default/thanos-compact
 %config(noreplace) %{_sysconfdir}/default/thanos-rule
 %config(noreplace) %{_sysconfdir}/default/thanos-query-frontend
+%config(noreplace) %{_sysconfdir}/default/thanos-receive
 %config(noreplace) %{_sysconfdir}/prometheus/thanos_alerts.yml
 %dir %attr(755, prometheus, prometheus)%{_sharedstatedir}/%{name}
 %dir %attr(750, prometheus, prometheus)%{_sharedstatedir}/%{name}/store
 %dir %attr(750, prometheus, prometheus)%{_sharedstatedir}/%{name}/rule
+%dir %attr(750, prometheus, prometheus)%{_sharedstatedir}/%{name}/receive
