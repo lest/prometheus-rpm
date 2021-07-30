@@ -14,6 +14,7 @@ pushgateway \
 mysqld_exporter \
 elasticsearch_exporter \
 postgres_exporter \
+pgbouncer_exporter \
 redis_exporter \
 haproxy_exporter \
 kafka_exporter \
