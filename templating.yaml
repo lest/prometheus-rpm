@@ -372,7 +372,7 @@ packages:
         version: 1.13.0
         license: MIT
         URL: https://github.com/caarlos0/domain_exporter
-        package: '%{name}_linux_amd64'
+        package: '%{name}_%{version}_linux_amd64'
         tarball_has_subdirectory: false
         summary: Prometheus exporter for domain expiration time metrics
         description: Exports the expiration time of your domains as Prometheus metrics.
