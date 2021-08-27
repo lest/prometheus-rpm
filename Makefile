@@ -46,7 +46,7 @@ ebpf_exporter \
 karma \
 bareos_exporter \
 artifactory_exporter \
-php-fpm_exporter
+phpfpm_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 

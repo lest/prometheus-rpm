@@ -759,7 +759,7 @@ packages:
           ARTI_PASSWORD: password
         summary: Prometheus exporter for JFrog Artifactory stats.
         description: Collects metrics about an Artifactory system
-  php-fpm_exporter:
+  phpfpm_exporter:
     build_steps:
       <<: *default_build_steps
     context:
@@ -769,8 +769,9 @@ packages:
         version: 2.0.3
         license: ASL 2.0
         URL: https://github.com/hipages/php-fpm_exporter
-        package: '%{name}_%{version}_linux_amd64'
+        package: 'php-fpm_exporter_%{version}_linux_amd64'
         tarball_has_subdirectory: false
+        fix_name: php-fpm_exporter
         service_opts:
           - server
         summary: A prometheus exporter for PHP-FPM. The exporter connects directly to
