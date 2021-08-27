@@ -11,7 +11,7 @@ After=network.target
 {% block service -%}
 EnvironmentFile=-/etc/default/{{name}}
 User={{user}}
-ExecStart=/usr/bin/{{name}} ${{name|upper}}_OPTS
+ExecStart=/usr/bin/{{name}} ${{name|upper|replace("-","",1)}}_OPTS
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 RestartSec=5s
