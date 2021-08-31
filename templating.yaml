@@ -209,7 +209,7 @@ packages:
     context:
       static:
         <<: *default_static_context
-        version: 1.26.0
+        version: 1.27.0
         license: MIT
         summary: Prometheus exporter for Redis server metrics.
         description: Prometheus Exporter for Redis Metrics. Supports Redis 2.x, 3.x,
