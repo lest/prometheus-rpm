@@ -1,6 +1,6 @@
 %global debug_package %{nil}
-%global pkg_version 3.0.0-rc44
-%global version 3.0.0rc44
+%global pkg_version 3.0.0-rc47
+%global version 3.0.0rc47
 
 Name:    mtail
 Version: %{version}
@@ -9,7 +9,7 @@ Summary: Extract metrics from application logs
 License: ASL 2.0
 URL:     https://github.com/google/%{name}
 
-Source0: https://github.com/google/%{name}/releases/download/v%{pkg_version}/%{name}_%{pkg_version}_Linux_arm64.tar.gz
+Source0: https://github.com/google/%{name}/releases/download/v%{pkg_version}/%{name}_%{pkg_version}_Linux_x86_64.tar.gz
 Source1: %{name}.service
 Source2: %{name}.default
 
