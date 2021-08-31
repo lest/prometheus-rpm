@@ -4,7 +4,7 @@
 
 Name:    mtail
 Version: %{version}
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Extract metrics from application logs
 License: ASL 2.0
 URL:     https://github.com/google/%{name}
@@ -27,7 +27,7 @@ Extract metrics from application logs to be exported into a timeseries database 
 /bin/true
 
 %install
-install -D -m 755 %{SOURCE0} %{buildroot}%{_bindir}/%{name}
+install -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
 install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/%{name}
 mkdir -p %{buildroot}%{_sysconfdir}/prometheus/%{name}.d
