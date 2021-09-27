@@ -548,7 +548,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.9.11
+        version: 0.9.12
         license: MIT
         URL: https://github.com/czerwonk/junos_exporter
         package: '%{name}_%{version}_linux_amd64'
