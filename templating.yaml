@@ -595,7 +595,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.7.7
+        version: 0.7.8
         license: MIT
         URL: https://github.com/ncabatoff/process-exporter
         package: process-exporter-%{version}.linux-amd64
