@@ -140,6 +140,9 @@ packages:
         summary: SQL exporter
         description: |
           The Sql_exporter queries the sql database and expose the result to Prometheus.
+      dynamic:
+        <<: *default_dynamic_context
+        tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
   snmp_exporter:
     build_steps:
       <<: *default_build_steps
