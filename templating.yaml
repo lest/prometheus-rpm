@@ -825,3 +825,21 @@ packages:
         summary: Prometheus exporter for IPMI metrics
         description: |
           Prometheus exporter for IPMI metrics.
+  nats_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 0.9.0
+        license: ASL 2.0
+        URL: https://github.com/nats-io/prometheus-nats-exporter
+        package: prometheus-nats-exporter-v%{version}-linux-amd64
+        tarball_has_subdirectory: true
+        fix_name: prometheus-nats-exporter
+        service_opts:
+          - -varz http://localhost:8222
+        summary: A prometheus exporter for NATS
+        description: |
+          A prometheus exporter for NATS
