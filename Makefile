@@ -48,7 +48,8 @@ bareos_exporter \
 artifactory_exporter \
 phpfpm_exporter \
 ipmi_exporter \
-sql_exporter
+sql_exporter \
+nats_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
