@@ -49,7 +49,8 @@ artifactory_exporter \
 phpfpm_exporter \
 ipmi_exporter \
 sql_exporter \
-nats_exporter
+nats_exporter \
+prometheus_msteams
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 

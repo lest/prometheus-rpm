@@ -845,3 +845,33 @@ packages:
         summary: A prometheus exporter for NATS
         description: |
           A prometheus exporter for NATS
+  prometheus_msteams:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 1.5.0
+        license: MIT
+        URL: https://github.com/prometheus-msteams/prometheus-msteams
+        package: 'prometheus-msteams-linux-amd64'
+        service_opts:
+          - --config.file=/etc/prometheus/prometheus_msteams.yml
+          - --template-file=/etc/prometheus/prometheus_msteams_message_card.tmpl
+          - --log-format=fmt
+          - --debug=false
+        additional_sources:
+          - path: '%{name}.yml'
+            dest: '%{_sysconfdir}/prometheus/%{name}.yml'
+            group: '%{group}'
+            mode: 640
+          - path: https://github.com/prometheus-msteams/prometheus-msteams/releases/download/v%{version}/default-message-card.tmpl
+            dest: '%{_sysconfdir}/prometheus/%{name}_message_card.tmpl'
+            from_tarball: false
+        summary: Alertmanager to Microsoft Teams gateway
+        description: |
+          A lightweight Go Web Server that receives POST alert messages from Prometheus Alertmanager and sends it to a Microsoft Teams Channel using an incoming webhook url.
+      dynamic:
+        <<: *default_dynamic_context
+        tarball: '{{URL}}/releases/download/v%{version}/{{package}}'
