@@ -694,7 +694,7 @@ packages:
         version: 1.2.5
         license: MIT
         URL: https://github.com/cloudflare/ebpf_exporter
-        package: '%{name}-%{version}'
+        package: '%{name}.x86_64'
         service_opts:
           - --config.file=/etc/prometheus/ebpf_exporter.yml
         additional_sources:
@@ -704,6 +704,9 @@ packages:
         summary: Prometheus exporter for custom eBPF metrics
         description: |
           eBPF exporter allows you to write eBPF code and export metrics that are not otherwise accessible from the Linux kernel.
+      dynamic:
+        <<: *default_dynamic_context
+        tarball: '{{URL}}/releases/download/v%{version}/{{package}}'
   karma:
     build_steps:
       <<: *default_build_steps
