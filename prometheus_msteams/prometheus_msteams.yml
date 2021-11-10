@@ -1,0 +1,4 @@
+---
+#connectors:
+#  - high_priority_channel: "https://outlook.office.com/webhook/xxxx/aaa/bbb"
+#  - low_priority_channel: "https://outlook.office.com/webhook/xxxx/aaa/ccc"
