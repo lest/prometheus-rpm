@@ -47,13 +47,15 @@ Requires(preun): initscripts
 
 %prep
 {%- block prep %}
-{%- if tarball_has_subdirectory %}
+{%- if '.tar.gz' in tarball %}
+{%-   if tarball_has_subdirectory %}
 %setup -q -n {{package}}
-{%- else %}
+{%-   else %}
 %setup -q -D -c {{package}}
-{%- endif %}
-{%- if fix_name is defined %}
+{%-   endif %}
+{%-   if fix_name is defined %}
 mv -v {{fix_name}} %{name}
+{%-   endif %}
 {%- endif %}
 {%- for prep_cmd in prep_cmds %}
 {{ prep_cmd }}
@@ -74,7 +76,11 @@ mkdir -vp %{buildroot}%{_sharedstatedir}/prometheus
 {%- else %}
 mkdir -vp %{buildroot}%{_sharedstatedir}/%{name}
 {%- endif %}
+{%- if '.tar.gz' in tarball %}
 install -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
+{%- else %}
+install -D -m 755 %{SOURCE0} %{buildroot}%{_bindir}/%{name}
+{%- endif %}
 install -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/default/%{name}
 %if 0%{?el5}
 install -D -m 755 %{SOURCE3} %{buildroot}%{_initrddir}/%{name}
