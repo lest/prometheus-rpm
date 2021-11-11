@@ -239,7 +239,7 @@ packages:
     context:
       static:
         <<: *default_static_context
-        version: 1.31.0
+        version: 1.31.1
         license: MIT
         summary: Prometheus exporter for Redis server metrics.
         description: Prometheus Exporter for Redis Metrics. Supports Redis 2.x, 3.x,
@@ -855,7 +855,7 @@ packages:
         version: 1.5.0
         license: MIT
         URL: https://github.com/prometheus-msteams/prometheus-msteams
-        package: 'prometheus-msteams-linux-amd64'
+        package: prometheus-msteams-linux-amd64
         service_opts:
           - --config.file=/etc/prometheus/prometheus_msteams.yml
           - --template-file=/etc/prometheus/prometheus_msteams_message_card.tmpl
