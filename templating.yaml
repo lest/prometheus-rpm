@@ -882,7 +882,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.38.8 
+        version: 0.38.8
         license: ASL 2.0
         URL: https://github.com/google/cadvisor
         package: "%{name}"
@@ -891,7 +891,7 @@ packages:
         service_opts:
           - --port=4194
           - --logtostderr=true
-        summary: cAdvisor exposes container metrics 
+        summary: cAdvisor exposes container metrics
         description: |
           cAdvisor (Container Advisor) provides container users an understanding of the resource usage and performance characteristics of their running containers.
       dynamic:
