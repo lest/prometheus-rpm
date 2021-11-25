@@ -50,7 +50,8 @@ phpfpm_exporter \
 ipmi_exporter \
 sql_exporter \
 nats_exporter \
-prometheus_msteams
+prometheus_msteams \
+cadvisor
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
