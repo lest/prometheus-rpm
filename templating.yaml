@@ -384,7 +384,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.2.20
+        version: 1.0.0
         license: MIT
         user: frr
         group: frr
