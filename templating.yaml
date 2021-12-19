@@ -500,8 +500,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.4.2
-        release: 2
+        version: 0.5.0
         license: ASL 2.0
         URL: https://github.com/SuperQ/smokeping_prober
         service_opts:
