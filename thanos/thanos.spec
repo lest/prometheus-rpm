@@ -25,6 +25,9 @@ Source14: thanos-receive.service
 Source15: thanos-receive.default
 
 %{?systemd_requires}
+%if 0%{?fedora} >= 19
+BuildRequires: systemd-rpm-macros
+%endif
 Requires(pre): shadow-utils
 
 %description
