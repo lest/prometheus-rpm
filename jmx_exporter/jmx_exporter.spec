@@ -13,6 +13,10 @@ Source1: %{name}.service
 Source2: %{name}.default
 
 Requires: java
+%{?systemd_requires}
+%if 0%{?fedora} >= 19
+BuildRequires: systemd-rpm-macros
+%endif
 
 %description
 
