@@ -814,7 +814,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.4.0
+        version: 1.5.1
         license: MIT
         URL: https://github.com/prometheus-community/ipmi_exporter
         service_opts:
