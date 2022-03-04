@@ -51,7 +51,8 @@ ipmi_exporter \
 sql_exporter \
 nats_exporter \
 prometheus_msteams \
-cadvisor
+cadvisor \
+squid_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
