@@ -895,3 +895,23 @@ packages:
       dynamic:
         <<: *default_dynamic_context
         tarball: '{{URL}}/releases/download/v%{version}/{{package}}'
+  squid_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 1.10.3
+        license: MIT
+        URL: https://github.com/boynux/squid-exporter
+        package: squid-exporter
+        service_opts:
+          - --listen=0.0.0.0:9301
+        caps: cap_dac_read_search=ep
+        summary: Prometheus Squid proxy metric exporter
+        description: |
+          Exports Squid proxy metrics in Prometheus format
+      dynamic:
+        <<: *default_dynamic_context
+        tarball: '{{URL}}/releases/download/v%{version}/{{package}}'
