@@ -51,7 +51,8 @@ ipmi_exporter \
 sql_exporter \
 nats_exporter \
 prometheus_msteams \
-cadvisor
+cadvisor \
+squid_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
@@ -79,7 +80,7 @@ $(addprefix build8-,$(MANUAL)):
 		-v ${PWD}/_dist8:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist8:/rpmbuild/RPMS/noarch \
 		-v ${PWD}/_cache_dnf:/var/cache/dnf \
-		ghcr.io/lest/centos-rpm-builder:8 \
+		ghcr.io/lest/centos-rpm-builder:oracle8 \
 		build-spec SOURCES/${PACKAGE}.spec
 	# Test the install
 	[ -d ${PWD}/_dist8 ] || mkdir ${PWD}/_dist8      
@@ -87,7 +88,7 @@ $(addprefix build8-,$(MANUAL)):
 	docker run --privileged ${DOCKER_FLAGS} \
 		-v ${PWD}/_dist8:/var/tmp/ \
 		-v ${PWD}/_cache_dnf:/var/cache/dnf \
-		ghcr.io/lest/centos-rpm-builder:8 \
+		ghcr.io/lest/centos-rpm-builder:oracle8 \
 		/bin/bash -c '/usr/bin/dnf install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 $(addprefix build7-,$(MANUAL)):
@@ -125,7 +126,7 @@ $(addprefix build8-,$(AUTO_GENERATED)):
 		-v ${PWD}/_dist8:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist8:/rpmbuild/RPMS/noarch \
 		-v ${PWD}/_cache_dnf:/var/cache/dnf \
-		ghcr.io/lest/centos-rpm-builder:8 \
+		ghcr.io/lest/centos-rpm-builder:oracle8 \
 		build-spec SOURCES/autogen_${PACKAGE}.spec
 	# Test the install
 	[ -d ${PWD}/_dist8 ] || mkdir ${PWD}/_dist8      
@@ -133,7 +134,7 @@ $(addprefix build8-,$(AUTO_GENERATED)):
 	docker run --privileged ${DOCKER_FLAGS} \
 		-v ${PWD}/_dist8:/var/tmp/ \
 		-v ${PWD}/_cache_dnf:/var/cache/dnf \
-		ghcr.io/lest/centos-rpm-builder:8 \
+		ghcr.io/lest/centos-rpm-builder:oracle8 \
 		/bin/bash -c '/usr/bin/dnf install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 sign8:
@@ -143,7 +144,7 @@ sign8:
 		-v ${PWD}/RPM-GPG-KEY-prometheus-rpm:/rpmbuild/RPM-GPG-KEY-prometheus-rpm \
 		-v ${PWD}/secret.asc:/rpmbuild/secret.asc \
 		-v ${PWD}/.passphrase:/rpmbuild/.passphrase \
-		ghcr.io/lest/centos-rpm-builder:8 \
+		ghcr.io/lest/centos-rpm-builder:oracle8 \
 		bin/sign
 
 $(addprefix build7-,$(AUTO_GENERATED)):

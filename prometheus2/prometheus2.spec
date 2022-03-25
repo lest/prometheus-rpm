@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:		 prometheus2
-Version: 2.32.1
+Version: 2.34.0
 Release: 1%{?dist}
 Summary: The Prometheus monitoring system and time series database.
 License: ASL 2.0
@@ -13,6 +13,9 @@ Source1: %{name}.service
 Source2: %{name}.default
 
 %{?systemd_requires}
+%if 0%{?fedora} >= 19
+BuildRequires: systemd-rpm-macros
+%endif
 Requires(pre): shadow-utils
 
 %description

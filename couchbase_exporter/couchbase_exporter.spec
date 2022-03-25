@@ -15,6 +15,9 @@ Source2: %{name}.default
 Source3: %{name}.yml
 
 %{?systemd_requires}
+%if 0%{?fedora} >= 19
+BuildRequires: systemd-rpm-macros
+%endif
 Requires(pre): shadow-utils
 
 %description

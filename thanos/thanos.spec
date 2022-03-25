@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:	 thanos
-Version: 0.23.1
+Version: 0.25.2
 Release: 1%{?dist}
 Summary: Highly available Prometheus setup with long term storage capabilities.
 License: ASL 2.0
@@ -25,6 +25,9 @@ Source14: thanos-receive.service
 Source15: thanos-receive.default
 
 %{?systemd_requires}
+%if 0%{?fedora} >= 19
+BuildRequires: systemd-rpm-macros
+%endif
 Requires(pre): shadow-utils
 
 %description

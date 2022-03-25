@@ -2,17 +2,21 @@
 
 Name:    jmx_exporter
 Version: 0.16.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 BuildArch: noarch
 Summary: Prometheus exporter for mBeans scrape and expose.
 License: ASL 2.0
 URL:     https://github.com/prometheus/%{name}
 
-Source0: http://search.maven.org/remotecontent?filepath=io/prometheus/jmx/jmx_prometheus_httpserver/%{version}/jmx_prometheus_httpserver-%{version}-jar-with-dependencies.jar 
+Source0: https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/%{version}/jmx_prometheus_javaagent-%{version}.jar 
 Source1: %{name}.service
 Source2: %{name}.default
 
 Requires: java
+%{?systemd_requires}
+%if 0%{?fedora} >= 19
+BuildRequires: systemd-rpm-macros
+%endif
 
 %description
 

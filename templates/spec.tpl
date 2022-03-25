@@ -30,6 +30,9 @@ Source{{ loop.index - 1 + sources | length }}: {{ additional_source.path }}
 {% endblock sources %}
 
 {%- block requires %}
+%if 0%{?fedora} >= 19
+BuildRequires: systemd-rpm-macros
+%endif
 %{?systemd_requires}
 Requires(pre): shadow-utils
 %if 0%{?el6} || 0%{?el5}

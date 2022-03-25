@@ -95,8 +95,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.19.0
-        release: 2
+        version: 0.20.0
         license: ASL 2.0
         URL: https://github.com/prometheus/blackbox_exporter
         service_opts:
@@ -174,7 +173,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.13.0
+        version: 0.14.0
         license: ASL 2.0
         URL: https://github.com/prometheus/mysqld_exporter
         summary: Prometheus exporter for MySQL server metrics.
@@ -188,7 +187,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.10.0
+        version: 0.10.1
         license: ASL 2.0
         URL: https://github.com/prometheus-community/postgres_exporter
         user: postgres
@@ -211,7 +210,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.4.0
+        version: 0.4.1
         license: MIT
         URL: https://github.com/prometheus-community/pgbouncer_exporter
         user: postgres
@@ -239,7 +238,7 @@ packages:
     context:
       static:
         <<: *default_static_context
-        version: 1.33.0
+        version: 1.37.0
         license: MIT
         summary: Prometheus exporter for Redis server metrics.
         description: Prometheus Exporter for Redis Metrics. Supports Redis 2.x, 3.x,
@@ -313,7 +312,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.3.0
+        version: 0.4.0
         license: ASL 2.0
         URL: https://github.com/prometheus-community/json_exporter
         summary: A Prometheus exporter which scrapes remote JSON by JSONPath.
@@ -486,9 +485,8 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.7.1
+        version: 0.8.0
         license: ASL 2.0
-        release: 2
         URL: https://github.com/prometheus/consul_exporter
         summary: Consul stats exporter for Prometheus.
         description: |
@@ -500,7 +498,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.5.0
+        version: 0.5.2
         license: ASL 2.0
         URL: https://github.com/SuperQ/smokeping_prober
         service_opts:
@@ -543,7 +541,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.8.1
+        version: 0.9.0
         license: ASL 2.0
         URL: https://github.com/prometheus/influxdb_exporter
         summary: InfluxDB stats exporter for Prometheus.
@@ -577,7 +575,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.9.13
+        version: 0.9.14
         license: MIT
         URL: https://github.com/czerwonk/junos_exporter
         package: '%{name}_%{version}_linux_amd64'
@@ -644,7 +642,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 2.3.1
+        version: 2.4.0
         license: ASL 2.0
         URL: https://github.com/ribbybibby/ssl_exporter
         package: '%{name}_%{version}_linux_amd64'
@@ -743,7 +741,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: '0.94'
+        version: '0.101'
         license: ASL 2.0
         URL: https://github.com/prymitive/karma
         package: '%{name}-linux-amd64'
@@ -833,7 +831,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.9.0
+        version: 0.9.1
         license: ASL 2.0
         URL: https://github.com/nats-io/prometheus-nats-exporter
         package: prometheus-nats-exporter-v%{version}-linux-amd64
@@ -893,6 +891,26 @@ packages:
         summary: cAdvisor exposes container metrics
         description: |
           cAdvisor (Container Advisor) provides container users an understanding of the resource usage and performance characteristics of their running containers.
+      dynamic:
+        <<: *default_dynamic_context
+        tarball: '{{URL}}/releases/download/v%{version}/{{package}}'
+  squid_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 1.10.3
+        license: MIT
+        URL: https://github.com/boynux/squid-exporter
+        package: squid-exporter
+        service_opts:
+          - --listen=0.0.0.0:9301
+        caps: cap_dac_read_search=ep
+        summary: Prometheus Squid proxy metric exporter
+        description: |
+          Exports Squid proxy metrics in Prometheus format
       dynamic:
         <<: *default_dynamic_context
         tarball: '{{URL}}/releases/download/v%{version}/{{package}}'
