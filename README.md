@@ -3,7 +3,7 @@
 ![Build Status](https://github.com/lest/prometheus-rpm/actions/workflows/build.yml/badge.svg) ![Lint Status](https://github.com/lest/prometheus-rpm/actions/workflows/linter.yml/badge.svg) ![Update Status](https://github.com/lest/prometheus-rpm/actions/workflows/check_new_versions.yml/badge.svg)
 
 The repository contains the files needed to build [Prometheus][1] RPM packages
-for CentOS 7 & 8.
+for CentOS 7 & 8 and CentOS Stream 9.
 
 ## Installing
 The packages are available in [the packagecloud repository][2] and can be used
