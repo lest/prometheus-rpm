@@ -759,7 +759,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.5.7
+        version: 0.6.0
         license: MIT
         URL: https://github.com/vierbergenlars/bareos_exporter
         package: '%{name}-v%{version}-linux-amd64'
