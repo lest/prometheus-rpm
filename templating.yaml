@@ -578,7 +578,7 @@ packages:
         version: 0.9.15
         license: MIT
         URL: https://github.com/czerwonk/junos_exporter
-        package: 'prometheus-junos-exporter_%{version}_linux_amd64'
+        package: prometheus-junos-exporter_%{version}_linux_amd64
         tarball_has_subdirectory: false
         additional_sources:
           - path: '%{name}.yaml'
@@ -793,7 +793,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 2.0.4
+        version: 2.1.0
         license: ASL 2.0
         URL: https://github.com/hipages/php-fpm_exporter
         package: php-fpm_exporter_%{version}_linux_amd64
