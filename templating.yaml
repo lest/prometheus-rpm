@@ -882,7 +882,7 @@ packages:
         version: 0.45.0
         license: ASL 2.0
         URL: https://github.com/google/cadvisor
-        package: '%{name}'
+        package: '%{name}-v%{version}-linux-amd64'
         user: root
         group: root
         service_opts:
