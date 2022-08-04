@@ -603,8 +603,9 @@ packages:
         version: 1.6.0
         license: MIT
         URL: https://github.com/openstack-exporter/openstack-exporter
-        package: openstack-exporter-%{version}.linux-amd64
+        package: openstack-exporter_%{version}_linux_amd64
         fix_name: openstack-exporter
+        tarball_has_subdirectory: false
         additional_sources:
           - path: '%{name}_clouds.yaml'
             dest: '%{_sysconfdir}/prometheus/%{name}_clouds.yaml'
