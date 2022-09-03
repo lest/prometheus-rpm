@@ -52,7 +52,8 @@ sql_exporter \
 nats_exporter \
 prometheus_msteams \
 cadvisor \
-squid_exporter
+squid_exporter \
+dellhw_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
