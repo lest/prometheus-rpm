@@ -81,7 +81,7 @@ $(addprefix build9-,$(MANUAL)):
 		-v ${PWD}/_dist9:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist9:/rpmbuild/RPMS/noarch \
 		-v ${PWD}/_cache_dnf:/var/cache/dnf \
-		ghcr.io/lest/centos-rpm-builder:stream9 \
+		ghcr.io/lest/centos-rpm-builder:oracle9 \
 		build-spec SOURCES/${PACKAGE}.spec
 	# Test the install
 	[ -d ${PWD}/_dist9 ] || mkdir ${PWD}/_dist9      
@@ -89,7 +89,7 @@ $(addprefix build9-,$(MANUAL)):
 	docker run --privileged ${DOCKER_FLAGS} \
 		-v ${PWD}/_dist9:/var/tmp/ \
 		-v ${PWD}/_cache_dnf:/var/cache/dnf \
-		ghcr.io/lest/centos-rpm-builder:stream9 \
+		ghcr.io/lest/centos-rpm-builder:oracle9 \
 		/bin/bash -c '/usr/bin/dnf install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 $(addprefix build8-,$(MANUAL)):
@@ -148,7 +148,7 @@ $(addprefix build9-,$(AUTO_GENERATED)):
 		-v ${PWD}/_dist9:/rpmbuild/RPMS/x86_64 \
 		-v ${PWD}/_dist9:/rpmbuild/RPMS/noarch \
 		-v ${PWD}/_cache_dnf:/var/cache/dnf \
-		ghcr.io/lest/centos-rpm-builder:stream9 \
+		ghcr.io/lest/centos-rpm-builder:oracle9 \
 		build-spec SOURCES/autogen_${PACKAGE}.spec
 	# Test the install
 	[ -d ${PWD}/_dist9 ] || mkdir ${PWD}/_dist9      
@@ -156,7 +156,7 @@ $(addprefix build9-,$(AUTO_GENERATED)):
 	docker run --privileged ${DOCKER_FLAGS} \
 		-v ${PWD}/_dist9:/var/tmp/ \
 		-v ${PWD}/_cache_dnf:/var/cache/dnf \
-		ghcr.io/lest/centos-rpm-builder:stream9 \
+		ghcr.io/lest/centos-rpm-builder:oracle9 \
 		/bin/bash -c '/usr/bin/dnf install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 sign9:
@@ -166,7 +166,7 @@ sign9:
 		-v ${PWD}/RPM-GPG-KEY-prometheus-rpm:/rpmbuild/RPM-GPG-KEY-prometheus-rpm \
 		-v ${PWD}/secret.asc:/rpmbuild/secret.asc \
 		-v ${PWD}/.passphrase:/rpmbuild/.passphrase \
-		ghcr.io/lest/centos-rpm-builder:stream9 \
+		ghcr.io/lest/centos-rpm-builder:oracle9 \
 		bin/sign
 
 $(addprefix build8-,$(AUTO_GENERATED)):
