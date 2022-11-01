@@ -719,7 +719,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.2.5
+        version: 2.0.0
         license: MIT
         URL: https://github.com/cloudflare/ebpf_exporter
         package: '%{name}.x86_64'
