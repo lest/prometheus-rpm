@@ -892,6 +892,7 @@ packages:
         summary: cAdvisor exposes container metrics
         description: |
           cAdvisor (Container Advisor) provides container users an understanding of the resource usage and performance characteristics of their running containers.
+        package: '%{name}-v%{version}-linux-amd64'
       dynamic:
         <<: *default_dynamic_context
         tarball: '{{URL}}/releases/download/v%{version}/{{package}}'
