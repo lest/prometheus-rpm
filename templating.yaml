@@ -928,3 +928,22 @@ packages:
         summary: Dell Hardware OMSA exporter
         description: |
           Prometheus exporter for Dell Hardware components using OMSA.
+  exim_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 1.4.1
+        license: MIT
+        URL: https://github.com/gvengel/exim_exporter
+        user: exim
+        package: exim_exporter
+        tarball_has_subdirectory: false
+        summary: Prometheus exporter for the exim4 mail server.
+        description: |
+          Prometheus exporter for the exim4 mail server.
+      dynamic:
+        <<: *default_dynamic_context
+        tarball: '{{URL}}/releases/download/v%{version}/{{package}}'

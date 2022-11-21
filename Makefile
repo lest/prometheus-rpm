@@ -53,7 +53,8 @@ nats_exporter \
 prometheus_msteams \
 cadvisor \
 squid_exporter \
-dellhw_exporter
+dellhw_exporter \
+exim_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
