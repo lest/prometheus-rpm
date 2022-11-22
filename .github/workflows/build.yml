@@ -44,7 +44,7 @@ jobs:
         run: make ${{ matrix.build_type }}${{ matrix.version }}
 
       - name: Cache built packages
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: restore-build
         with:
           path: _dist${{ matrix.version }}/*
@@ -85,13 +85,13 @@ jobs:
           RPM_GPG_KEY_PASSPHRASE: ${{ secrets.RPM_GPG_KEY_PASSPHRASE }}
 
       - name: Restore auto RPM package cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: _dist${{ matrix.version }}/*
           key: ${{ github.sha }}-auto${{ matrix.version }}
 
       - name: Restore manual RPM package cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: _dist${{ matrix.version }}/*
           key: ${{ github.sha }}-manual${{ matrix.version }}
