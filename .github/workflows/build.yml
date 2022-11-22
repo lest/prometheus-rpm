@@ -74,13 +74,13 @@ jobs:
 
       - name: Create GPG key secret
         if: env.RPM_GPG_KEY_SECRET != null
-        run: openssl aes-256-cbc -k ${RPM_GPG_KEY_SECRET} -in secret.asc.enc -out secret.asc -d -md md5
+        run: openssl aes-256-cbc -k "${RPM_GPG_KEY_SECRET}" -in secret.asc.enc -out secret.asc -d -md md5
         env:
           RPM_GPG_KEY_SECRET: ${{ secrets.RPM_GPG_KEY_SECRET }}
 
       - name: Save GPG key passphrase
         if: env.RPM_GPG_KEY_PASSPHRASE != null
-        run: echo ${RPM_GPG_KEY_PASSPHRASE} > .passphrase
+        run: echo "${RPM_GPG_KEY_PASSPHRASE}" > .passphrase
         env:
           RPM_GPG_KEY_PASSPHRASE: ${{ secrets.RPM_GPG_KEY_PASSPHRASE }}
 
