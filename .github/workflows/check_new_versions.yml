@@ -10,21 +10,18 @@ on:
 
 jobs:
   check_new_releases:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Setup python environment
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.8"
-          architecture: "x64"
+          python-version: "3.11"
 
       - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install ruamel.yaml PyGithub packaging
+        run: pip install ruamel.yaml PyGithub packaging
 
       - name: Run script to update auto package versions
         run: python update_templating_versions.py
