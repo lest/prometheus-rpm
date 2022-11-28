@@ -54,7 +54,8 @@ prometheus_msteams \
 cadvisor \
 squid_exporter \
 dellhw_exporter \
-exim_exporter
+exim_exporter \
+systemd_exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 
