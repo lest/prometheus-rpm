@@ -959,6 +959,3 @@ packages:
         summary: Prometheus exporter for systemd units, written in Go.
         description: |
           Systemd unit monitoring and resource usage
-      dynamic:
-        <<: *default_dynamic_context
-        tarball: "{{URL}}/releases/download/v%{version}/{{package}}.tar.gz
