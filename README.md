@@ -26,7 +26,7 @@ metadata_expire=300
 ### Auto generation
 1. Add a new section under `packages` in `templating.yaml` with the required information (overriding any defaults if required).
 2. Create a new directory with the name of the exporter and populate it with a file named `<exporter_name>.default` which will contain the default environment variables passed to the init and unit files.
-3. Once this is done add this exporter to the list of `AUTO_GENERATED` expoters in `Makefile`.
+3. Once this is done add this exporter to the list of `AUTO_GENERATED` exporters in `Makefile`.
 4. Test that you can build this RPM using the command `make <exporter_name>`.
 
 ### Custom
