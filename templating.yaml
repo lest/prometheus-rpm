@@ -410,7 +410,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.37.0
+        version: 2.37.0
         license: ASL 2.0
         URL: https://github.com/percona/mongodb_exporter
         package: '%{name}-%{version}.linux-amd64'
