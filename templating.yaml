@@ -15,14 +15,14 @@ anchors:
       release: 1
       service_opts: []
       environment: {}
-      #additional_sources:
-      #  - path: example.yml
-      #    from_tarball: false # take file from tarball or repository
-      #    dest: '%{_sysconfdir}/prometheus/example.yml'
-      #    mode: 644           # optional
-      #    user: root          # optional
-      #    group: root         # optional
-      #    config: true        # specify not to override config files
+      # additional_sources:
+      #   - path: example.yml
+      #     from_tarball: false # take file from tarball or repository
+      #     dest: '%{_sysconfdir}/prometheus/example.yml'
+      #     mode: 644           # optional
+      #     user: root          # optional
+      #     group: root         # optional
+      #     config: true        # specify not to override config files
       prep_cmds: []
       build_cmds:
         - /bin/true
@@ -31,7 +31,7 @@ anchors:
       post_cmds: []
       preun_cmds: []
       postun_cmds: []
-      #open_file_limit: 4096   # optionally specify open file limit
+      # open_file_limit: 4096   # optionally specify open file limit
     dynamic: &default_dynamic_context
       tarball: '{{URL}}/releases/download/v%{version}/{{package}}.tar.gz'
       sources:
