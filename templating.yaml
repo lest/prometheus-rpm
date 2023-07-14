@@ -196,7 +196,8 @@ packages:
         environment:
           DATA_SOURCE_NAME: user=postgres host=/var/run/postgresql/ sslmode=disable
         additional_sources:
-          - path: https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/queries.yaml
+          - path: 
+              https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/queries.yaml
             dest: '%{_sysconfdir}/prometheus/%{name}_queries.yaml'
             from_tarball: false
         summary: Prometheus exporter for PostgreSQL server metrics
@@ -209,7 +210,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.6.0
+        version: 0.7.0
         license: MIT
         URL: https://github.com/prometheus-community/pgbouncer_exporter
         user: postgres
@@ -319,7 +320,8 @@ packages:
         service_opts:
           - --config.file=/etc/prometheus/json_exporter.yml
         additional_sources:
-          - path: https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/examples/config.yml
+          - path: 
+              https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/examples/config.yml
             dest: '%{_sysconfdir}/prometheus/%{name}.yaml'
             from_tarball: false
   keepalived_exporter:
@@ -628,7 +630,8 @@ packages:
         package: process-exporter-%{version}.linux-amd64
         fix_name: process-exporter
         additional_sources:
-          - path: https://raw.githubusercontent.com/ncabatoff/process-exporter/v%{version}/packaging/conf/all.yaml
+          - path: 
+              https://raw.githubusercontent.com/ncabatoff/process-exporter/v%{version}/packaging/conf/all.yaml
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
         service_opts:
           - --config.path=/etc/prometheus/process_exporter.yml
@@ -648,7 +651,8 @@ packages:
         package: '%{name}_%{version}_linux_amd64'
         tarball_has_subdirectory: false
         additional_sources:
-          - path: https://raw.githubusercontent.com/ribbybibby/%{name}/v%{version}/examples/%{name}.yaml
+          - path: 
+              https://raw.githubusercontent.com/ribbybibby/%{name}/v%{version}/examples/%{name}.yaml
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
         service_opts:
           - --config.file=/etc/prometheus/ssl_exporter.yml
@@ -669,7 +673,8 @@ packages:
         license: BSD
         URL: https://github.com/messagebird/sachet
         additional_sources:
-          - path: https://raw.githubusercontent.com/messagebird/%{name}/%{version}/examples/config.yaml
+          - path: 
+              https://raw.githubusercontent.com/messagebird/%{name}/%{version}/examples/config.yaml
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
             mode: 640
             group: '%{group}'
@@ -725,7 +730,8 @@ packages:
         service_opts:
           - --config.file=/etc/prometheus/ebpf_exporter.yml
         additional_sources:
-          - path: https://raw.githubusercontent.com/cloudflare/%{name}/v%{version}/examples/bio.yaml
+          - path: 
+              https://raw.githubusercontent.com/cloudflare/%{name}/v%{version}/examples/bio.yaml
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
             from_tarball: false
         summary: Prometheus exporter for custom eBPF metrics
@@ -818,7 +824,8 @@ packages:
         service_opts:
           - --config.file==/etc/prometheus/ipmi.yml
         additional_sources:
-          - path: https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/ipmi_local.yml
+          - path: 
+              https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/ipmi_local.yml
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
             from_tarball: false
         summary: Prometheus exporter for IPMI metrics
@@ -863,7 +870,8 @@ packages:
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
             group: '%{group}'
             mode: 640
-          - path: https://github.com/prometheus-msteams/prometheus-msteams/releases/download/v%{version}/default-message-card.tmpl
+          - path: 
+              https://github.com/prometheus-msteams/prometheus-msteams/releases/download/v%{version}/default-message-card.tmpl
             dest: '%{_sysconfdir}/prometheus/%{name}_message_card.tmpl'
             from_tarball: false
         summary: Alertmanager to Microsoft Teams gateway
