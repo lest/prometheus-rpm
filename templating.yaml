@@ -49,7 +49,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.25.0
+        version: 0.26.0
         license: ASL 2.0
         URL: https://github.com/prometheus/alertmanager
         service_opts:
@@ -80,7 +80,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.0
+        version: 1.6.1
         license: ASL 2.0
         URL: https://github.com/prometheus/node_exporter
         summary: Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
@@ -148,7 +148,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.22.0
+        version: 0.23.0
         license: ASL 2.0
         URL: https://github.com/prometheus/snmp_exporter
         service_opts:
@@ -209,7 +209,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.6.0
+        version: 0.7.0
         license: MIT
         URL: https://github.com/prometheus-community/pgbouncer_exporter
         user: postgres
@@ -296,7 +296,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.6.1
+        version: 0.7.0
         license: ASL 2.0
         URL: https://github.com/prometheus-community/bind_exporter
         summary: Prometheus exporter for Bind nameserver
@@ -364,7 +364,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.0
+        version: 1.6.2
         license: ASL 2.0
         URL: https://github.com/prometheus/pushgateway
         summary: Prometheus push acceptor for ephemeral and batch jobs.
@@ -901,7 +901,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.10.3
+        version: 1.10.4
         license: MIT
         URL: https://github.com/boynux/squid-exporter
         package: squid-exporter
