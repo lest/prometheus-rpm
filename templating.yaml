@@ -80,7 +80,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.0
+        version: 1.6.1
         license: ASL 2.0
         URL: https://github.com/prometheus/node_exporter
         summary: Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
@@ -171,7 +171,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.14.0
+        version: 0.15.0
         license: ASL 2.0
         URL: https://github.com/prometheus/mysqld_exporter
         summary: Prometheus exporter for MySQL server metrics.
@@ -209,7 +209,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.6.0
+        version: 0.7.0
         license: MIT
         URL: https://github.com/prometheus-community/pgbouncer_exporter
         user: postgres
@@ -296,7 +296,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.6.1
+        version: 0.7.0
         license: ASL 2.0
         URL: https://github.com/prometheus-community/bind_exporter
         summary: Prometheus exporter for Bind nameserver
@@ -492,7 +492,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.6.1
+        version: 0.7.1
         license: ASL 2.0
         URL: https://github.com/SuperQ/smokeping_prober
         service_opts:
@@ -522,7 +522,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.13.3
+        version: 1.0.2
         license: MIT
         URL: https://github.com/Lusitaniae/apache_exporter
         summary: Prometheus exporter Apache webserver mertics.
@@ -901,7 +901,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.10.3
+        version: 1.10.4
         license: MIT
         URL: https://github.com/boynux/squid-exporter
         package: squid-exporter
