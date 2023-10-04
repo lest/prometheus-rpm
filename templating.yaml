@@ -833,7 +833,7 @@ packages:
         version: 0.12.0
         license: ASL 2.0
         URL: https://github.com/nats-io/prometheus-nats-exporter
-        package: prometheus-nats-exporter-v%{version}-linux-amd64
+        package: prometheus-nats-exporter-v%{version}-linux-x86_64
         tarball_has_subdirectory: true
         fix_name: prometheus-nats-exporter
         service_opts:
