@@ -15,14 +15,14 @@ anchors:
       release: 1
       service_opts: []
       environment: {}
-      #additional_sources:
-      #  - path: example.yml
-      #    from_tarball: false # take file from tarball or repository
-      #    dest: '%{_sysconfdir}/prometheus/example.yml'
-      #    mode: 644           # optional
-      #    user: root          # optional
-      #    group: root         # optional
-      #    config: true        # specify not to override config files
+      # additional_sources:
+      #   - path: example.yml
+      #     from_tarball: false # take file from tarball or repository
+      #     dest: '%{_sysconfdir}/prometheus/example.yml'
+      #     mode: 644           # optional
+      #     user: root          # optional
+      #     group: root         # optional
+      #     config: true        # specify not to override config files
       prep_cmds: []
       build_cmds:
         - /bin/true
@@ -31,7 +31,7 @@ anchors:
       post_cmds: []
       preun_cmds: []
       postun_cmds: []
-      #open_file_limit: 4096   # optionally specify open file limit
+      # open_file_limit: 4096   # optionally specify open file limit
     dynamic: &default_dynamic_context
       tarball: '{{URL}}/releases/download/v%{version}/{{package}}.tar.gz'
       sources:
@@ -83,8 +83,7 @@ packages:
         version: 1.6.1
         license: ASL 2.0
         URL: https://github.com/prometheus/node_exporter
-        summary: Prometheus exporter for machine metrics, written in Go with pluggable
-          metric collectors.
+        summary: Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
         description: |
           Prometheus exporter for hardware and OS metrics exposed by *NIX kernels,
           written in Go with pluggable metric collectors.
@@ -95,7 +94,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.23.0
+        version: 0.24.0
         license: ASL 2.0
         URL: https://github.com/prometheus/blackbox_exporter
         service_opts:
@@ -149,7 +148,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.21.0
+        version: 0.22.0
         license: ASL 2.0
         URL: https://github.com/prometheus/snmp_exporter
         service_opts:
@@ -186,7 +185,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.12.0
+        version: 0.13.2
         license: ASL 2.0
         URL: https://github.com/prometheus-community/postgres_exporter
         user: postgres
@@ -224,7 +223,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.5.0
+        version: 1.6.0
         license: ASL 2.0
         URL: https://github.com/prometheus-community/elasticsearch_exporter
         service_opts:
@@ -238,11 +237,10 @@ packages:
     context:
       static:
         <<: *default_static_context
-        version: 1.50.0
+        version: 1.54.0
         license: MIT
         summary: Prometheus exporter for Redis server metrics.
-        description: Prometheus Exporter for Redis Metrics. Supports Redis 2.x, 3.x,
-          4.x, 5.x and 6.x
+        description: Prometheus Exporter for Redis Metrics. Supports Redis 2.x, 3.x, 4.x, 5.x and 6.x
         package: '%{name}-v%{version}.linux-amd64'
         URL: https://github.com/oliver006/redis_exporter
       dynamic:
@@ -259,10 +257,8 @@ packages:
         URL: https://github.com/prometheus/haproxy_exporter
         service_opts:
           - --haproxy.scrape-uri=unix:/var/lib/haproxy/stats
-        summary: This is a simple server that scrapes HAProxy stats and exports them
-          via HTTP for Prometheus consumption.
-        description: This is a simple server that scrapes HAProxy stats and exports
-          them via HTTP for Prometheus consumption.
+        summary: This is a simple server that scrapes HAProxy stats and exports them via HTTP for Prometheus consumption.
+        description: This is a simple server that scrapes HAProxy stats and exports them via HTTP for Prometheus consumption.
   kafka_exporter:
     build_steps:
       <<: *default_build_steps
@@ -270,7 +266,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.0
+        version: 1.7.0
         license: ASL 2.0
         URL: https://github.com/danielqsj/kafka_exporter
         summary: Kafka exporter for Prometheus.
@@ -312,7 +308,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.5.0
+        version: 0.6.0
         license: ASL 2.0
         URL: https://github.com/prometheus-community/json_exporter
         summary: A Prometheus exporter which scrapes remote JSON by JSONPath.
@@ -368,7 +364,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.5.1
+        version: 1.6.0
         license: ASL 2.0
         URL: https://github.com/prometheus/pushgateway
         summary: Prometheus push acceptor for ephemeral and batch jobs.
@@ -412,14 +408,12 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 2.37.0
+        version: 0.37.0
         license: ASL 2.0
         URL: https://github.com/percona/mongodb_exporter
         package: '%{name}-%{version}.linux-amd64'
-        summary: A Prometheus exporter for MongoDB including sharding, replication
-          and storage engines
-        description: A Prometheus exporter for MongoDB including sharding, replication
-          and storage engines
+        summary: A Prometheus exporter for MongoDB including sharding, replication and storage engines
+        description: A Prometheus exporter for MongoDB including sharding, replication and storage engines
   graphite_exporter:
     build_steps:
       <<: *default_build_steps
@@ -427,11 +421,10 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.13.3
+        version: 0.14.0
         license: ASL 2.0
         URL: https://github.com/prometheus/graphite_exporter
-        summary: Server that accepts metrics via the Graphite protocol and exports
-          them as Prometheus metrics.
+        summary: Server that accepts metrics via the Graphite protocol and exports them as Prometheus metrics.
         description: |
           An exporter for metrics exported in the Graphite plaintext protocol. It
           accepts data over both TCP and UDP, and transforms and exposes them for
@@ -443,7 +436,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.23.1
+        version: 0.24.0
         license: ASL 2.0
         URL: https://github.com/prometheus/statsd_exporter
         summary: Export StatsD metrics in Prometheus format.
@@ -473,7 +466,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.11.3
+        version: 0.13.0
         license: ASL 2.0
         URL: https://github.com/prometheus/memcached_exporter
         summary: Memcached stats exporter for Prometheus.
@@ -542,7 +535,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.11.3
+        version: 0.11.4
         license: ASL 2.0
         URL: https://github.com/prometheus/influxdb_exporter
         summary: InfluxDB stats exporter for Prometheus.
@@ -782,7 +775,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.13.0
+        version: 1.13.2
         license: ASL 2.0
         URL: https://github.com/peimanja/artifactory_exporter
         package: '%{name}-v%{version}-linux-amd64'
@@ -807,8 +800,7 @@ packages:
         fix_name: php-fpm_exporter
         service_opts:
           - server
-        summary: A prometheus exporter for PHP-FPM. The exporter connects directly
-          to PHP-FPM and exports the metrics via HTTP
+        summary: A prometheus exporter for PHP-FPM. The exporter connects directly to PHP-FPM and exports the metrics via HTTP
         description: |
           A prometheus exporter for PHP-FPM
   ipmi_exporter:
@@ -942,18 +934,15 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.5.0
+        version: 1.6.1
         license: MIT
         URL: https://github.com/gvengel/exim_exporter
         user: exim
-        package: exim_exporter
+        package: '%{name}_%{version}_linux_amd64'
         tarball_has_subdirectory: false
         summary: Prometheus exporter for the exim4 mail server.
         description: |
           Prometheus exporter for the exim4 mail server.
-      dynamic:
-        <<: *default_dynamic_context
-        tarball: '{{URL}}/releases/download/v%{version}/{{package}}'
   systemd_exporter:
     build_steps:
       <<: *default_build_steps
