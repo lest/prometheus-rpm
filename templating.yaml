@@ -237,7 +237,7 @@ packages:
     context:
       static:
         <<: *default_static_context
-        version: 1.50.0
+        version: 1.54.0
         license: MIT
         summary: Prometheus exporter for Redis server metrics.
         description: Prometheus Exporter for Redis Metrics. Supports Redis 2.x, 3.x, 4.x, 5.x and 6.x
@@ -436,7 +436,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.23.1
+        version: 0.24.0
         license: ASL 2.0
         URL: https://github.com/prometheus/statsd_exporter
         summary: Export StatsD metrics in Prometheus format.
@@ -522,7 +522,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.13.3
+        version: 1.0.2
         license: MIT
         URL: https://github.com/Lusitaniae/apache_exporter
         summary: Prometheus exporter Apache webserver mertics.
