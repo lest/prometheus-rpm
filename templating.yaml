@@ -308,7 +308,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.5.0
+        version: 0.6.0
         license: ASL 2.0
         URL: https://github.com/prometheus-community/json_exporter
         summary: A Prometheus exporter which scrapes remote JSON by JSONPath.
@@ -421,7 +421,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.13.3
+        version: 0.14.0
         license: ASL 2.0
         URL: https://github.com/prometheus/graphite_exporter
         summary: Server that accepts metrics via the Graphite protocol and exports them as Prometheus metrics.
@@ -466,7 +466,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.11.3
+        version: 0.13.0
         license: ASL 2.0
         URL: https://github.com/prometheus/memcached_exporter
         summary: Memcached stats exporter for Prometheus.
@@ -535,7 +535,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.11.3
+        version: 0.11.4
         license: ASL 2.0
         URL: https://github.com/prometheus/influxdb_exporter
         summary: InfluxDB stats exporter for Prometheus.
@@ -775,7 +775,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.13.0
+        version: 1.13.2
         license: ASL 2.0
         URL: https://github.com/peimanja/artifactory_exporter
         package: '%{name}-v%{version}-linux-amd64'
