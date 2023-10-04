@@ -364,7 +364,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.0
+        version: 1.6.2
         license: ASL 2.0
         URL: https://github.com/prometheus/pushgateway
         summary: Prometheus push acceptor for ephemeral and batch jobs.
@@ -569,7 +569,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.10.1
+        version: 0.12.0
         license: MIT
         URL: https://github.com/czerwonk/junos_exporter
         package: prometheus-junos-exporter_%{version}_linux_amd64
