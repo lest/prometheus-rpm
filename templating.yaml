@@ -138,6 +138,9 @@ packages:
         summary: SQL exporter
         description: |
           Database agnostic SQL exporter for Prometheus.
+      dynamic:
+        <<: *default_dynamic_context
+        tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
   snmp_exporter:
     build_steps:
       <<: *default_build_steps
