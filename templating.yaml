@@ -118,10 +118,10 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.5
+        version: 0.12.3
         release: 1
         license: MIT
-        URL: https://github.com/free/sql_exporter
+        URL: https://github.com/burningalchemist/sql_exporter
         service_opts:
           - --config.file=/etc/prometheus/sql_exporter.yml
         additional_sources:
@@ -137,10 +137,7 @@ packages:
             group: '%{group}'
         summary: SQL exporter
         description: |
-          The Sql_exporter queries the sql database and expose the result to Prometheus.
-      dynamic:
-        <<: *default_dynamic_context
-        tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
+          Database agnostic SQL exporter for Prometheus.
   snmp_exporter:
     build_steps:
       <<: *default_build_steps
