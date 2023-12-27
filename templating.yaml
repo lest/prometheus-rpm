@@ -118,7 +118,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.13.0
+        version: 0.13.1
         license: MIT
         URL: https://github.com/burningalchemist/sql_exporter
         service_opts:
@@ -221,7 +221,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.0
+        version: 1.7.0
         license: ASL 2.0
         URL: https://github.com/prometheus-community/elasticsearch_exporter
         service_opts:
