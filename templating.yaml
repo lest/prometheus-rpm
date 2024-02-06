@@ -891,7 +891,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.10.4
+        version: 1.10.5
         license: MIT
         URL: https://github.com/boynux/squid-exporter
         package: squid-exporter
