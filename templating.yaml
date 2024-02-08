@@ -324,18 +324,16 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.5.0
+        version: 0.7.0
         license: ASL 2.0
         user: root
         group: root
-        release: 3
         URL: https://github.com/gen2brain/keepalived_exporter
         package: '%{name}-%{version}-amd64'
         summary: Prometheus exporter for Keepalived metrics
         description: Export Keepalived service metrics to Prometheus.
       dynamic:
         <<: *default_dynamic_context
-        tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
   jolokia_exporter:
     build_steps:
       <<: *default_build_steps
