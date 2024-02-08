@@ -390,7 +390,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.22.0
+        version: 1.23.0
         license: MIT
         URL: https://github.com/caarlos0/domain_exporter
         package: '%{name}_%{version}_linux_amd64'
@@ -517,7 +517,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.0.5
+        version: 1.0.6
         license: MIT
         URL: https://github.com/Lusitaniae/apache_exporter
         summary: Prometheus exporter Apache webserver mertics.
@@ -890,10 +890,10 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.10.4
+        version: 1.10.5
         license: MIT
         URL: https://github.com/boynux/squid-exporter
-        package: squid-exporter
+        package: squid-exporter-linux-amd64
         service_opts:
           - --listen=0.0.0.0:9301
         caps: cap_dac_read_search=ep
@@ -910,7 +910,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.13.1
+        version: 1.13.2
         license: ASL 2.0
         URL: https://github.com/galexrt/dellhw_exporter
         summary: Dell Hardware OMSA exporter
