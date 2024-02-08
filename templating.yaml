@@ -334,7 +334,6 @@ packages:
         description: Export Keepalived service metrics to Prometheus.
       dynamic:
         <<: *default_dynamic_context
-        tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
   jolokia_exporter:
     build_steps:
       <<: *default_build_steps
