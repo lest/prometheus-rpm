@@ -894,7 +894,7 @@ packages:
         version: 1.10.5
         license: MIT
         URL: https://github.com/boynux/squid-exporter
-        package: squid-exporter
+        package: squid-exporter-linux-amd64
         service_opts:
           - --listen=0.0.0.0:9301
         caps: cap_dac_read_search=ep
