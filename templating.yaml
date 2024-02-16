@@ -909,7 +909,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.13.4
+        version: 1.13.7
         license: ASL 2.0
         URL: https://github.com/galexrt/dellhw_exporter
         summary: Dell Hardware OMSA exporter
