@@ -588,7 +588,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.0
+        version: 1.7.0
         license: MIT
         URL: https://github.com/openstack-exporter/openstack-exporter
         package: openstack-exporter_%{version}_linux_amd64
