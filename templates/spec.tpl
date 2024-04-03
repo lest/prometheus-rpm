@@ -160,7 +160,7 @@ if [ "$1" -ge "1" ] ; then
     service %{name} condrestart >/dev/null 2>&1 || :
 fi
 %else
-%systemd_postun %{name}.service
+%systemd_postun_restart %{name}.service
 %endif
 {%- for postun_cmd in postun_cmds %}
 {{ postun_cmd }}
