@@ -118,7 +118,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.14.2
+        version: 0.14.3
         license: MIT
         URL: https://github.com/burningalchemist/sql_exporter
         service_opts:
