@@ -922,7 +922,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.1
+        version: 1.6.2
         license: MIT
         URL: https://github.com/gvengel/exim_exporter
         user: exim
