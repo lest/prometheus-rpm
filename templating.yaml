@@ -80,7 +80,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.8.1
+        version: 1.8.2
         license: ASL 2.0
         URL: https://github.com/prometheus/node_exporter
         summary: Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
