@@ -516,7 +516,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.0.8
+        version: 1.0.9
         license: MIT
         URL: https://github.com/Lusitaniae/apache_exporter
         summary: Prometheus exporter Apache webserver mertics.
