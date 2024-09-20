@@ -221,7 +221,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.7.0
+        version: 1.8.0
         license: ASL 2.0
         URL: https://github.com/prometheus-community/elasticsearch_exporter
         service_opts:
