@@ -800,7 +800,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.8.0
+        version: 1.9.0
         license: MIT
         URL: https://github.com/prometheus-community/ipmi_exporter
         service_opts:
