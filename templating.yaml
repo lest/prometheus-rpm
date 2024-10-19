@@ -207,7 +207,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.8.0
+        version: 0.10.2
         license: MIT
         URL: https://github.com/prometheus-community/pgbouncer_exporter
         user: postgres
