@@ -416,7 +416,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.15.1
+        version: 0.16.0
         license: ASL 2.0
         URL: https://github.com/prometheus/graphite_exporter
         summary: Server that accepts metrics via the Graphite protocol and exports them as Prometheus metrics.
