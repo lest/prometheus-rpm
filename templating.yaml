@@ -460,7 +460,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.14.4
+        version: 0.15.0
         license: ASL 2.0
         URL: https://github.com/prometheus/memcached_exporter
         summary: Memcached stats exporter for Prometheus.
