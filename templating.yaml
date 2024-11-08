@@ -954,7 +954,7 @@ packages:
         version: 1.8.2
         license: MIT
         URL: https://github.com/kuskoman/logstash-exporter
-        package: logstash-exporter
+        package: logstash-exporter-linux
         service_opts:
           - --listen=0.0.0.0:9198
         summary: Prometheus exporter for logstash, written in Go.
