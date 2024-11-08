@@ -55,7 +55,8 @@ cadvisor \
 squid_exporter \
 dellhw_exporter \
 exim_exporter \
-systemd_exporter
+systemd_exporter \
+logstash-exporter
 
 .PHONY: $(MANUAL) $(AUTO_GENERATED)
 

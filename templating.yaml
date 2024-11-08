@@ -944,3 +944,19 @@ packages:
         summary: Prometheus exporter for systemd units, written in Go.
         description: |
           Systemd unit monitoring and resource usage
+  logstash_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 1.8.2
+        license: MIT
+        URL: https://github.com/kuskoman/logstash-exporter
+        package: logstash-exporter-linux
+        service_opts:
+          - --listen=0.0.0.0:9198
+        summary: Prometheus exporter for logstash, written in Go.
+        description: |
+          Export metrics from Logstash to Prometheus
