@@ -276,7 +276,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.2.0
+        version: 1.4.0
         license: ASL 2.0
         package: nginx-prometheus-exporter_%{version}_linux_amd64
         URL: https://github.com/nginxinc/nginx-prometheus-exporter
