@@ -563,7 +563,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.12.3
+        version: 0.12.6
         license: MIT
         URL: https://github.com/czerwonk/junos_exporter
         package: prometheus-junos-exporter_%{version}_linux_amd64
