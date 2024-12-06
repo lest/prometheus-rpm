@@ -819,7 +819,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.15.0
+        version: 0.16.0
         license: ASL 2.0
         URL: https://github.com/nats-io/prometheus-nats-exporter
         package: prometheus-nats-exporter-v%{version}-linux-x86_64
