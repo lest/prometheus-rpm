@@ -389,7 +389,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.23.0
+        version: 1.24.1
         license: MIT
         URL: https://github.com/caarlos0/domain_exporter
         package: '%{name}_%{version}_linux_amd64'
