@@ -944,3 +944,25 @@ packages:
         summary: Prometheus exporter for systemd units, written in Go.
         description: |
           Systemd unit monitoring and resource usage
+  oracledb_exporter:
+    build_steps:
+      <<: *default_build_steps
+    context:
+      <<: *default_context
+      static:
+        <<: *default_static_context
+        version: 1.5.3
+        license: MIT
+        URL: https://github.com/oracle/oracle-db-appdev-monitoring
+        summary: Unified Observability for Oracle Database.
+        service_opts:
+          - --default.metrics=/etc/prometheus/oracledb_exporter_default-metrics.toml --log.disable=1
+        additional_sources:
+          - path: https://raw.githubusercontent.com/oracle/oracle-db-appdev-monitoring/%{version}/default-metrics.toml
+            dest: '%{_sysconfdir}/prometheus/%{name}_default-metrics.toml'
+            from_tarball: false
+        description: |
+          Unified Observability for Oracle Database
+      dynamic:
+        <<: *default_dynamic_context
+        tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
