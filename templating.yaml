@@ -80,7 +80,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.8.1
+        version: 1.8.2
         license: ASL 2.0
         URL: https://github.com/prometheus/node_exporter
         summary: Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
@@ -235,7 +235,7 @@ packages:
     context:
       static:
         <<: *default_static_context
-        version: 1.61.0
+        version: 1.69.0
         license: MIT
         summary: Prometheus exporter for Redis server metrics.
         description: Prometheus Exporter for Redis Metrics. Supports Redis 2.x, 3.x, 4.x, 5.x and 6.x
@@ -922,7 +922,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.1
+        version: 1.6.2
         license: MIT
         URL: https://github.com/gvengel/exim_exporter
         user: exim
