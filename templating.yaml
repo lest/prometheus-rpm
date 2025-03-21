@@ -80,7 +80,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.8.1
+        version: 1.8.2
         license: ASL 2.0
         URL: https://github.com/prometheus/node_exporter
         summary: Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
@@ -207,7 +207,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.8.0
+        version: 0.10.2
         license: MIT
         URL: https://github.com/prometheus-community/pgbouncer_exporter
         user: postgres
@@ -221,7 +221,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.7.0
+        version: 1.9.0
         license: ASL 2.0
         URL: https://github.com/prometheus-community/elasticsearch_exporter
         service_opts:
@@ -235,7 +235,7 @@ packages:
     context:
       static:
         <<: *default_static_context
-        version: 1.61.0
+        version: 1.69.0
         license: MIT
         summary: Prometheus exporter for Redis server metrics.
         description: Prometheus Exporter for Redis Metrics. Supports Redis 2.x, 3.x, 4.x, 5.x and 6.x
@@ -264,7 +264,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.7.0
+        version: 1.9.0
         license: ASL 2.0
         URL: https://github.com/danielqsj/kafka_exporter
         summary: Kafka exporter for Prometheus.
@@ -276,7 +276,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.2.0
+        version: 1.4.1
         license: ASL 2.0
         package: nginx-prometheus-exporter_%{version}_linux_amd64
         URL: https://github.com/nginxinc/nginx-prometheus-exporter
@@ -359,7 +359,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.9.0
+        version: 1.11.0
         license: ASL 2.0
         URL: https://github.com/prometheus/pushgateway
         summary: Prometheus push acceptor for ephemeral and batch jobs.
@@ -375,7 +375,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.2.0
+        version: 1.4.0
         license: MIT
         user: frr
         group: frr
@@ -403,7 +403,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.40.0
+        version: 0.43.1
         license: ASL 2.0
         URL: https://github.com/percona/mongodb_exporter
         package: '%{name}-%{version}.linux-amd64'
@@ -416,7 +416,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.15.1
+        version: 0.16.0
         license: ASL 2.0
         URL: https://github.com/prometheus/graphite_exporter
         summary: Server that accepts metrics via the Graphite protocol and exports them as Prometheus metrics.
@@ -431,7 +431,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.26.1
+        version: 0.28.0
         license: ASL 2.0
         URL: https://github.com/prometheus/statsd_exporter
         summary: Export StatsD metrics in Prometheus format.
@@ -473,7 +473,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.12.0
+        version: 0.13.0
         license: ASL 2.0
         URL: https://github.com/prometheus/consul_exporter
         summary: Consul stats exporter for Prometheus.
@@ -516,7 +516,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.0.8
+        version: 1.0.10
         license: MIT
         URL: https://github.com/Lusitaniae/apache_exporter
         summary: Prometheus exporter Apache webserver mertics.
@@ -529,7 +529,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.11.5
+        version: 0.12.0
         license: ASL 2.0
         URL: https://github.com/prometheus/influxdb_exporter
         summary: InfluxDB stats exporter for Prometheus.
@@ -563,7 +563,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.12.3
+        version: 0.14.0
         license: MIT
         URL: https://github.com/czerwonk/junos_exporter
         package: prometheus-junos-exporter_%{version}_linux_amd64
@@ -611,7 +611,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.8.2
+        version: 0.8.5
         license: MIT
         URL: https://github.com/ncabatoff/process-exporter
         package: process-exporter-%{version}.linux-amd64
@@ -800,7 +800,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.8.0
+        version: 1.10.0
         license: MIT
         URL: https://github.com/prometheus-community/ipmi_exporter
         service_opts:
@@ -909,7 +909,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.13.12
+        version: 1.13.13
         license: ASL 2.0
         URL: https://github.com/galexrt/dellhw_exporter
         summary: Dell Hardware OMSA exporter
@@ -922,7 +922,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.1
+        version: 1.6.2
         license: MIT
         URL: https://github.com/gvengel/exim_exporter
         user: exim
