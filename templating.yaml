@@ -324,7 +324,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.7.0
+        version: 0.7.1
         license: ASL 2.0
         user: root
         group: root
