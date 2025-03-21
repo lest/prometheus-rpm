@@ -49,7 +49,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.25.0
+        version: 0.27.0
         license: ASL 2.0
         URL: https://github.com/prometheus/alertmanager
         service_opts:
@@ -80,7 +80,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.0
+        version: 1.8.2
         license: ASL 2.0
         URL: https://github.com/prometheus/node_exporter
         summary: Prometheus exporter for machine metrics, written in Go with pluggable metric collectors.
@@ -94,7 +94,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.24.0
+        version: 0.25.0
         license: ASL 2.0
         URL: https://github.com/prometheus/blackbox_exporter
         service_opts:
@@ -118,10 +118,9 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.5
-        release: 1
+        version: 0.14.4
         license: MIT
-        URL: https://github.com/free/sql_exporter
+        URL: https://github.com/burningalchemist/sql_exporter
         service_opts:
           - --config.file=/etc/prometheus/sql_exporter.yml
         additional_sources:
@@ -137,7 +136,7 @@ packages:
             group: '%{group}'
         summary: SQL exporter
         description: |
-          The Sql_exporter queries the sql database and expose the result to Prometheus.
+          Database agnostic SQL exporter for Prometheus.
       dynamic:
         <<: *default_dynamic_context
         tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
@@ -148,7 +147,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.22.0
+        version: 0.26.0
         license: ASL 2.0
         URL: https://github.com/prometheus/snmp_exporter
         service_opts:
@@ -171,7 +170,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.15.0
+        version: 0.15.1
         license: ASL 2.0
         URL: https://github.com/prometheus/mysqld_exporter
         summary: Prometheus exporter for MySQL server metrics.
@@ -185,7 +184,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.13.2
+        version: 0.15.0
         license: ASL 2.0
         URL: https://github.com/prometheus-community/postgres_exporter
         user: postgres
@@ -195,8 +194,7 @@ packages:
         environment:
           DATA_SOURCE_NAME: user=postgres host=/var/run/postgresql/ sslmode=disable
         additional_sources:
-          - path: 
-              https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/queries.yaml
+          - path: https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/queries.yaml
             dest: '%{_sysconfdir}/prometheus/%{name}_queries.yaml'
             from_tarball: false
         summary: Prometheus exporter for PostgreSQL server metrics
@@ -209,7 +207,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.6.0
+        version: 0.8.0
         license: MIT
         URL: https://github.com/prometheus-community/pgbouncer_exporter
         user: postgres
@@ -223,7 +221,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.0
+        version: 1.7.0
         license: ASL 2.0
         URL: https://github.com/prometheus-community/elasticsearch_exporter
         service_opts:
@@ -237,7 +235,7 @@ packages:
     context:
       static:
         <<: *default_static_context
-        version: 1.54.0
+        version: 1.69.0
         license: MIT
         summary: Prometheus exporter for Redis server metrics.
         description: Prometheus Exporter for Redis Metrics. Supports Redis 2.x, 3.x, 4.x, 5.x and 6.x
@@ -266,7 +264,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.7.0
+        version: 1.9.0
         license: ASL 2.0
         URL: https://github.com/danielqsj/kafka_exporter
         summary: Kafka exporter for Prometheus.
@@ -278,7 +276,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.11.0
+        version: 1.4.1
         license: ASL 2.0
         package: nginx-prometheus-exporter_%{version}_linux_amd64
         URL: https://github.com/nginxinc/nginx-prometheus-exporter
@@ -316,8 +314,7 @@ packages:
         service_opts:
           - --config.file=/etc/prometheus/json_exporter.yml
         additional_sources:
-          - path: 
-              https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/examples/config.yml
+          - path: https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/examples/config.yml
             dest: '%{_sysconfdir}/prometheus/%{name}.yaml'
             from_tarball: false
   keepalived_exporter:
@@ -327,18 +324,16 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.5.0
+        version: 0.7.0
         license: ASL 2.0
         user: root
         group: root
-        release: 3
         URL: https://github.com/gen2brain/keepalived_exporter
         package: '%{name}-%{version}-amd64'
         summary: Prometheus exporter for Keepalived metrics
         description: Export Keepalived service metrics to Prometheus.
       dynamic:
         <<: *default_dynamic_context
-        tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
   jolokia_exporter:
     build_steps:
       <<: *default_build_steps
@@ -364,7 +359,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.0
+        version: 1.9.0
         license: ASL 2.0
         URL: https://github.com/prometheus/pushgateway
         summary: Prometheus push acceptor for ephemeral and batch jobs.
@@ -394,7 +389,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.21.1
+        version: 1.23.0
         license: MIT
         URL: https://github.com/caarlos0/domain_exporter
         package: '%{name}_%{version}_linux_amd64'
@@ -408,7 +403,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.37.0
+        version: 0.40.0
         license: ASL 2.0
         URL: https://github.com/percona/mongodb_exporter
         package: '%{name}-%{version}.linux-amd64'
@@ -421,7 +416,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.14.0
+        version: 0.16.0
         license: ASL 2.0
         URL: https://github.com/prometheus/graphite_exporter
         summary: Server that accepts metrics via the Graphite protocol and exports them as Prometheus metrics.
@@ -436,7 +431,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.24.0
+        version: 0.28.0
         license: ASL 2.0
         URL: https://github.com/prometheus/statsd_exporter
         summary: Export StatsD metrics in Prometheus format.
@@ -449,9 +444,8 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.5.0
+        version: 0.6.0
         license: ASL 2.0
-        release: 2
         URL: https://github.com/prometheus/collectd_exporter
         summary: Collectd stats exporter for Prometheus.
         description: |
@@ -466,7 +460,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.13.0
+        version: 0.14.4
         license: ASL 2.0
         URL: https://github.com/prometheus/memcached_exporter
         summary: Memcached stats exporter for Prometheus.
@@ -479,7 +473,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.9.0
+        version: 0.13.0
         license: ASL 2.0
         URL: https://github.com/prometheus/consul_exporter
         summary: Consul stats exporter for Prometheus.
@@ -492,7 +486,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.7.1
+        version: 0.8.1
         license: ASL 2.0
         URL: https://github.com/SuperQ/smokeping_prober
         service_opts:
@@ -522,7 +516,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.0.2
+        version: 1.0.8
         license: MIT
         URL: https://github.com/Lusitaniae/apache_exporter
         summary: Prometheus exporter Apache webserver mertics.
@@ -535,7 +529,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.11.4
+        version: 0.12.0
         license: ASL 2.0
         URL: https://github.com/prometheus/influxdb_exporter
         summary: InfluxDB stats exporter for Prometheus.
@@ -569,7 +563,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.10.1
+        version: 0.14.0
         license: MIT
         URL: https://github.com/czerwonk/junos_exporter
         package: prometheus-junos-exporter_%{version}_linux_amd64
@@ -594,7 +588,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.0
+        version: 1.7.0
         license: MIT
         URL: https://github.com/openstack-exporter/openstack-exporter
         package: openstack-exporter_%{version}_linux_amd64
@@ -617,14 +611,13 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.7.10
+        version: 0.8.5
         license: MIT
         URL: https://github.com/ncabatoff/process-exporter
         package: process-exporter-%{version}.linux-amd64
         fix_name: process-exporter
         additional_sources:
-          - path: 
-              https://raw.githubusercontent.com/ncabatoff/process-exporter/v%{version}/packaging/conf/all.yaml
+          - path: https://raw.githubusercontent.com/ncabatoff/process-exporter/v%{version}/packaging/conf/all.yaml
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
         service_opts:
           - --config.path=/etc/prometheus/process_exporter.yml
@@ -638,14 +631,13 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 2.4.2
+        version: 2.4.3
         license: ASL 2.0
         URL: https://github.com/ribbybibby/ssl_exporter
         package: '%{name}_%{version}_linux_amd64'
         tarball_has_subdirectory: false
         additional_sources:
-          - path: 
-              https://raw.githubusercontent.com/ribbybibby/%{name}/v%{version}/examples/%{name}.yaml
+          - path: https://raw.githubusercontent.com/ribbybibby/%{name}/v%{version}/examples/%{name}.yaml
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
         service_opts:
           - --config.file=/etc/prometheus/ssl_exporter.yml
@@ -666,8 +658,7 @@ packages:
         license: BSD
         URL: https://github.com/messagebird/sachet
         additional_sources:
-          - path: 
-              https://raw.githubusercontent.com/messagebird/%{name}/%{version}/examples/config.yaml
+          - path: https://raw.githubusercontent.com/messagebird/%{name}/%{version}/examples/config.yaml
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
             mode: 640
             group: '%{group}'
@@ -723,8 +714,7 @@ packages:
         service_opts:
           - --config.file=/etc/prometheus/ebpf_exporter.yml
         additional_sources:
-          - path: 
-              https://raw.githubusercontent.com/cloudflare/%{name}/v%{version}/examples/bio.yaml
+          - path: https://raw.githubusercontent.com/cloudflare/%{name}/v%{version}/examples/bio.yaml
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
             from_tarball: false
         summary: Prometheus exporter for custom eBPF metrics
@@ -740,7 +730,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: '0.114'
+        version: '0.120'
         license: ASL 2.0
         URL: https://github.com/prymitive/karma
         package: '%{name}-linux-amd64'
@@ -775,7 +765,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.13.2
+        version: 1.14.0
         license: ASL 2.0
         URL: https://github.com/peimanja/artifactory_exporter
         package: '%{name}-v%{version}-linux-amd64'
@@ -810,14 +800,13 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.1
+        version: 1.8.0
         license: MIT
         URL: https://github.com/prometheus-community/ipmi_exporter
         service_opts:
           - --config.file==/etc/prometheus/ipmi.yml
         additional_sources:
-          - path: 
-              https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/ipmi_local.yml
+          - path: https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/ipmi_local.yml
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
             from_tarball: false
         summary: Prometheus exporter for IPMI metrics
@@ -830,12 +819,12 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.11.0
+        version: 0.15.0
         license: ASL 2.0
         URL: https://github.com/nats-io/prometheus-nats-exporter
-        package: prometheus-nats-exporter-v%{version}-linux-amd64
-        tarball_has_subdirectory: true
+        package: prometheus-nats-exporter-v%{version}-linux-x86_64
         fix_name: prometheus-nats-exporter
+        tarball_has_subdirectory: false
         service_opts:
           - -varz http://localhost:8222
         summary: A prometheus exporter for NATS
@@ -862,8 +851,7 @@ packages:
             dest: '%{_sysconfdir}/prometheus/%{name}.yml'
             group: '%{group}'
             mode: 640
-          - path: 
-              https://github.com/prometheus-msteams/prometheus-msteams/releases/download/v%{version}/default-message-card.tmpl
+          - path: https://github.com/prometheus-msteams/prometheus-msteams/releases/download/v%{version}/default-message-card.tmpl
             dest: '%{_sysconfdir}/prometheus/%{name}_message_card.tmpl'
             from_tarball: false
         summary: Alertmanager to Microsoft Teams gateway
@@ -879,7 +867,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.47.0
+        version: 0.49.1
         license: ASL 2.0
         URL: https://github.com/google/cadvisor
         user: root
@@ -901,10 +889,10 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.10.4
+        version: 1.12.0
         license: MIT
         URL: https://github.com/boynux/squid-exporter
-        package: squid-exporter
+        package: squid-exporter-linux-amd64
         service_opts:
           - --listen=0.0.0.0:9301
         caps: cap_dac_read_search=ep
@@ -921,7 +909,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.12.1
+        version: 1.13.12
         license: ASL 2.0
         URL: https://github.com/galexrt/dellhw_exporter
         summary: Dell Hardware OMSA exporter
@@ -934,7 +922,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.6.1
+        version: 1.6.2
         license: MIT
         URL: https://github.com/gvengel/exim_exporter
         user: exim
@@ -950,7 +938,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.5.0
+        version: 0.6.0
         license: ASL 2.0
         URL: https://github.com/prometheus-community/systemd_exporter
         summary: Prometheus exporter for systemd units, written in Go.

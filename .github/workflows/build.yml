@@ -23,11 +23,10 @@ jobs:
         version:
           - 9
           - 8
-          - 7
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Python environment
         uses: actions/setup-python@v4
@@ -56,11 +55,10 @@ jobs:
         version:
           - 9
           - 8
-          - 7
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Ruby environment
         uses: ruby/setup-ruby@v1

@@ -9,7 +9,7 @@ rpm --import RPM-GPG-KEY-prometheus-rpm
 
 GPG_SIGN_OPTS=""
 if [[ "$(rpm --eval %{centos_ver})" != "7" ]]; then
-  GPG_SIGN_OPTS="--pinentry-mode loopback"
+  GPG_SIGN_OPTS="--pinentry-mode loopback --digest-algo sha256"
 fi
 
 rpm \
