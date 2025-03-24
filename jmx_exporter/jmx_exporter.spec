@@ -1,14 +1,14 @@
 %global debug_package %{nil}
 
 Name:    jmx_exporter
-Version: 0.17.2
+Version: 0.18.0
 Release: 1%{?dist}
 BuildArch: noarch
 Summary: Prometheus exporter for mBeans scrape and expose.
 License: ASL 2.0
 URL:     https://github.com/prometheus/%{name}
 
-Source0: https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/%{version}/jmx_prometheus_javaagent-%{version}.jar 
+Source0: https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/%{version}/jmx_prometheus_javaagent-%{version}.jar
 Source1: %{name}.service
 Source2: %{name}.default
 
