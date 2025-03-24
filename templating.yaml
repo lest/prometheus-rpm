@@ -951,7 +951,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.8.2
+        version: 1.9.0
         license: MIT
         URL: https://github.com/kuskoman/logstash-exporter
         package: logstash-exporter-linux
