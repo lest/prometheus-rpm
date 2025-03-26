@@ -542,7 +542,7 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 0.4.5
+        version: 0.5.0
         license: ASL 2.0
         URL: https://github.com/QubitProducts/exporter_exporter
         additional_sources:
