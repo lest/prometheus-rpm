@@ -72,9 +72,30 @@ all: auto manual
 manual: $(MANUAL)
 auto: $(AUTO_GENERATED)
 
+manual10: $(addprefix build10-,$(MANUAL))
 manual9: $(addprefix build9-,$(MANUAL))
 manual8: $(addprefix build8-,$(MANUAL))
 manual7: $(addprefix build7-,$(MANUAL))
+
+$(addprefix build10-,$(MANUAL)):
+	$(eval PACKAGE=$(subst build10-,,$@))
+	[ -d ${PWD}/_dist10 ] || mkdir ${PWD}/_dist10 
+	[ -d ${PWD}/_cache_dnf ] || mkdir ${PWD}/_cache_dnf 
+	docker run ${DOCKER_FLAGS} \
+		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
+		-v ${PWD}/_dist10:/rpmbuild/RPMS/x86_64 \
+		-v ${PWD}/_dist10:/rpmbuild/RPMS/noarch \
+		-v ${PWD}/_cache_dnf:/var/cache/dnf \
+		ghcr.io/lest/centos-rpm-builder:alma10 \
+		build-spec SOURCES/${PACKAGE}.spec
+	# Test the install
+	[ -d ${PWD}/_dist10 ] || mkdir ${PWD}/_dist10      
+	[ -d ${PWD}/_cache_dnf ] || mkdir ${PWD}/_cache_dnf
+	docker run --privileged ${DOCKER_FLAGS} \
+		-v ${PWD}/_dist10:/var/tmp/ \
+		-v ${PWD}/_cache_dnf:/var/cache/dnf \
+		ghcr.io/lest/centos-rpm-builder:alma10 \
+		/bin/bash -c '/usr/bin/dnf install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 $(addprefix build9-,$(MANUAL)):
 	$(eval PACKAGE=$(subst build9-,,$@))
@@ -137,9 +158,42 @@ $(addprefix build7-,$(MANUAL)):
 		/bin/bash -c '/usr/bin/yum install --verbose -y /var/tmp/${PACKAGE}*.rpm'
 
 
+auto10: $(addprefix build10-,$(AUTO_GENERATED))
 auto9: $(addprefix build9-,$(AUTO_GENERATED))
 auto8: $(addprefix build8-,$(AUTO_GENERATED))
 auto7: $(addprefix build7-,$(AUTO_GENERATED))
+
+$(addprefix build10-,$(AUTO_GENERATED)):
+	$(eval PACKAGE=$(subst build10-,,$@))
+
+	python3 ./generate.py --templates ${PACKAGE}
+	[ -d ${PWD}/_dist10 ] || mkdir ${PWD}/_dist10      
+	[ -d ${PWD}/_cache_dnf ] || mkdir ${PWD}/_cache_dnf
+	docker run ${DOCKER_FLAGS} \
+		-v ${PWD}/${PACKAGE}:/rpmbuild/SOURCES \
+		-v ${PWD}/_dist10:/rpmbuild/RPMS/x86_64 \
+		-v ${PWD}/_dist10:/rpmbuild/RPMS/noarch \
+		-v ${PWD}/_cache_dnf:/var/cache/dnf \
+		ghcr.io/lest/centos-rpm-builder:alma10 \
+		build-spec SOURCES/autogen_${PACKAGE}.spec
+	# Test the install
+	[ -d ${PWD}/_dist10 ] || mkdir ${PWD}/_dist10      
+	[ -d ${PWD}/_cache_dnf ] || mkdir ${PWD}/_cache_dnf
+	docker run --privileged ${DOCKER_FLAGS} \
+		-v ${PWD}/_dist10:/var/tmp/ \
+		-v ${PWD}/_cache_dnf:/var/cache/dnf \
+		ghcr.io/lest/centos-rpm-builder:alma10 \
+		/bin/bash -c '/usr/bin/dnf install --verbose -y /var/tmp/${PACKAGE}*.rpm'
+
+sign10:
+	docker run --rm \
+		-v ${PWD}/_dist10:/rpmbuild/RPMS/x86_64 \
+		-v ${PWD}/bin:/rpmbuild/bin \
+		-v ${PWD}/RPM-GPG-KEY-prometheus-rpm:/rpmbuild/RPM-GPG-KEY-prometheus-rpm \
+		-v ${PWD}/secret.asc:/rpmbuild/secret.asc \
+		-v ${PWD}/.passphrase:/rpmbuild/.passphrase \
+		ghcr.io/lest/centos-rpm-builder:alma10 \
+		bin/sign
 
 $(addprefix build9-,$(AUTO_GENERATED)):
 	$(eval PACKAGE=$(subst build9-,,$@))
@@ -240,6 +294,7 @@ sign7:
 $(foreach \
 	PACKAGE,$(MANUAL),$(eval \
 		${PACKAGE}: \
+			$(addprefix build10-,${PACKAGE}) \
 			$(addprefix build9-,${PACKAGE}) \
 			$(addprefix build8-,${PACKAGE}) \
 			$(addprefix build7-,${PACKAGE}) \
@@ -249,13 +304,17 @@ $(foreach \
 $(foreach \
 	PACKAGE,$(AUTO_GENERATED),$(eval \
 		${PACKAGE}: \
+			$(addprefix build10-,${PACKAGE}) \
 			$(addprefix build9-,${PACKAGE}) \
 			$(addprefix build8-,${PACKAGE}) \
 			$(addprefix build7-,${PACKAGE}) \
 	) \
 )
 
-sign: sign9 sign8 sign7
+sign: sign10 sign9 sign8 sign7
+
+publish10: sign10
+	package_cloud push --skip-errors prometheus-rpm/release/el/10 _dist10/*.rpm
 
 publish9: sign9
 	package_cloud push --skip-errors prometheus-rpm/release/el/9 _dist9/*.rpm
@@ -266,7 +325,7 @@ publish8: sign8
 publish7: sign7
 	package_cloud push --skip-errors prometheus-rpm/release/el/7 _dist7/*.rpm
 
-publish: publish9 publish8 publish7
+publish: publish10 publish9 publish8 publish7
 
 clean:
 	rm -rf _cache_dnf _cache_yum _dist*
