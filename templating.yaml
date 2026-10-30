@@ -960,3 +960,6 @@ packages:
         summary: Prometheus exporter for logstash, written in Go.
         description: |
           Export metrics from Logstash to Prometheus
+      dynamic:
+        <<: *default_dynamic_context
+        tarball: '{{URL}}/releases/download/v%{version}/{{package}}'
