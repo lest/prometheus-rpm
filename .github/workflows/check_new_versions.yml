@@ -10,7 +10,7 @@ on:
 
 jobs:
   check_new_releases:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -18,7 +18,7 @@ jobs:
       - name: Setup python environment
         uses: actions/setup-python@v6
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
       - name: Install Python dependencies
         run: pip install ruamel.yaml PyGithub packaging
