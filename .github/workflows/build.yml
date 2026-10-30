@@ -23,7 +23,7 @@ jobs:
         version:
           - 9
           - 8
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -55,10 +55,10 @@ jobs:
         version:
           - 9
           - 8
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Ruby environment
         uses: ruby/setup-ruby@v1
