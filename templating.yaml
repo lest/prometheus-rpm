@@ -509,6 +509,9 @@ packages:
         package: '%{name}-%{version}-linux-amd64'
         description: |
           The iPerf3 exporter allows iPerf3 probing of endpoints.
+      dynamic:
+        <<: *default_dynamic_context
+        tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
   apache_exporter:
     build_steps:
       <<: *default_build_steps
