@@ -506,6 +506,7 @@ packages:
         license: ASL 2.0
         URL: https://github.com/edgard/iperf3_exporter
         summary: Prometheus exporter for iPerf3 probing.
+        package: '%{name}-%{version}-linux-amd64'
         description: |
           The iPerf3 exporter allows iPerf3 probing of endpoints.
   apache_exporter:
