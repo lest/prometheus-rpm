@@ -689,7 +689,6 @@ packages:
             from_tarball: false
             group: '%{group}'
             mode: 640
-            from_tarball: false
           - path: https://raw.githubusercontent.com/prometheus-community/%{name}/v%{version}/examples/%{name}.tmpl
             dest: '%{_sysconfdir}/prometheus/%{name}.tmpl'
             from_tarball: false
