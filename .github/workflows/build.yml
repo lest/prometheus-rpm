@@ -14,7 +14,52 @@ on:
   workflow_dispatch:
 
 jobs:
+  # Fast check for automated version-update PRs created by update_templating_versions.py:
+  # builds only the exporter named in the PR title before the full build runs.
+  build_changed:
+    if: >
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.user.login == 'prometheus-rpm-bot' &&
+      startsWith(github.event.pull_request.title, 'Update ')
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - 9
+          - 8
+    runs-on: ubuntu-26.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Python environment
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+
+      - name: Install Python dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Get exporter name from PR title
+        id: exporter
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          name=$(echo "$PR_TITLE" | awk '{print $2}')
+          if ! [[ "$name" =~ ^[a-z0-9_]+$ ]]; then
+            echo "Unexpected exporter name: '$name'" >&2
+            exit 1
+          fi
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+
+      - name: Build ${{ steps.exporter.outputs.name }}
+        run: make build${{ matrix.version }}-${{ steps.exporter.outputs.name }}
+
   build_packages:
+    needs: build_changed
+    # Run when build_changed passed or was skipped (manual PRs, pushes to master, manual runs)
+    if: ${{ !failure() && !cancelled() }}
     strategy:
       matrix:
         build_type:
@@ -23,15 +68,15 @@ jobs:
         version:
           - 9
           - 8
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Python environment
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
-          python-version: "3.11"
+          python-version: "3.14"
 
       - name: Install Python dependencies
         run: |
@@ -41,7 +86,7 @@ jobs:
         run: make ${{ matrix.build_type }}${{ matrix.version }}
 
       - name: Cache built packages
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         id: restore-build
         with:
           path: _dist${{ matrix.version }}/*
@@ -49,21 +94,27 @@ jobs:
 
   publish_packages:
     needs: build_packages
-    if: github.ref == 'refs/heads/master' && github.repository == 'lest/prometheus-rpm'
+    # The explicit result check is needed because build_changed is skipped on pushes
+    # to master, and the default success() check would otherwise skip this job too.
+    if: >
+      !failure() && !cancelled() &&
+      needs.build_packages.result == 'success' &&
+      github.ref == 'refs/heads/master' &&
+      github.repository == 'lest/prometheus-rpm'
     strategy:
       matrix:
         version:
           - 9
           - 8
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Ruby environment
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: "3.4"
 
       - name: Install PackageCloud CLI
         run: gem install package_cloud
@@ -81,13 +132,13 @@ jobs:
           RPM_GPG_KEY_PASSPHRASE: ${{ secrets.RPM_GPG_KEY_PASSPHRASE }}
 
       - name: Restore auto RPM package cache
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: _dist${{ matrix.version }}/*
           key: ${{ github.sha }}-auto${{ matrix.version }}
 
       - name: Restore manual RPM package cache
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: _dist${{ matrix.version }}/*
           key: ${{ github.sha }}-manual${{ matrix.version }}
