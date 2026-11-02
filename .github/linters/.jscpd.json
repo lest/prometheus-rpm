@@ -1,0 +1,6 @@
+{
+  "threshold": 2,
+  "reporters": ["consoleFull"],
+  "ignore": ["**/.git/**"],
+  "absolute": true
+}
