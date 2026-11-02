@@ -951,18 +951,15 @@ packages:
       <<: *default_context
       static:
         <<: *default_static_context
-        version: 1.5.3
+        version: 2.5.1
         license: MIT
         URL: https://github.com/oracle/oracle-db-appdev-monitoring
         summary: Unified Observability for Oracle Database.
         service_opts:
           - --default.metrics=/etc/prometheus/oracledb_exporter_default-metrics.toml --log.disable=1
         additional_sources:
-          - path: https://raw.githubusercontent.com/oracle/oracle-db-appdev-monitoring/%{version}/default-metrics.toml
-            dest: '%{_sysconfdir}/prometheus/%{name}_default-metrics.toml'
+          - path: https://raw.githubusercontent.com/oracle/oracle-db-appdev-monitoring/%{version}/default-metrics.yaml
+            dest: '%{_sysconfdir}/prometheus/%{name}_default-metrics.yaml'
             from_tarball: false
         description: |
           Unified Observability for Oracle Database
-      dynamic:
-        <<: *default_dynamic_context
-        tarball: '{{URL}}/releases/download/%{version}/{{package}}.tar.gz'
