@@ -66,6 +66,7 @@ jobs:
           - auto
           - manual
         version:
+          - 10
           - 9
           - 8
     runs-on: ubuntu-26.04
@@ -104,6 +105,7 @@ jobs:
     strategy:
       matrix:
         version:
+          - 10
           - 9
           - 8
     runs-on: ubuntu-26.04
